@@ -14,6 +14,25 @@
     </div>
     {% endif %}
   </div>
+  <form class="form-group" method="POST">
+    {{form.hidden_tag()}}
+      <div class="form-group">
+        {{form.body.label(class="form-control-label")}}
+        {{form.body(class="form-control form-contorl-lg")}}
+      <div class="form-group">
+        {{form.submit(class="btn btn-outline-info")}}
+
+      </div>
+    </div>
+  </form>
+
+  <h2>Comments</h2>
+                    <p>
+                    {% for comment in comments %}
+                    <h3>{{ comment.body }}</h3>
+                        <p> posted: {{comment.timestamp.strftime('%B %d,%Y')}}</p>
+                    {% endfor %}
+                    </p>
 
   <div class="modal" tabindex="-1" role="dialog" id="del_modal">
     <div class="modal-dialog" role="document">
@@ -33,8 +52,6 @@
           <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
-
-
         </div>
       </div>
     </div>
