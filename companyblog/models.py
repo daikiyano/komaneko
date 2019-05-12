@@ -20,8 +20,8 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
     password_hash = db.Column(db.String(128))
-
     posts = db.relationship('BlogPost',backref='author',lazy=True)
+    comments = db.relationship('Comment',backref='title',lazy=True)
 
     def __init__(self,email,username,password):
         self.email = email
@@ -42,6 +42,7 @@ class BlogPost(db.Model):
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
     text = db.Column(db.Text,nullable=False)
+    comments = db.relationship('Comment',backref='title',lazy=True)
 
     def __init__(self,title,text,user_id):
         self.title = title
@@ -50,3 +51,21 @@ class BlogPost(db.Model):
 
         def __repr__(self):
             return f"Post ID: {self.id} --Date:{self.date} --- {self.title}"
+
+class Comment(db.Model):
+    blog_post = db.relationship(BlogPost)
+    users = db.relationship(User)
+
+    id = db.Column(db.Integer,primary_key=True)
+    body = db.Column(db.String(140),nullable=False)
+    timestamp = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    post_id = db.Column(db.Integer,db.ForeignKey('blog_post.id'),nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
+
+    def __init__(self,body,post_id,user_id):
+        self.body = body
+        self.post_id = post_id
+        self.user.id = user_id
+
+        def __repr__(self):
+            return f"Post ID: {self.id}---userid:{self.user_id} --Date:{self.timestamp}---{self.body}"
