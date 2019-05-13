@@ -1,7 +1,7 @@
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import current_user,login_required
 from companyblog import db
-from companyblog.models import BlogPost,Comment
+from companyblog.models import BlogPost,Comment,User
 from companyblog.blog_posts.forms import BlogPostForm,CommentForm
 
 blog_posts = Blueprint('blog_posts',__name__)
@@ -30,6 +30,7 @@ def create_post():
 
 #Blog Post (view)
 @blog_posts.route('/<int:blog_post_id>',methods=['GET','POST'])
+@login_required
 def blog_post(blog_post_id):
     blog_post = BlogPost.query.get_or_404(blog_post_id)
     comments = Comment.query.filter_by(post_id=blog_post_id)
@@ -37,7 +38,7 @@ def blog_post(blog_post_id):
     form = CommentForm()
 
     if form.validate_on_submit():
-        comment = Comment(body=form.body.data,post_id=blog_post.id)
+        comment = Comment(body=form.body.data,post_id=blog_post.id,user_id=current_user.id)
 
         db.session.add(comment)
         db.session.commit()

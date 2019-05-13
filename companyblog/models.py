@@ -21,7 +21,7 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(64),unique=True,index=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('BlogPost',backref='author',lazy=True)
-    comments = db.relationship('Comment',backref='title',lazy=True)
+    comments = db.relationship('Comment',backref='poster',lazy=True)
 
     def __init__(self,email,username,password):
         self.email = email
@@ -65,7 +65,7 @@ class Comment(db.Model):
     def __init__(self,body,post_id,user_id):
         self.body = body
         self.post_id = post_id
-        self.user.id = user_id
+        self.user_id = user_id
 
         def __repr__(self):
             return f"Post ID: {self.id}---userid:{self.user_id} --Date:{self.timestamp}---{self.body}"

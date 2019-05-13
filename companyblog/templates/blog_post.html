@@ -19,20 +19,28 @@
       <div class="form-group">
         {{form.body.label(class="form-control-label")}}
         {{form.body(class="form-control form-contorl-lg")}}
+      </div>
       <div class="form-group">
         {{form.submit(class="btn btn-outline-info")}}
-
       </div>
-    </div>
   </form>
 
   <h2>Comments</h2>
-                    <p>
-                    {% for comment in comments %}
-                    <h3>{{ comment.body }}</h3>
-                        <p> posted: {{comment.timestamp.strftime('%B %d,%Y')}}</p>
-                    {% endfor %}
-                    </p>
+    {% for comment in comments %}
+      {% if comment.poster == current_user %}
+      <div style="text-align:right; background-color:#64bc6e; border-radius:10px; opacity:0.7;">
+        <h3><span style="padding-left:30px;">{{ comment.body }}</span><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
+        </h3>
+        <p>{{comment.poster.username}}</p>
+      </div>
+      {% else %}
+      <h3><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
+      <span style="padding-left:30px;">{{ comment.body }}</span></h3>
+      <p>{{comment.poster.username}}</p>
+      {% endif %}
+      <!-- <p> posted: {{comment.timestamp.strftime('%B %d,%Y')}}</p> -->
+    {% endfor %}
+
 
   <div class="modal" tabindex="-1" role="dialog" id="del_modal">
     <div class="modal-dialog" role="document">
