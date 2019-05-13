@@ -8,5 +8,5 @@ class BlogPostForm(FlaskForm):
     submit = SubmitField("Post")
 
 class CommentForm(FlaskForm):
-    body = StringField('post',validators=[DataRequired()])
+    body = StringField('Add Comment',validators=[DataRequired()])
     submit = SubmitField('Comment')
