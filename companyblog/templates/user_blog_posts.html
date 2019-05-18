@@ -5,6 +5,9 @@
   <div class="jumbotron">
     <div align='center'>
       <h1>Welcome to the page for {{user.username}}</h1>
+      <h2>introduction</h2>
+      <h3>{{user.info}}</h3>
+      {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %}
       <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
     </div>
   </div>

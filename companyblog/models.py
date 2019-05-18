@@ -19,6 +19,8 @@ class User(db.Model,UserMixin):
     profile_image = db.Column(db.String(64),nullable=False,default='default_profile.png')
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
+    info = db.Column(db.String(250))
+    last_seen = db.Column(db.DateTime,default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('BlogPost',backref='author',lazy=True)
     comments = db.relationship('Comment',backref='poster',lazy=True)

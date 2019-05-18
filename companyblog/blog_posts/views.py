@@ -34,6 +34,8 @@ def create_post():
 def blog_post(blog_post_id):
     blog_post = BlogPost.query.get_or_404(blog_post_id)
     comments = Comment.query.filter_by(post_id=blog_post_id)
+    # comments = Comment.query.get_or_404(comment)
+
 
     form = CommentForm()
 
@@ -99,4 +101,23 @@ def delete_post(blog_post_id):
     db.session.delete(blog_post)
     db.session.commit()
     flash('Post blog delete')
+    return redirect(url_for('core.index'))
+
+
+#comment delete
+
+@blog_posts.route('/<int:blog_comment_id>/delete',methods=["POST"])
+@login_required
+
+def delete_comment(blog_comment_id):
+
+    comment = Comment.query.get_or_404(blog_comment_id)
+    # comment = Comment.query.filter_by(id=blog_comment_id).first_or_404()
+    # comment = Comment.query.get(id=blog_comment_id)
+    if comment.poster != current_user:
+        abort(403)
+
+    db.session.delete(comment)
+    db.session.commit()
+    flash('comment blog delete')
     return redirect(url_for('core.index'))
