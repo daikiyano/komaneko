@@ -3,6 +3,7 @@ from flask_login import current_user,login_required
 from companyblog import db
 from companyblog.models import BlogPost,Comment,User
 from companyblog.blog_posts.forms import BlogPostForm,CommentForm
+from companyblog.blog_posts.image_handler import add_image_pic
 
 blog_posts = Blueprint('blog_posts',__name__)
 
@@ -14,9 +15,17 @@ def create_post():
 
     if form.validate_on_submit():
 
+        # if form.image.data:
+
+            # username = current_user.username
+        # pic = add_image_pic(form.image.data)
+        # current_user.event_image = pic
+        # db.session.commit()
+
         blog_post = BlogPost(title=form.title.data,
                             text=form.text.data,
-                            user_id=current_user.id)
+                            user_id=current_user.id,
+                            event_image=add_image_pic(form.image.data))
 
         db.session.add(blog_post)
         db.session.commit()
@@ -34,6 +43,8 @@ def create_post():
 def blog_post(blog_post_id):
     blog_post = BlogPost.query.get_or_404(blog_post_id)
     comments = Comment.query.filter_by(post_id=blog_post_id)
+    # comments = Comment.query.get_or_404(comment)
+
 
     form = CommentForm()
 
@@ -99,4 +110,23 @@ def delete_post(blog_post_id):
     db.session.delete(blog_post)
     db.session.commit()
     flash('Post blog delete')
+    return redirect(url_for('core.index'))
+
+
+#comment delete
+
+@blog_posts.route('/<int:blog_comment_id>/delete',methods=["POST"])
+@login_required
+
+def delete_comment(blog_comment_id):
+
+    comment = Comment.query.get_or_404(blog_comment_id)
+    # comment = Comment.query.filter_by(id=blog_comment_id).first_or_404()
+    # comment = Comment.query.get(id=blog_comment_id)
+    if comment.poster != current_user:
+        abort(403)
+
+    db.session.delete(comment)
+    db.session.commit()
+    flash('comment blog delete')
     return redirect(url_for('core.index'))
