@@ -2,6 +2,7 @@
 {%block content %}
   <div class="jumbotron">
     <h1>{{post.title}}</h1>
+    <img align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
     <h1>Written by: {{post.author.username}}</h1>
     <h3>Published: {{post.date.strftime('%B %d,%Y') }}</h3>
     <p>{{post.text}}</p>
@@ -32,6 +33,13 @@
         <h3><span style="padding-left:30px;">{{ comment.body }}</span><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
         </h3>
         <p>{{comment.poster.username}}</p>
+        {{comment.id}}
+          <form action="{{url_for('blog_posts.delete_comment',blog_comment_id=comment.id)}}" method="post">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+
+
+
       </div>
       {% else %}
       <h3><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
@@ -64,5 +72,28 @@
       </div>
     </div>
   </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="del_comment">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the comment?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 {% endblock content %}

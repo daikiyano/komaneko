@@ -2,7 +2,7 @@
 {% block content %}
 
   <div class="jumbotron">
-    <h1>Todo application by Python and Flask</h1>
+    <h1>KOMA EVENT</h1>
 
   </div>
 
@@ -14,7 +14,9 @@
           <h2>
             <img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
 
-            <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}</a></h2>
+            <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}
+            <img align='center' style="height:500px; width:800px;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a></h2>
+
           <a href="{{url_for('users.user_posts',username=post.author.username)}}">Written By: {{post.author.username}}</a>
           <p>Published on] {{post.date.strftime('%Y-%m-%d')}}</p>
           <a class="btn btn-primary" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">Read blog Post</a>
