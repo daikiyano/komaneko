@@ -112,3 +112,36 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user)
+
+
+@users.route('/follow/<username>')
+@login_required
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return redirect(url_for('core.index'))
+    if user == current_user:
+        return redirect(url_for('users.user_posts',username=username))
+        # return render_template('user_blog_posts.html',username=username,user=user)
+    current_user.follow(user)
+    db.session.commit()
+    flash('{} さんをフォローしました！'.format(username))
+    return redirect(url_for('users.user_posts',username=username))
+
+
+    # return render_template('user_blog_posts.html',username=username,user=user)
+
+@users.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return redirect(url_for('core.index'))
+    if user == current_user:
+        return redirect(url_for('users.user_posts',username=username))
+    current_user.unfollow(user)
+    db.session.commit()
+    flash('{} さんをフォロー解除しました！'.format(username))
+    return redirect(url_for('users.user_posts',username=username))
+
+    # return render_template('user_blog_posts.html',username=username)

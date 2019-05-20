@@ -2,6 +2,7 @@
 {%block content %}
   <div class="jumbotron">
     <h1>{{post.title}}</h1>
+    <img align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
     <h1>Written by: {{post.author.username}}</h1>
     <h3>Published: {{post.date.strftime('%B %d,%Y') }}</h3>
     <p>{{post.text}}</p>

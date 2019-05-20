@@ -3,6 +3,7 @@ from flask_login import current_user,login_required
 from companyblog import db
 from companyblog.models import BlogPost,Comment,User
 from companyblog.blog_posts.forms import BlogPostForm,CommentForm
+from companyblog.blog_posts.image_handler import add_image_pic
 
 blog_posts = Blueprint('blog_posts',__name__)
 
@@ -14,9 +15,17 @@ def create_post():
 
     if form.validate_on_submit():
 
+        # if form.image.data:
+
+            # username = current_user.username
+        # pic = add_image_pic(form.image.data)
+        # current_user.event_image = pic
+        # db.session.commit()
+
         blog_post = BlogPost(title=form.title.data,
                             text=form.text.data,
-                            user_id=current_user.id)
+                            user_id=current_user.id,
+                            event_image=add_image_pic(form.image.data))
 
         db.session.add(blog_post)
         db.session.commit()
