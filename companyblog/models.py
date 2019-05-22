@@ -112,11 +112,17 @@ class BlogPost(db.Model):
     likes = db.relationship('PostLike', backref='post', lazy='dynamic')
 
 
-    def __init__(self,title,text,user_id,event_image):
+    def __init__(self,organizer,place,title,entry,text,way,user_id,cost,event_image,contact):
         self.title = title
         self.text = text
         self.user_id = user_id
         self.event_image = event_image
+        self.organizer = organizer
+        self.place = place
+        self.entry = entry
+        self.way = way
+        self.cost = cost
+        self.contact = contact
 
         def __repr__(self):
             return f"Post ID: {self.id} --Date:{self.date} --- {self.title}"

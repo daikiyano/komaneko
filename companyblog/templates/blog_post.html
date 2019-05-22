@@ -6,6 +6,12 @@
     <h1>Written by: {{post.author.username}}</h1>
     <h3>Published: {{post.date.strftime('%B %d,%Y') }}</h3>
     <p>{{post.text}}</p>
+    <p>{{post.organizer}}</p>
+    <p>{{post.place}}</p>
+    <p>{{post.entry}}</p>
+    <p>{{post.way}}</p>
+    <p>{{post.cost}}</p>
+    <p>{{post.contact}}</p>
 
     {% if post.author == current_user %}
     <div>
