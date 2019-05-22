@@ -1,7 +1,7 @@
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import current_user,login_required
 from companyblog import db
-from companyblog.models import BlogPost,Comment,User
+from companyblog.models import BlogPost,Comment,User,PostLike
 from companyblog.blog_posts.forms import BlogPostForm,CommentForm
 from companyblog.blog_posts.image_handler import add_image_pic
 
@@ -33,6 +33,21 @@ def create_post():
         return redirect(url_for('core.index'))
 
     return render_template('create_post.html',form=form)
+
+
+@blog_posts.route('/like/<int:blog_post_id>/<action>')
+@login_required
+
+def like_action(blog_post_id,action):
+    blog_post = BlogPost.query.filter_by(id=blog_post_id).first_or_404()
+    if action == 'like':
+        current_user.like_post(blog_post)
+        db.session.commit()
+
+    if action == 'unlike':
+        current_user.unlike_post(blog_post)
+        db.session.commit()
+    return redirect(request.referrer)
 
 
 
@@ -79,6 +94,9 @@ def update(blog_post_id):
 
     if form.validate_on_submit():
 
+        if form.image.data:
+            blog_post.event_image = add_image_pic(form.image.data)
+
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
         db.session.commit()
@@ -88,6 +106,7 @@ def update(blog_post_id):
     elif request.method == 'GET':
         form.title.data = blog_post.title
         form.text.data = blog_post.text
+        form.image.data = blog_post.event_image
 
     return render_template('create_post.html',title="Updating",form=form)
 
@@ -115,11 +134,12 @@ def delete_post(blog_post_id):
 
 #comment delete
 
-@blog_posts.route('/<int:blog_comment_id>/delete',methods=["POST"])
+@blog_posts.route('/comment/<int:blog_comment_id>/delete',methods=["POST"])
 @login_required
 
 def delete_comment(blog_comment_id):
 
+    # comment = Comment.query.get_or_404(blog_comment_id)
     comment = Comment.query.get_or_404(blog_comment_id)
     # comment = Comment.query.filter_by(id=blog_comment_id).first_or_404()
     # comment = Comment.query.get(id=blog_comment_id)
@@ -130,3 +150,11 @@ def delete_comment(blog_comment_id):
     db.session.commit()
     flash('comment blog delete')
     return redirect(url_for('core.index'))
+
+
+
+# comment = Coment.query.filter_by(id=blog_comment_id).first_or_404()
+# if action == 'like':
+#     current_user.delete_comment(comment)
+#     db.session.commit()
+#     return redirect(request.referrer)

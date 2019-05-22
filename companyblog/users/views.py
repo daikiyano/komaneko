@@ -1,12 +1,4 @@
-#register
 
-#login
-
-#logout
-
-#account
-
-#blog post
 
 from datetime import datetime
 from flask import render_template,url_for,flash,redirect,request,Blueprint

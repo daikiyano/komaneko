@@ -38,6 +38,12 @@ class User(db.Model,UserMixin):
     secondaryjoin=(followers.c.followed_id == id),
     backref=db.backref('followers',lazy='dynamic'),lazy='dynamic')
 
+    liked = db.relationship(
+        'PostLike',
+        foreign_keys='PostLike.user_id',
+        backref='user',lazy='dynamic')
+
+
     def __init__(self,email,username,password):
         self.email = email
         self.username = username
@@ -67,6 +73,24 @@ class User(db.Model,UserMixin):
                 followers.c.follower_id == self.id)
         return followed.union(self.posts).order_by(BlogPost.date.desc())
 
+    def like_post(self,blog_post):
+        if not self.has_liked_post(blog_post):
+            like = PostLike(user_id=self.id,post_id=blog_post.id)
+            db.session.add(like)
+
+    def unlike_post(self,blog_post):
+        if self.has_liked_post(blog_post):
+            PostLike.query.filter_by(
+            user_id=self.id,
+            post_id=blog_post.id).delete()
+
+    def has_liked_post(self,blog_post):
+        return PostLike.query.filter(
+        PostLike.user_id == self.id,
+        PostLike.post_id == blog_post.id).count() > 0
+
+
+
 
 class BlogPost(db.Model):
     users = db.relationship(User)
@@ -76,8 +100,17 @@ class BlogPost(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
+    organizer = db.Column(db.String(140),nullable=False)
+    place = db.Column(db.String(140),nullable=False)
+    entry = db.Column(db.String(140),nullable=False)
+    way = db.Column(db.String(140),nullable=False)
+    cost = db.Column(db.String(140),nullable=False)
+    contact = db.Column(db.String(140),nullable=False)
     text = db.Column(db.Text,nullable=False)
+
     comments = db.relationship('Comment',backref='title',lazy=True)
+    likes = db.relationship('PostLike', backref='post', lazy='dynamic')
+
 
     def __init__(self,title,text,user_id,event_image):
         self.title = title
@@ -87,6 +120,13 @@ class BlogPost(db.Model):
 
         def __repr__(self):
             return f"Post ID: {self.id} --Date:{self.date} --- {self.title}"
+
+class PostLike(db.Model):
+    __tablename__ = 'post_like'
+    id = db.Column(db.Integer,primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('blog_post.id'))
+
 
 class Comment(db.Model):
     blog_post = db.relationship(BlogPost)
@@ -102,6 +142,9 @@ class Comment(db.Model):
         self.body = body
         self.post_id = post_id
         self.user_id = user_id
+
+
+
 
         def __repr__(self):
             return f"Post ID: {self.id}---userid:{self.user_id} --Date:{self.timestamp}---{self.body}"
