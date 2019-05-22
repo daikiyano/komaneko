@@ -1,21 +1,40 @@
 {% extends "base.html"%}
 {% block content %}
+<h1>ユーザー登録</h1>
 <form  method="POST">
-    {{form.hidden_tag()}}
-    {{form.email.label}}{{form.email}}<br>
+  {{form.hidden_tag()}}
+  <div class="form-group">
+    {{form.email.label(class="form-control-label")}}
+    {{form.email(class="form-control form-contorl-lg")}}<br>
     {% for error in form.email.errors %}
-                <span style="color: red;">{{ error }}</span><br>
+      <span style="color: red;">{{ error }}</span><br>
     {% endfor %}
-    {{form.username.label}}{{form.username}}<br>
+  </div>
+
+  <div class="form-group">
+    {{form.username.label(class="form-control-label")}}
+    {{form.username(class="form-control form-contorl-lg")}}<br>
     {% for error in form.username.errors %}
-                <span style="color: red;">{{ error }}</span><br>
+      <span style="color: red;">{{ error }}</span><br>
     {% endfor %}
-    {{form.password.label}}{{form.password}}<br>
-    {{form.pass_confirm.label}}{{form.pass_confirm}}<br>
+  </div>
+
+  <div class="form-group">
+    {{form.password.label(class="form-control-label")}}
+    {{form.password(class="form-control form-contorl-lg")}}<br>
+  </div>
+  <div class="form-group">
+    {{form.pass_confirm.label(class="form-control-label")}}
+    {{form.pass_confirm(class="form-control form-contorl-lg")}}<br>
     {% for error in form.password.errors %}
-                <span style="color: red;">{{ error }}</span><br>
+      <span style="color: red;">{{ error }}</span><br>
     {% endfor %}
-    {{form.submit()}}
+  </div>
+
+
+    {{form.submit(class="btn btn-outline-info")}}
+
+
 </form>
 
 {% endblock %}
