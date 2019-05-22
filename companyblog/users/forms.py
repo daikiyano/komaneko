@@ -9,15 +9,15 @@ from companyblog.models import User
 
 class LoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
-    password = PasswordField('Password',validators=[DataRequired()])
-    submit = SubmitField('Login')
+    password = PasswordField('パスワード',validators=[DataRequired()])
+    submit = SubmitField('ログイン')
 
 class RegistrationForm(FlaskForm):
-    email = StringField('Email',validators=[DataRequired(),Email()])
-    username = StringField('Username',validators=[DataRequired()])
-    password = PasswordField('Password',validators=[DataRequired(),EqualTo('pass_confirm',message='Passwords must match!')])
-    pass_confirm = PasswordField('Confirm Password',validators=[DataRequired()])
-    submit = Submit = SubmitField('Register!')
+    email = StringField('Eメールアドレス',validators=[DataRequired(),Email()])
+    username = StringField('ユーザー名',validators=[DataRequired()])
+    password = PasswordField('パスワード',validators=[DataRequired(),EqualTo('pass_confirm',message='Passwords must match!')])
+    pass_confirm = PasswordField('パスワード確認',validators=[DataRequired()])
+    submit = Submit = SubmitField('登録する')
 
     def validate_email(self,email):
         if User.query.filter_by(email=email.data).first():
@@ -30,6 +30,7 @@ class RegistrationForm(FlaskForm):
 class UpdateUserForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
     username = StringField('Username',validators=[DataRequired()])
+    info = StringField('Write your profile')
     picture = FileField('Update profile Picture',validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Update')
 

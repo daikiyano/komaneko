@@ -1,13 +1,6 @@
-#register
 
-#login
 
-#logout
-
-#account
-
-#blog post
-
+from datetime import datetime
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user,current_user,logout_user,login_required
 from companyblog import db
@@ -19,6 +12,11 @@ from companyblog.users.picture_handler import add_profile_pic
 users = Blueprint('users',__name__)
 
 
+@users.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 
 #register
@@ -86,6 +84,7 @@ def account():
 
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.info = form.info.data
         db.session.commit()
         flash('User Account Updated!')
         return redirect(url_for('users.account'))
@@ -93,6 +92,8 @@ def account():
     elif request.method == "GET":
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.info.data = current_user.info
+
 
     profile_image = url_for('static',filename='profile_pics/'+current_user.profile_image)
     return render_template('account.html',profile_image=profile_image,form=form)
@@ -103,3 +104,36 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user)
+
+
+@users.route('/follow/<username>')
+@login_required
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return redirect(url_for('core.index'))
+    if user == current_user:
+        return redirect(url_for('users.user_posts',username=username))
+        # return render_template('user_blog_posts.html',username=username,user=user)
+    current_user.follow(user)
+    db.session.commit()
+    flash('{} さんをフォローしました！'.format(username))
+    return redirect(url_for('users.user_posts',username=username))
+
+
+    # return render_template('user_blog_posts.html',username=username,user=user)
+
+@users.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return redirect(url_for('core.index'))
+    if user == current_user:
+        return redirect(url_for('users.user_posts',username=username))
+    current_user.unfollow(user)
+    db.session.commit()
+    flash('{} さんをフォロー解除しました！'.format(username))
+    return redirect(url_for('users.user_posts',username=username))
+
+    # return render_template('user_blog_posts.html',username=username)
