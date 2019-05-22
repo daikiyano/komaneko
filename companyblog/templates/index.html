@@ -1,25 +1,42 @@
 {% extends 'base.html'%}
 {% block content %}
 
-  <div class="jumbotron">
-    <h1>KOMA EVENT</h1>
+   <!-- <div class="jumbotron">
+    <h1>SHARE TOBI</h1>
 
-  </div>
+   </div> -->
 
   <div class="container">
+    <!-- <form id="form">
+      <h2>苗字</h2>
+      <input type="text" id="firstname">
+      <h2>名前</h2>
+      <input type="text" id="lastname">
+      <button type="submit" name="button">送信</button>
+    </form>
+    <div id="output"></div> -->
     {% for post in blog_posts.items %}
+
       <div class="card">
         <div class="card-body">
-
-          <h2>
+          <h3>
             <img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
-
-            <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}
-            <img align='center' style="height:500px; width:800px;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a></h2>
-
+            <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}" style="text-decoration: none; color:black;">{{post.title}}
+            <img align='center' style="height:500px; width:800px;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
+          </h3>
           <a href="{{url_for('users.user_posts',username=post.author.username)}}">Written By: {{post.author.username}}</a>
-          <p>Published on] {{post.date.strftime('%Y-%m-%d')}}</p>
-          <a class="btn btn-primary" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">Read blog Post</a>
+          <p>Published on: {{post.date.strftime('%Y年%m月%d日')}}</p>
+          <a class="btn btn-primary" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">イベント詳細</a>
+          {% if current_user.is_authenticated %}
+            {% if current_user.has_liked_post(post) %}
+              <a href="{{ url_for('core.like_action', blog_post_id=post.id, action='unlike') }}" style="text-decoration: none; color:black;"><i style="color:red;" class="fas fa-heart"></i></a>
+            {% else %}
+              <a href="{{ url_for('core.like_action', blog_post_id=post.id, action='like') }}" style="text-decoration: none; color:black;"><i style="color:red;" class="far fa-heart"></i></a>
+            {% endif %}
+            {{ post.likes.count()}}
+          {% else %}
+              <i class="fas fa-heart" style="color:red; font-size:25px;"></i>{{ post.likes.count()}}
+          {% endif %}
         </div>
       </div>
     {% endfor %}

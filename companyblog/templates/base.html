@@ -3,10 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#form').on('submit',function(event){
+        $.ajax({
+          data : {
+            firstname : $('#firstname').val(),
+            lastname: $('#lastname').val(),
+          },
+          type : 'POST',
+          url : '/'
+        })
+        .done(function(data){
+          $('#output').text(data.output).show();
+        });
+        event.preventDefault();
+      });
+    });
+  </script>
   </head>
   {% for mess in get_flashed_messages() %}
   <div class="alert alert-info alert-dismissible fade show" role='alert'>
@@ -18,35 +38,36 @@
   {% endfor %}
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a style="color:white;" class="navbar-brand" href="#">Flask Todo</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity:0.8;">
+  <a style="color:white;" class="navbar-brand" href="#">  <img src="../static/tobitate.png" style="height:70px; width:70px;"alt="">
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('core.index')}}">Home</a>
+        <a style="color:white;" href="{{url_for('core.index')}}">HOME</a>
       </li>
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('core.info')}}">About</a>
+        <a style="color:white;" href="{{url_for('core.info')}}">share TOBIとは？</a>
       </li>
     {% if current_user.is_authenticated %}
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('users.logout')}}">Log Out</a>
+        <a style="color:white;" href="{{url_for('users.logout')}}">ログアウト</a>
       </li>
       <li class='nav-link'>
         <a style="color:white;" href="{{url_for('users.account')}}">Account</a>
       </li>
       <li class='nav-link'>
-        <a style="color:white;" href="{{ url_for('blog_posts.create_post') }}">Create Post</a>
+        <a style="color:white;" href="{{ url_for('blog_posts.create_post') }}">イベントを作成する</a>
       </li>
     {% else %}
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('users.login')}}">Log In</a>
+        <a style="color:white;" href="{{url_for('users.login')}}">ログイン</a>
       </li>
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('users.register')}}">Register</a>
+        <a style="color:white;" href="{{url_for('users.register')}}">ユーザー登録</a>
       </li>
     {% endif %}
     </ul>
