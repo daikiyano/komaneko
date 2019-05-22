@@ -24,8 +24,15 @@ def create_post():
 
         blog_post = BlogPost(title=form.title.data,
                             text=form.text.data,
+                            organizer=form.organizer.data,
+                            place=form.place.data,
+                            entry=form.entry.data,
+                            way=form.way.data,
+                            cost=form.cost.data,
+                            contact=form.contact.data,
                             user_id=current_user.id,
                             event_image=add_image_pic(form.image.data))
+
 
         db.session.add(blog_post)
         db.session.commit()
@@ -99,6 +106,13 @@ def update(blog_post_id):
 
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
+        blog_post.organizer  = form.organizer.data
+        blog_post.place  = form.place.data
+        blog_post.entry  = form.entry.data
+        blog_post.way  = form.way.data
+        blog_post.cost  = form.cost.data
+        blog_post.contact  = form.contact.data
+
         db.session.commit()
         flash("Blog Post Updated")
         return redirect(url_for('blog_posts.blog_post',blog_post_id=blog_post.id))
@@ -107,6 +121,12 @@ def update(blog_post_id):
         form.title.data = blog_post.title
         form.text.data = blog_post.text
         form.image.data = blog_post.event_image
+        form.organizer.data = blog_post.organizer
+        form.place.data = blog_post.place
+        form.entry.data = blog_post.entry
+        form.way.data = blog_post.way
+        form.cost.data = blog_post.cost
+        form.contact.data = blog_post.contact
 
     return render_template('create_post.html',title="Updating",form=form)
 
