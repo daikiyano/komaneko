@@ -2,6 +2,7 @@
 {%block content %}
   <div class="jumbotron">
     <h1>{{post.title}}</h1>
+    <img align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
     <h1>Written by: {{post.author.username}}</h1>
     <h3>Published: {{post.date.strftime('%B %d,%Y') }}</h3>
     <p>{{post.text}}</p>
@@ -14,6 +15,42 @@
     </div>
     {% endif %}
   </div>
+  <form class="form-group" method="POST">
+    {{form.hidden_tag()}}
+      <div class="form-group">
+        {{form.body.label(class="form-control-label")}}
+        {{form.body(class="form-control form-contorl-lg")}}
+      </div>
+      <div class="form-group">
+        {{form.submit(class="btn btn-outline-info")}}
+      </div>
+  </form>
+
+  <h2>Comments</h2>
+    {% for comment in comments %}
+      {% if comment.poster == current_user %}
+      <div style="text-align:right; background-color:#64bc6e; border-radius:10px; opacity:0.7;">
+        <h3><span style="padding-left:30px;">{{ comment.body }}</span><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
+        </h3>
+        <p>{{comment.poster.username}}</p>
+        {{comment.id}}
+          <!-- <form action="{{url_for('blog_posts.delete_comment',blog_comment_id=comment.id)}}" method="post" action="delete">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form> -->
+          <a href="{{ url_for('blog_posts.delete_comment', blog_comment_id=comment.id) }}" style="text-decoration: none; color:black;">delete</a>
+
+
+
+
+      </div>
+      {% else %}
+      <h3><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
+      <span style="padding-left:30px;">{{ comment.body }}</span></h3>
+      <p>{{comment.poster.username}}</p>
+      {% endif %}
+      <!-- <p> posted: {{comment.timestamp.strftime('%B %d,%Y')}}</p> -->
+    {% endfor %}
+
 
   <div class="modal" tabindex="-1" role="dialog" id="del_modal">
     <div class="modal-dialog" role="document">
@@ -33,11 +70,32 @@
           <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="del_comment">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the comment?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
 
         </div>
       </div>
     </div>
   </div>
+
+
 
 {% endblock content %}
