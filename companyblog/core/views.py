@@ -25,19 +25,44 @@ def index():
     blog_posts = BlogPost.query.order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('index.html',blog_posts=blog_posts)
 
-@core.route('/like/<int:blog_post_id>/<action>')
+@core.route('/condition',methods=['GET','POST'])
 @login_required
 
-def like_action(blog_post_id,action):
-    blog_post = BlogPost.query.filter_by(id=blog_post_id).first_or_404()
-    if action == 'like':
-        current_user.like_post(blog_post)
-        db.session.commit()
+def like_action():
+    blog_post = BlogPost.query.filter_by(id=request.form['id']).first_or_404()
+    if request.method == "POST":
+        if current_user.has_liked_post(blog_post):
+            current_user.unlike_post(blog_post)
+            db.session.commit()
+            blog_post = BlogPost.query.filter_by(id=request.form['id']).first_or_404()
+            return jsonify({'condition': 'like','count': blog_post.likes.count()})
+        else:
+            current_user.like_post(blog_post)
+            db.session.commit()
+            blog_post = BlogPost.query.filter_by(id=request.form['id']).first_or_404()
 
-    if action == 'unlike':
-        current_user.unlike_post(blog_post)
-        db.session.commit()
-    return redirect(request.referrer)
+            return jsonify({'condition': 'unlike','count': blog_post.likes.count()})
+
+
+
+
+
+
+# @core.route('/like/<int:blog_post_id>/<action>')
+# @login_required
+#
+# def like_action(blog_post_id,action):
+#     blog_post = BlogPost.query.filter_by(id=blog_post_id).first_or_404()
+#     if action == 'like':
+#         current_user.like_post(blog_post)
+#         db.session.commit()
+#
+#     if action == 'unlike':
+#         current_user.unlike_post(blog_post)
+#         db.session.commit()
+#     return redirect(request.referrer)
+
+
 
 
 @core.route('/info')
