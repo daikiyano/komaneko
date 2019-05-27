@@ -154,3 +154,6 @@ class Comment(db.Model):
 
         def __repr__(self):
             return f"Post ID: {self.id}---userid:{self.user_id} --Date:{self.timestamp}---{self.body}"
+
+def init():
+    db.create_all()
