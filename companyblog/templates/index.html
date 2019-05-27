@@ -1,25 +1,8 @@
 {% extends 'base.html'%}
 {% block content %}
 
-   <!-- <div class="jumbotron">
-    <h1>SHARE TOBI</h1>
-
-   </div> -->
-
-  <div class="container">
-    <!-- <form id="form">
-      <h2>苗字</h2>
-      <input type="text" id="firstname">
-      <h2>名前</h2>
-      <input type="text" id="lastname">
-      <button type="submit" name="button">送信</button>
-    </form>
-    <div id="output"></div> -->
+<div class="container">
     {% for post in blog_posts.items %}
-
-        <!-- <i class="fas fa-heart" style="color:red; font-size:25px;"></i>{{ post.likes.count()}} -->
-
-
       <div class="card">
         <div class="card-body">
           <h3>
@@ -31,14 +14,15 @@
           <p>Published on: {{post.date.strftime('%Y年%m月%d日')}}</p>
           <a class="btn btn-primary" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">イベント詳細</a>
           {% if current_user.is_authenticated %}
-          {% if current_user.has_liked_post(post) %}
-         <div class="button condition{{post.id}} fas fa-heart"  condition="unlike" post_id="{{post.id}}" style="color:red;"></div>
-
+            {% if current_user.has_liked_post(post) %}
+              <div class="button condition{{post.id}} fas fa-cat"  condition="unlike" post_id="{{post.id}}" style="color:purple;font-size:60px;"></div>
+            {% else %}
+              <div  class="button condition{{post.id}} fas fa-cat" condition="like" post_id="{{post.id}}" style="color:purple;opacity:0.3;font-size:60px;"></div>
+            {% endif %}
           {% else %}
-         <div  class="button condition{{post.id}} far fa-heart" condition="like" post_id="{{post.id}}" style="color:red;"></div>
+          <a href="{{url_for('users.login')}}"><i class="fas fa-cat" style="color:purple; font-size:60px;"></i></a>
          {% endif %}
-         <span class=count{{post.id}}>{{ post.likes.count()}}</span>
-         {% endif %}
+          <span class="count{{post.id}}" style="font-size:22px;">{{ post.likes.count()}}</span>
         </div>
       </div>
     {% endfor %}

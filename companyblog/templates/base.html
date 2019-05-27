@@ -48,14 +48,16 @@
              if(data.condition == 'like'){
                $('.condition'+post_id).attr('condition','unlike').show();
                // $('.condition'+post_id).text('unlike').show();
-               $('.condition'+post_id).removeClass('fas');
-               $('.condition'+post_id).addClass('far');
+               // $('.condition'+post_id).removeClass('fas');
+               // $('.condition'+post_id).addClass('far');
+               $('.condition'+post_id).css('opacity', '0.3');
                $('.count'+post_id).text(data.count).show();
              } else {
                $('.condition'+post_id).attr('condition','like').show();
                // $('.condition'+post_id).text('like').show();
-               $('.condition'+post_id).removeClass('far');
-               $('.condition'+post_id).addClass('fas');
+               // $('.condition'+post_id).removeClass('far');
+               // $('.condition'+post_id).addClass('fas');
+               $('.condition'+post_id).css('opacity', '1.0');
                $('.count'+post_id).text(data.count).show();
 
              }
