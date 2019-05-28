@@ -3,86 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pc.css') }}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-    // $(document).ready(function() {
-    //   $('#form').on('submit',function(event){
-    //     $.ajax({
-    //       data : {
-    //         firstname : $('#firstname').val(),
-    //         lastname: $('#lastname').val(),
-    //       },
-    //       type : 'POST',
-    //       url : '/'
-    //     })
-    //     .done(function(data){
-    //       $('#output').text(data.output).show();
-    //     });
-    //     event.preventDefault();
-    //   });
-    // });
-
-    $(document).ready(function(){
-      $('.button').on('click',function(){
-          var post_id = $(this).attr('post_id');
-          var condition = $(this).attr('condition');
-          var firstname = $('#firstname'+post_id).val();
-          var lastname = $('#lastname'+post_id).val();
-
-           $.ajax({
-            url : '/condition',
-            type : 'POST',
-            data : {
-              firstname : firstname,
-              lastname : lastname,
-              id : post_id,
-              condition : condition
-            }
-          })
-           .done(function(data){
-             if(data.condition == 'like'){
-               $('.condition'+post_id).attr('condition','unlike').show();
-               // $('.condition'+post_id).text('unlike').show();
-               // $('.condition'+post_id).removeClass('fas');
-               // $('.condition'+post_id).addClass('far');
-               $('.condition'+post_id).css('opacity', '0.3');
-               $('.count'+post_id).text(data.count).show();
-             } else {
-               $('.condition'+post_id).attr('condition','like').show();
-               // $('.condition'+post_id).text('like').show();
-               // $('.condition'+post_id).removeClass('far');
-               // $('.condition'+post_id).addClass('fas');
-               $('.condition'+post_id).css('opacity', '1.0');
-               $('.count'+post_id).text(data.count).show();
-
-             }
-
-            });
-            event.preventDefault();
-
-      });
-
-
-    });
-  </script>
   </head>
-  {% for mess in get_flashed_messages() %}
-  <div class="alert alert-info alert-dismissible fade show" role='alert'>
-    <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
-      <span aria-hidden="true">&times;</span>
-    </button>
-    {{ mess }}
-  </div>
-  {% endfor %}
+
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity:0.8;">
-  <a style="color:white;" class="navbar-brand" href="#">  <img src="../static/tobitate.png" style="height:70px; width:70px;"alt="">
+  <a style="color:white;" class="navbar-brand" href="#"><i class="fas fa-cat" style="font-size:60px;"></i>
 </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -93,7 +27,7 @@
         <a style="color:white;" href="{{url_for('core.index')}}">HOME</a>
       </li>
       <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('core.info')}}">share TOBIとは？</a>
+        <a style="color:white;" href="{{url_for('core.info')}}">Koma Event</a>
       </li>
     {% if current_user.is_authenticated %}
       <li class='nav-link'>
@@ -116,14 +50,22 @@
     </ul>
   </div>
 </nav>
+{% for mess in get_flashed_messages() %}
+<div class="alert alert-info alert-dismissible fade show" role='alert'>
+  <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{ mess }}
+</div>
+{% endfor %}
 
 
 
 
-<div class="container">
+<!-- <div class="container"> -->
     {% block content %}
     {% endblock %}
-</div>
+<!-- </div> -->
 
   </body>
 </html>

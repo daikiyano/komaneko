@@ -1,32 +1,34 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div class="container">
+
     {% for post in blog_posts.items %}
-      <div class="card">
-        <div class="card-body">
-          <h3>
-            <img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
+      <div style="width:90%; margin: 50px auto; border: solid 1px gray;">
+
+          <h1>
+            <img align='center' class="user_image" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
             <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}" style="text-decoration: none; color:black;">{{post.title}}
-            <img align='center' style="height:500px; width:800px;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
-          </h3>
-          <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a>
+            <img align='center' style="height:100%; width:100%;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
+          </h1>
+          <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
+          <h3>投稿者(団体名): {{post.author.username}}</h3>
+
           <p>Published on: {{post.date.strftime('%Y年%m月%d日')}}</p>
-          <a class="btn btn-primary" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">イベント詳細</a>
+          <a class="btn btn-info btn-lg" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">イベント詳細</a>
           {% if current_user.is_authenticated %}
             {% if current_user.has_liked_post(post) %}
-              <div class="button condition{{post.id}} fas fa-cat"  condition="unlike" post_id="{{post.id}}" style="color:purple;font-size:60px;"></div>
+              <div class="button condition{{post.id}} fas fa-cat"  condition="unlike" post_id="{{post.id}}" style="color:purple;font-size:70px;"></div>
             {% else %}
-              <div  class="button condition{{post.id}} fas fa-cat" condition="like" post_id="{{post.id}}" style="color:purple;opacity:0.3;font-size:60px;"></div>
+              <div  class="button condition{{post.id}} fas fa-cat" condition="like" post_id="{{post.id}}" style="color:purple;opacity:0.3;font-size:70px;"></div>
             {% endif %}
           {% else %}
-          <a href="{{url_for('users.login')}}"><i class="fas fa-cat" style="color:purple; font-size:60px;"></i></a>
+          <a href="{{url_for('users.login')}}"><i class="fas fa-cat" style="color:purple; font-size:120px;"></i></a>
          {% endif %}
           <span class="count{{post.id}}" style="font-size:22px;">{{ post.likes.count()}}</span>
-        </div>
+
       </div>
     {% endfor %}
-  </div>
+
   <nav aria-label='Page Navigation example'>
     <ul class="pagination justify-content-center">
       {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2)  %}
