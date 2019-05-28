@@ -4,63 +4,63 @@
   <form class="form-group" method="POST" action="" enctype="multipart/form-data">
     {{form.hidden_tag()}}
     <div class="form-group">
-        {{form.title.label(class="form-control-label")}}
+      <h3><i class="fas fa-cat"></i>{{form.title.label(class="form-control-label")}}</h3>
         {{form.title(class="form-control form-contorl-lg")}}
         {% for error in form.title.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-      {{form.text.label(class="form-control-label")}}
+      <h3><i class="far fa-calendar-alt"></i>{{form.text.label(class="form-control-label")}}</h3>
       {{form.text(class="form-control form-contorl-lg")}}
       {% for error in form.text.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
     <div class="form-group">
-      {{form.organizer.label(class="form-control-label")}}
+      <h3><i class="far fa-user"></i>{{form.organizer.label(class="form-control-label")}}</h3>
       {{form.organizer(class="form-control form-contorl-lg")}}
       {% for error in form.organizer.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
     <div class="form-group">
-        <i class="fas fa-thumbtack"></i>{{form.place.label(class="form-control-label")}}
+      <h3><i class="fas fa-thumbtack"></i>{{form.place.label(class="form-control-label")}}</h3>
         {{form.place(class="form-control form-contorl-lg")}}
         {% for error in form.place.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-        {{form.entry.label(class="form-control-label")}}
+      <h3><i class="far fa-check-circle"></i>{{form.entry.label(class="form-control-label")}}</h3>
         {{form.entry(class="form-control form-contorl-lg")}}
         {% for error in form.entry.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-        {{form.way.label(class="form-control-label")}}
+      <h3><i class="far fa-flag"></i>{{form.way.label(class="form-control-label")}}</h3>
         {{form.way(class="form-control form-contorl-lg")}}
         {% for error in form.way.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-        <i class="fas fa-yen-sign"></i>{{form.cost.label(class="form-control-label")}}
+        <h3><i class="fas fa-yen-sign"></i>{{form.cost.label(class="form-control-label")}}</h3>
         {{form.cost(class="form-control form-contorl-lg")}}
         {% for error in form.cost.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-        {{form.contact.label(class="form-control-label")}}
+      <h3><i class="far fa-address-card"></i>{{form.contact.label(class="form-control-label")}}</h3>
         {{form.contact(class="form-control form-contorl-lg")}}
         {% for error in form.contact.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
-      {{form.image.label(class="form-control-label")}}
+      <h3><i class="far fa-images"></i>{{form.image.label(class="form-control-label")}}</h3>
       {{form.image(class="form-control form-contorl-lg")}}
       *画像形式はjpg,pngのみ対応しています。
       {% for error in form.image.errors %}
