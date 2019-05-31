@@ -3,7 +3,7 @@
 
   <div class="jumbotron">
     <div align='center'>
-      <h1>Welcome to the page for {{ current_user.username}}</h1>
+      <h1>{{ current_user.username}}さんアカウントページへようこそ</h1>
       <img align='center' src="{{url_for('static',filename='profile_pics/'+current_user.profile_image)}}" >
     </div>
   </div>
@@ -13,20 +13,40 @@
 
       {{form.hidden_tag()}}
       <div class="form-group">
+        {{form.type.label(class="form-control-label")}}
+        {{form.type(class="form-control form-contorl-lg")}}<br>
+        {% for error in form.type.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+      </div>
+      <div class="form-group">
         {{form.username.label(class='form-group')}}
         {{form.username(class='form-control')}}
       </div>
       <div class="form-group">
       {{form.email.label(class='form-group')}}
-      {{form.email(class='form-control')}}
+      {{form.email(placeholder="komazawa@gmail.com",class='form-control')}}
       </div>
       <div class="form-group">
       {{form.info.label(class='form-group')}}
-      {{form.info(class='form-control')}}
+      {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="5",class='form-control')}}
+      </div>
+      <div class="form-group">
+        <i class="fab fa-twitter" style="color:#00acee; font-size:30px;"></i>{{form.twitter.label(class='form-group')}}<br>
+      <span>https://twitter.com</span>{{form.twitter(placeholder="/username/",class='form-control')}}
+      </div>
+      <div class="form-group">
+      <i class="fab fa-facebook-square" style="color:#3B5998; font-size:30px;"></i>{{form.facebook.label(class='form-group')}}<br>
+      <span>https://www.facebook.com</span>{{form.facebook(placeholder="/username/",class='form-control')}}
+      </div>
+      <div class="form-group">
+      <i class="fab fa-instagram" style="font-size:30px;"></i>{{form.instagram.label(class='form-group')}}<br>
+      <span>https://www.instagram.com</span>{{form.instagram(placeholder="/username/",class='form-control')}}
       </div>
       <div class="form-group">
       {{form.picture.label(class='form-group')}}
-      {{form.picture(class='form-control')}}
+      {{form.picture(class='form-control')}}<br>
+      ※jpg、pngのみアップロードできます。
       </div>
       <div class="form-group">
       {{form.submit(class='btn btn-primary')}}

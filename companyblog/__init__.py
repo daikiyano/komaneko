@@ -3,11 +3,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
-
+app.config.from_pyfile('config.cfg')
 ######################################
 ###############databwse############
 ########################
@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app,db)
+mail = Mail(app)
 
 
 
