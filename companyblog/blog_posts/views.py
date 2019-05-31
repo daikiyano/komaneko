@@ -23,6 +23,7 @@ def create_post():
         # db.session.commit()
 
         blog_post = BlogPost(title=form.title.data,
+                            event_date=form.event_date.data,
                             text=form.text.data,
                             organizer=form.organizer.data,
                             place=form.place.data,
@@ -36,26 +37,26 @@ def create_post():
 
         db.session.add(blog_post)
         db.session.commit()
-        flash("Blog Post Created")
+        flash("投稿を作成しました！")
         return redirect(url_for('core.index'))
 
     return render_template('create_post.html',form=form)
 
 
-@blog_posts.route('/like/<int:blog_post_id>/<action>')
-@login_required
-
-def like_action(blog_post_id,action):
-    blog_post = BlogPost.query.filter_by(id=blog_post_id).first_or_404()
-    if action == 'like':
-        current_user.like_post(blog_post)
-        db.session.commit()
-
-    if action == 'unlike':
-        current_user.unlike_post(blog_post)
-        db.session.commit()
-    return redirect(request.referrer)
-
+# @blog_posts.route('/like/<int:blog_post_id>/<action>')
+# @login_required
+#
+# def like_action(blog_post_id,action):
+#     blog_post = BlogPost.query.filter_by(id=blog_post_id).first_or_404()
+#     if action == 'like':
+#         current_user.like_post(blog_post)
+#         db.session.commit()
+#
+#     if action == 'unlike':
+#         current_user.unlike_post(blog_post)
+#         db.session.commit()
+#     return redirect(request.referrer)
+#
 
 
 
@@ -106,6 +107,7 @@ def update(blog_post_id):
 
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
+        blog_post.event_date = form.event_date.data
         blog_post.organizer  = form.organizer.data
         blog_post.place  = form.place.data
         blog_post.entry  = form.entry.data
@@ -114,12 +116,13 @@ def update(blog_post_id):
         blog_post.contact  = form.contact.data
 
         db.session.commit()
-        flash("Blog Post Updated")
+        flash("投稿を更新しました。")
         return redirect(url_for('blog_posts.blog_post',blog_post_id=blog_post.id))
 
     elif request.method == 'GET':
         form.title.data = blog_post.title
         form.text.data = blog_post.text
+        form.event_date.data = blog_post.event_date
         form.image.data = blog_post.event_image
         form.organizer.data = blog_post.organizer
         form.place.data = blog_post.place
@@ -148,7 +151,7 @@ def delete_post(blog_post_id):
 
     db.session.delete(blog_post)
     db.session.commit()
-    flash('Post blog delete')
+    flash('投稿を削除しました。')
     return redirect(url_for('core.index'))
 
 

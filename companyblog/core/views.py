@@ -1,5 +1,5 @@
 from flask import Flask, render_template,url_for,flash,redirect,request,Blueprint,jsonify
-
+from datetime import datetime
 from companyblog.models import BlogPost,PostLike,User
 from flask_login import current_user,login_required
 from companyblog import db
@@ -22,7 +22,7 @@ def index():
 
 
     page = request.args.get('page',1,type=int)
-    blog_posts = BlogPost.query.order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
+    blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.desc()).paginate(page=page,per_page=5)
     return render_template('index.html',blog_posts=blog_posts)
 
 @core.route('/condition',methods=['GET','POST'])

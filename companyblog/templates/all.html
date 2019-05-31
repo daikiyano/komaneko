@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block content %}
+<div style="width:80%; margin:50px auto; display: flex; flex-wrap: wrap;">
+  {% for users in user %}
+    <div style="padding: 0 80px;">
+      <h1>{{users.username}}</h1>
+      <a href="{{url_for('users.user_posts',username=users.username)}}">
+      <img style="border-radius:50%; height:350px; width:350px;" src="{{url_for('static',filename='profile_pics/'+users.profile_image)}}">
+      </a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

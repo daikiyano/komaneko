@@ -1,8 +1,6 @@
-/* index.page */
-
 .post_box{
-  width:50%;
-  margin: 50px auto;
+  width:95%;
+  margin: 20px auto;
   border: solid 1px gray;
 }
 
@@ -11,12 +9,41 @@
 }
 
 
-.user_image{
-  height:60px;
-  width:60px;
-  border-radius:50%;
+.index_title{
+  font-size:20px;
 }
 
+.user_image{
+  height:40px;
+  width:40px;
+  border-radius:50%;
+  
+}
+
+.post_user{
+    display: flex;
+    margin:20px auto;
+}
+
+
+.post_user h6{
+  padding-top:10px;
+  padding-left:10px;
+}
+
+
+
+.view_btn{
+  padding-bottom: 10px;
+}
+
+
+
+
+
+.details_title{
+  border-bottom: 2px solid rgba(121,74,168,0.9);
+}
 
 
 .social {
