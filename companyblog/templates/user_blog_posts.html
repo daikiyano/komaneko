@@ -4,18 +4,19 @@
 <div class="container">
   <div class="jumbotron">
     <div align='center'>
-      <h1>Welcome to the page for {{user.username}}</h1>
-      <h2>introduction</h2>
+      <h1>{{user.username}}</h1>
+      <h2>アカウント情報</h2>
       <h3>{{user.info}}</h3>
+      <h3>{{user.twitter}}</h3>
       {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %}
-
-      <p>{{user.followers.count()}} followers,{{user.followed.count() }} following</p>
+      <img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" style="height:10%; width:10%;border-radius:50%;">
+      <!-- <p>{{user.followers.count()}} followers,{{user.followed.count() }} following</p>
       {%if user == current_user %}
       {% elif not current_user.is_following(user)%}
       <p><a class="btn btn-primary" href="{{url_for('users.follow',username=user.username)}}">Follow</a></p>
       {% else %}
       <p><a class="btn btn-primary" href="{{url_for('users.unfollow',username=user.username)}}">Unfollow</a></p>
-      {% endif %}
+      {% endif %} -->
 
       <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
     </div>
