@@ -1,27 +1,42 @@
 {%extends "base.html"%}
 {%block content %}
-  <div class="jumbotron">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <h1>{{post.title}}</h1>
-    <img align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
-    <h1>Written by: {{post.author.username}}</h1>
-    <h3>Published: {{post.date.strftime('%B %d,%Y') }}</h3>
+<div class="social">
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="link twitter witter-share-button" target="_parent" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false"><span class="fab fa-twitter"></span></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+  <div style="text-align:center; width:95%; margin: 0 auto;">
+    <h2><i class="fas fa-cat"></i>{{post.title}}</h2>
+    <img style="width:100%; padding: 0 auto;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
+    <h2>投稿者</h2>
+    <p> {{post.author.username}}</p>
+    <h2>投稿日</h2>
+    <p>{{post.date.strftime('%B %d,%Y') }}</p>
+    <h2>イベント開催日</h2>
+    <p>{{post.event_date.strftime('%Y年%m月%d日')}}</p>
+    <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     <p>{{post.text}}</p>
+    <h2 class="details_title"><i class="far fa-user"></i>{主催者</h2>
     <p>{{post.organizer}}</p>
+    <h2 class="details_title"><i class="fas fa-thumbtack"></i>場所</h2>
     <p>{{post.place}}</p>
+    <h2 class="details_title"><i class="far fa-check-circle"></i>参加条件</h2>
     <p>{{post.entry}}</p>
+    <h2 class="details_title"><i class="far fa-flag"></i>参加方法</h2>
     <p>{{post.way}}</p>
+    <h2 class="details_title"><i class="fas fa-yen-sign"></i>参加費用</h2>
     <p>{{post.cost}}</p>
+    <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-
     {% if post.author == current_user %}
     <div>
       <a class="btn btn-primary" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
       <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal">Delete</button>
     </div>
     {% endif %}
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
   </div>
-  <form class="form-group" method="POST">
+
+  <!-- <form class="form-group" method="POST">
     {{form.hidden_tag()}}
       <div class="form-group">
         {{form.body.label(class="form-control-label")}}
@@ -30,20 +45,20 @@
       <div class="form-group">
         {{form.submit(class="btn btn-outline-info")}}
       </div>
-  </form>
+  </form> -->
 
-  <h2>Comments</h2>
+  <!-- <h2>Comments</h2>
     {% for comment in comments %}
       {% if comment.poster == current_user %}
       <div style="text-align:right; background-color:#64bc6e; border-radius:10px; opacity:0.7;">
         <h3><span style="padding-left:30px;">{{ comment.body }}</span><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
         </h3>
         <p>{{comment.poster.username}}</p>
-        {{comment.id}}
+        {{comment.id}} -->
           <!-- <form action="{{url_for('blog_posts.delete_comment',blog_comment_id=comment.id)}}" method="post" action="delete">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form> -->
-          <a href="{{ url_for('blog_posts.delete_comment', blog_comment_id=comment.id) }}" style="text-decoration: none; color:black;">delete</a>
+          <!-- <a href="{{ url_for('blog_posts.delete_comment', blog_comment_id=comment.id) }}" style="text-decoration: none; color:black;">delete</a> -->
 
 
 

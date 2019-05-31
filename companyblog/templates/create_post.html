@@ -12,8 +12,15 @@
     </div>
     <div class="form-group">
       <h3><i class="far fa-calendar-alt"></i>{{form.text.label(class="form-control-label")}}</h3>
-      {{form.text(class="form-control form-contorl-lg")}}
+      {{form.text(cols="20", rows="5",class="form-control form-contorl-lg")}}
       {% for error in form.text.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <h3><i class="far fa-calendar-alt"></i>{{form.event_date.label(class="form-control-label")}}</h3>
+      {{form.event_date(class="form-control form-contorl-lg")}}
+      {% for error in form.event_date.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>

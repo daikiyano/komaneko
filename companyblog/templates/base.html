@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pc.css') }}">
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pc.css') }}"media="(min-width: 1024px)">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tablet.css') }}"media="(min-width: 640px) and (max-width: 1023px)">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='phone.css') }}"media="(min-width: 320px) and (max-width: 639px)">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -15,7 +17,7 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity:0.8;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity:0.8;　background-color: #794aa8;">
   <a style="color:white;" class="navbar-brand" href="#"><i class="fas fa-cat" style="font-size:60px;"></i>
 </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +57,7 @@
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
-  {{ mess }}
+  <h2 style="text-align:center;">{{ mess }}</h2>
 </div>
 {% endfor %}
 

@@ -23,13 +23,22 @@ class User(db.Model,UserMixin):
 
     __tablename__ = 'users'
 
+
+
     id = db.Column(db.Integer,primary_key=True)
     profile_image = db.Column(db.String(64),nullable=False,default='default_profile.png')
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
-    info = db.Column(db.String(250))
+    facebook = db.Column(db.String(64), nullable=True)
+    twitter = db.Column(db.String(64), nullable=True)
+    instagram = db.Column(db.String(64),nullable=True)
+    info = db.Column(db.Text,nullable=True)
+    type = db.Column(db.Integer,nullable=True)
     last_seen = db.Column(db.DateTime,default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
+    email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
+    email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
+    email_confirmed_on = db.Column(db.DateTime, nullable=True)
     posts = db.relationship('BlogPost',backref='author',lazy=True)
     comments = db.relationship('Comment',backref='poster',lazy=True)
     followed = db.relationship(
@@ -44,10 +53,14 @@ class User(db.Model,UserMixin):
         backref='user',lazy='dynamic')
 
 
-    def __init__(self,email,username,password):
+    def __init__(self,email,username,type,password,email_confirmation_sent_on=None):
         self.email = email
         self.username = username
+        self.type = type
         self.password_hash = generate_password_hash(password)
+        self.email_confirmation_sent_on = email_confirmation_sent_on
+        self.email_confirmed = False
+        self.email_confirmed_on = None
 
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
@@ -100,6 +113,7 @@ class BlogPost(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
+    event_date = db.Column(db.DateTime,default=datetime.utcnow)
     organizer = db.Column(db.String(140),nullable=False)
     place = db.Column(db.String(140),nullable=False)
     entry = db.Column(db.String(140),nullable=False)
@@ -112,9 +126,10 @@ class BlogPost(db.Model):
     likes = db.relationship('PostLike', backref='post', lazy='dynamic')
 
 
-    def __init__(self,organizer,place,title,entry,text,way,user_id,cost,event_image,contact):
+    def __init__(self,organizer,place,title,event_date,entry,text,way,user_id,cost,event_image,contact):
         self.title = title
         self.text = text
+        self.event_date = event_date
         self.user_id = user_id
         self.event_image = event_image
         self.organizer = organizer

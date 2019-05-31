@@ -1,8 +1,8 @@
 """first migrate
 
-Revision ID: 61a328d05722
+Revision ID: e9ded806fe6e
 Revises: 
-Create Date: 2019-05-22 17:15:58.876269
+Create Date: 2019-05-31 10:36:35.440187
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '61a328d05722'
+revision = 'e9ded806fe6e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,9 +23,16 @@ def upgrade():
     sa.Column('profile_image', sa.String(length=64), nullable=False),
     sa.Column('email', sa.String(length=64), nullable=True),
     sa.Column('username', sa.String(length=64), nullable=True),
-    sa.Column('info', sa.String(length=250), nullable=True),
+    sa.Column('facebook', sa.String(length=64), nullable=True),
+    sa.Column('twitter', sa.String(length=64), nullable=True),
+    sa.Column('instagram', sa.String(length=64), nullable=True),
+    sa.Column('info', sa.Text(), nullable=True),
+    sa.Column('type', sa.Integer(), nullable=True),
     sa.Column('last_seen', sa.DateTime(), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('email_confirmation_sent_on', sa.DateTime(), nullable=True),
+    sa.Column('email_confirmed', sa.Boolean(), nullable=True),
+    sa.Column('email_confirmed_on', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
@@ -36,6 +43,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.Column('title', sa.String(length=140), nullable=False),
+    sa.Column('event_date', sa.DateTime(), nullable=True),
     sa.Column('organizer', sa.String(length=140), nullable=False),
     sa.Column('place', sa.String(length=140), nullable=False),
     sa.Column('entry', sa.String(length=140), nullable=False),
