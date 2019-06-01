@@ -54,6 +54,7 @@ def register():
 
         user = User(email=form.email.data,
                     username=form.username.data,
+                    university=form.university.data,
                     type=form.type.data,
                     password=form.password.data)
 
@@ -86,7 +87,7 @@ def login():
 
         if user.check_password(form.password.data) and user is not None:
             login_user(user)
-            flash('{}さん　Komaeventへようこそ！'.format(user.username))
+            flash('{}さん　KomaNecoへようこそ！'.format(user.username))
 
             next = request.args.get('next')
 
@@ -124,8 +125,10 @@ def account():
 
         current_user.username = form.username.data
         current_user.email = form.email.data
-        current_user.info = form.info.data
         current_user.type = form.type.data
+        current_user.info = form.info.data
+        current_user.university = form.university.data
+        current_user.url = form.url.data
         current_user.twitter = form.twitter.data
         current_user.facebook = form.facebook.data
         current_user.instagram = form.instagram.data
@@ -137,6 +140,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
         form.info.data = current_user.info
+        form.url.data = current_user.url
         form.type.data = current_user.type
         form.twitter.data = current_user.twitter
         form.facebook.data = current_user.facebook
@@ -157,8 +161,10 @@ def user_posts(username):
 @users.route("/all")
 def all():
     page = request.args.get('page',1,type=int)
-    user = User.query.filter(User.type==2)
-    return render_template('all.html',user=user)
+    sports = User.query.filter(User.type==2)
+    cultures = User.query.filter(User.type==3)
+    others = User.query.filter(User.type==4)
+    return render_template('all.html',sports=sports,cultures=cultures,others=others)
 
 @users.route('/follow/<username>')
 @login_required

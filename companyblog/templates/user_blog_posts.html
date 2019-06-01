@@ -1,15 +1,23 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div class="container">
-  <div class="jumbotron">
-    <div align='center'>
-      <h1>{{user.username}}</h1>
-      <h2>アカウント情報</h2>
-      <h3>{{user.info}}</h3>
-      <h3>{{user.twitter}}</h3>
-      {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %}
-      <img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" style="height:10%; width:10%;border-radius:50%;">
+<div style="text-align:center; width:95%; margin: 0 auto;">
+
+
+    <div align='center' style="width:100%;">
+      <h1>団体名</h1>
+      <h3><b>{{user.username}}</b></h3>
+      <!-- {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %} -->
+      {% if user.twitter %}
+        <a href="https://twitter.com/{{user.twitter}}"><img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" style="height:80px; width:80px;border-radius:50%;"></a>
+      {% endif %}
+      {% if user.facebook %}
+        <a href="https://facebook.com/{{user.facebook}}"><img src="static/f_logo_RGB-Blue_100.png" alt="facebook" style="height:80px; width:80px;border-radius:50%;"></a>
+      {% endif %}
+      {% if user.instagram %}
+        <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" style="height:80px; width:80px;border-radius:50%;"></a>
+      {% endif %}
+
       <!-- <p>{{user.followers.count()}} followers,{{user.followed.count() }} following</p>
       {%if user == current_user %}
       {% elif not current_user.is_following(user)%}
@@ -18,9 +26,15 @@
       <p><a class="btn btn-primary" href="{{url_for('users.unfollow',username=user.username)}}">Unfollow</a></p>
       {% endif %} -->
 
-      <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
+      <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}" style="height:300px; width:100%;" >
+      <h2>団体情報</h2>
+      <p style="font-size:20px;">{{user.info}}</p>
     </div>
-  </div>
+
+  <div class="">
+  
+
+
 
 {% for post in blog_posts.items %}
   <h2><a href="{{url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}</a></h2>

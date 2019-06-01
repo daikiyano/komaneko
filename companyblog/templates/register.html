@@ -18,7 +18,13 @@
       <span style="color: red;">{{ error }}</span><br>
     {% endfor %}
   </div>
-
+  <div class="form-group">
+    {{form.university.label(class="form-control-label")}}
+    {{form.university(class="form-control form-contorl-lg")}}<br>
+    {% for error in form.university.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+  </div>
   <div class="form-group">
     {{form.type.label(class="form-control-label")}}
     {{form.type(class="form-control form-contorl-lg")}}<br>

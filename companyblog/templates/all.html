@@ -1,13 +1,43 @@
 {% extends 'base.html'%}
 {% block content %}
-<div style="width:80%; margin:50px auto; display: flex; flex-wrap: wrap;">
-  {% for users in user %}
-    <div style="padding: 0 80px;">
-      <h1>{{users.username}}</h1>
-      <a href="{{url_for('users.user_posts',username=users.username)}}">
-      <img style="border-radius:50%; height:350px; width:350px;" src="{{url_for('static',filename='profile_pics/'+users.profile_image)}}">
-      </a>
+<div style="text-align:center; width:95%; margin: 0 auto;">
+<h1 class="details_title">体育会系団体</h1>
+  <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+    {% for sport in sports %}
+      <div style="padding: 10px 10px; width:100%;">
+        <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+        <a href="{{url_for('users.user_posts',username=sport.username)}}">
+        <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h1 class="details_title">文化系サークル</h1>
+    <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+      {% for sport in sports %}
+        <div style="padding: 10px 10px; width:100%;">
+          <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+          <a href="{{url_for('users.user_posts',username=sport.username)}}">
+          <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+          </a>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+
+    <h1 class="details_title">その他/任意団体</h1>
+      <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+        {% for sport in sports %}
+          <div style="padding: 10px 10px; width:100%;">
+            <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+            <a href="{{url_for('users.user_posts',username=sport.username)}}">
+            <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+
+
 </div>
 {% endblock %}
