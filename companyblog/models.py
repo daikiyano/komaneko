@@ -33,7 +33,9 @@ class User(db.Model,UserMixin):
     twitter = db.Column(db.String(64), nullable=True)
     instagram = db.Column(db.String(64),nullable=True)
     info = db.Column(db.Text,nullable=True)
-    type = db.Column(db.Integer,nullable=True)
+    url = db.Column(db.String(64),nullable=True)
+    university = db.Column(db.Integer,nullable=False)
+    type = db.Column(db.Integer,nullable=False)
     last_seen = db.Column(db.DateTime,default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
@@ -53,10 +55,11 @@ class User(db.Model,UserMixin):
         backref='user',lazy='dynamic')
 
 
-    def __init__(self,email,username,type,password,email_confirmation_sent_on=None):
+    def __init__(self,email,username,type,university,password,email_confirmation_sent_on=None):
         self.email = email
         self.username = username
         self.type = type
+        self.university = university
         self.password_hash = generate_password_hash(password)
         self.email_confirmation_sent_on = email_confirmation_sent_on
         self.email_confirmed = False

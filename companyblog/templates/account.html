@@ -24,12 +24,20 @@
         {{form.username(class='form-control')}}
       </div>
       <div class="form-group">
+      {{form.university.label(class='form-group')}}
+      {{form.university(placeholder="所属大学",class='form-control')}}
+      </div>
+      <div class="form-group">
       {{form.email.label(class='form-group')}}
       {{form.email(placeholder="komazawa@gmail.com",class='form-control')}}
       </div>
       <div class="form-group">
       {{form.info.label(class='form-group')}}
-      {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="5",class='form-control')}}
+      {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="15",class='form-control')}}
+      </div>
+      <div class="form-group">
+      {{form.url.label(class='form-group')}}
+      {{form.url(placeholder="HP URL",class='form-control')}}
       </div>
       <div class="form-group">
         <i class="fab fa-twitter" style="color:#00acee; font-size:30px;"></i>{{form.twitter.label(class='form-group')}}<br>

@@ -31,6 +31,9 @@
       <li class='nav-link'>
         <a style="color:white;" href="{{url_for('core.info')}}">Koma Event</a>
       </li>
+      <li class='nav-link'>
+        <a style="color:white;" href="{{ url_for('users.all') }}">団体サークル一覧</a>
+      </li>
     {% if current_user.is_authenticated %}
       <li class='nav-link'>
         <a style="color:white;" href="{{url_for('users.logout')}}">ログアウト</a>
@@ -53,11 +56,11 @@
   </div>
 </nav>
 {% for mess in get_flashed_messages() %}
-<div class="alert alert-info alert-dismissible fade show" role='alert'>
+<div class="alert alert-success alert-dismissible fade show" style="background:rgba(148,110,185,1);" role='alert'>
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
-  <h2 style="text-align:center;">{{ mess }}</h2>
+  <h3 style="text-align:center; color:white;">{{ mess }}</h3>
 </div>
 {% endfor %}
 
