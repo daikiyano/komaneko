@@ -2,7 +2,10 @@
 {% block content %}
 <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
 
-<h1　class="event_top">イベント一覧</h1>
+
+
+
+<h1 class="event_top"><b>イベント一覧</b></h1>
 {% for post in blog_posts.items %}
   <div class="post_box">
     <div class="post_top">
@@ -20,7 +23,7 @@
           <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
         {% endif %}
       {% else %}
-          <div><a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a></div>
+          <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
       {% endif %}
       <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
       </div>
@@ -37,9 +40,8 @@
     </div>
     </div>
   {% endfor %}
-  <!-- <a class="btn btn-primary btn-lg view_btn" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">View More...</a> -->
 
-  <nav aria-label='Page Navigation example'>
+<nav aria-label='Page Navigation example'>
     <ul class="pagination justify-content-center">
       {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2)  %}
         {% if blog_posts.page == page_num %}
@@ -53,7 +55,7 @@
         {% endif %}
       {% endfor %}
     </ul>
+</nav>
 
-  </nav>
 
   {% endblock %}

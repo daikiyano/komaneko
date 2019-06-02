@@ -1,38 +1,26 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div style="text-align:center; width:95%; margin: 0 auto;">
-
-
-    <div align='center' style="width:100%;">
-      <h1>団体名</h1>
-      <h3><b>{{user.username}}</b></h3>
+<div class="user_post_container">
+  <div style="user_post_box"align='center'>
+    <h1 class="info_title">団体名</h1>
+    <h2><b>{{user.username}}</b></h2>
       <!-- {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %} -->
-      {% if user.twitter %}
-        <a href="https://twitter.com/{{user.twitter}}"><img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" style="height:80px; width:80px;border-radius:50%;"></a>
-      {% endif %}
-      {% if user.facebook %}
-        <a href="https://facebook.com/{{user.facebook}}"><img src="static/f_logo_RGB-Blue_100.png" alt="facebook" style="height:80px; width:80px;border-radius:50%;"></a>
-      {% endif %}
-      {% if user.instagram %}
-        <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" style="height:80px; width:80px;border-radius:50%;"></a>
-      {% endif %}
-
-      <!-- <p>{{user.followers.count()}} followers,{{user.followed.count() }} following</p>
-      {%if user == current_user %}
-      {% elif not current_user.is_following(user)%}
-      <p><a class="btn btn-primary" href="{{url_for('users.follow',username=user.username)}}">Follow</a></p>
-      {% else %}
-      <p><a class="btn btn-primary" href="{{url_for('users.unfollow',username=user.username)}}">Unfollow</a></p>
-      {% endif %} -->
-
-      <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}" style="height:300px; width:100%;" >
-      <h2>団体情報</h2>
-      <p style="font-size:20px;">{{user.info}}</p>
-    </div>
-
+    {% if user.twitter %}
+      <a href="https://twitter.com/{{user.twitter}}"><img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" class="user_twitter"></a>
+    {% endif %}
+    {% if user.facebook %}
+      <a href="https://facebook.com/{{user.facebook}}"><img src="static/f_logo_RGB-Blue_100.png" alt="facebook" class="user_facebook"></a>
+    {% endif %}
+    {% if user.instagram %}
+      <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" class="user_instagram"></a>
+    {% endif %}
+    <img class="user_logo" src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
+    <h1 class="info_title">団体情報</h1>
+    <p class="user_info">{{user.info}}</p>
+  </div>
   <div class="">
-  <h1>過去の投稿</h1>
+  <h1 class="info_title">過去の投稿</h1>
   {% for post in blog_posts.items %}
   <div class="post_box">
     <div class="post_top">
@@ -42,7 +30,7 @@
     <img class="index_image" align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
     <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
-      <!-- <div>
+      <div>
         {% if current_user.is_authenticated %}
         {% if current_user.has_liked_post(post) %}
           <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
@@ -53,7 +41,7 @@
           <div><a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a></div>
       {% endif %}
       <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
-      </div> -->
+      </div>
       <div class="event_date_box">
         <p class="event_date">開催日<br>
         <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>

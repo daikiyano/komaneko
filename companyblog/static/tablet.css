@@ -1,14 +1,198 @@
-.user_image{
-  height:30px;
-  width:30px;
+
+/* フォーム */
+.form_box{
+  width:95%;
+  margin: 20px auto;
+}
+
+.form_input{
+  height:50px;
+}
+
+/* TOPへボタン */
+
+.page-top{
+  position: fixed;
+  bottom: 5%;
+  right:5%;
+  font-size:77%;
+  z-index:24;
+  width:20%;
+}
+
+.page-top a{
+  background:#ececec;
+  text-decoration: none;
+  color: black;
+  width:100%;
+  padding: 30px 0;
+  text-align: center;
+  display:block;
+  border-radius:5px;
+}
+
+
+
+/* index.page */
+.event_top{
+  text-align: center;
+  font-size:40px;
+}
+
+.post_box{
+  width:95%;
+  margin: 20px auto;
+  border: solid 1px gray;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.6);
+}
+
+.post_top{
+  display: flex;
+}
+
+
+.index_title{
+  font-size:20px;
+  padding-top:10px;
+}
+
+
+.card_title{
+  text-decoration: none;
+  color:black;
+}
+
+.card_title img{
+  height:280px; width:100%;
+}
+
+.card_bottom_box{
+  display: flex;
+  justify-content: space-between;
+  margin-top:5px;
+}
+
+.cat_like{
+  color:purple;
+  font-size:80px;
+}
+
+.cat_unlike{
+  color:purple;
+  opacity:0.3;
+  font-size:80px;
+}
+
+.cat_login{
+  color:purple;
+  font-size:120px;
+}
+
+.like_count{
+  font-size:22px;
+}
+
+.event_date_box{
+  height:100px;
+  width:100px;
+  background:rgba(121,74,168,0.9);
   border-radius:50%;
+  color:white;
+  float:right;
+  margin-right:10px;
 }
 
-.post_top{
-  display: flex;
+.event_date{
+  position:
+  relative;left:20px;
+  top:10px;
 }
 
 
-.post_top{
+
+
+.user_image{
+  height:40px;
+  width:40px;
+  border-radius:50%;
+
+}
+
+.post_user_box{
+    display: flex;
+    margin:20px auto;
+    width:95%;
+}
+
+
+.post_user h6{
+  padding-top:10px;
+  padding-left:10px;
+}
+
+
+
+/* End index.html  */
+
+/* blog_post.html */
+
+.post_details{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
+}
+
+.post_details h1{
+  font-size:20px;
+}
+
+.cat_like_details{
+  color:purple;
+  font-size:40px;
+}
+
+.details_title{
+  border-bottom: 2px solid rgba(121,74,168,0.9);
+  text-align: left;
+  font-size:24px;
+}
+
+
+/* all.html */
+
+
+.all_container{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
+}
+
+.all_box{
+  width:80%;
+  margin:50px auto;
   display: flex;
+  flex-direction: column;
+}
+
+.all_details{
+  padding: 10px 10px;
+  width:100%;
+}
+
+.all_name{
+  font-size:25px;
+}
+
+.all_details img{
+ border-radius:50%;
+ height:200px;
+ width:100%;
+}
+
+
+
+
+
+.view_btn{
+  padding-bottom: 10px;
 }
