@@ -38,7 +38,7 @@
 
 .event_top{
   text-align: center;
-  font-size:30px;
+  font-size:40px;
 }
 
 .post_box{
@@ -87,6 +87,7 @@
 .cat_login{
   color:purple;
   font-size:140px;
+  text-decoration: none;
 }
 .like_count{
   font-size:22px;

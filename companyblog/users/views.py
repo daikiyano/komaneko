@@ -36,7 +36,7 @@ def send_confirmation_email(user_email):
         'email_confirmation.html',
         confirm_url=confirm_url)
 
-    send_email('KOMAEVENT確認メール', [user_email], html)
+    send_email('KomaNeco確認メール', [user_email], html)
 
 @users.before_request
 def before_request():
@@ -103,7 +103,7 @@ def login():
 @users.route("/logout")
 def logout():
     logout_user()
-    flash('ログアウトしました。')
+    flash('ログアウトしました')
     return redirect(url_for("core.index"))
 
 
@@ -166,35 +166,35 @@ def all():
     others = User.query.filter(User.type==4)
     return render_template('all.html',sports=sports,cultures=cultures,others=others)
 
-@users.route('/follow/<username>')
-@login_required
-def follow(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        return redirect(url_for('core.index'))
-    if user == current_user:
-        return redirect(url_for('users.user_posts',username=username))
-        # return render_template('user_blog_posts.html',username=username,user=user)
-    current_user.follow(user)
-    db.session.commit()
-    flash('{} さんをフォローしました！'.format(username))
-    return redirect(url_for('users.user_posts',username=username))
-
-
-    # return render_template('user_blog_posts.html',username=username,user=user)
-
-@users.route('/unfollow/<username>')
-@login_required
-def unfollow(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        return redirect(url_for('core.index'))
-    if user == current_user:
-        return redirect(url_for('users.user_posts',username=username))
-    current_user.unfollow(user)
-    db.session.commit()
-    flash('{} さんをフォロー解除しました！'.format(username))
-    return redirect(url_for('users.user_posts',username=username))
+# @users.route('/follow/<username>')
+# @login_required
+# def follow(username):
+#     user = User.query.filter_by(username=username).first()
+#     if user is None:
+#         return redirect(url_for('core.index'))
+#     if user == current_user:
+#         return redirect(url_for('users.user_posts',username=username))
+#         # return render_template('user_blog_posts.html',username=username,user=user)
+#     current_user.follow(user)
+#     db.session.commit()
+#     flash('{} さんをフォローしました！'.format(username))
+#     return redirect(url_for('users.user_posts',username=username))
+#
+#
+#     # return render_template('user_blog_posts.html',username=username,user=user)
+#
+# @users.route('/unfollow/<username>')
+# @login_required
+# def unfollow(username):
+#     user = User.query.filter_by(username=username).first()
+#     if user is None:
+#         return redirect(url_for('core.index'))
+#     if user == current_user:
+#         return redirect(url_for('users.user_posts',username=username))
+#     current_user.unfollow(user)
+#     db.session.commit()
+#     flash('{} さんをフォロー解除しました！'.format(username))
+#     return redirect(url_for('users.user_posts',username=username))
 
 
 @users.route('/confirm/<token>')

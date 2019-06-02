@@ -69,7 +69,7 @@
     <div class="form-group">
       <h3><i class="far fa-images"></i>{{form.image.label(class="form-control-label")}}</h3>
       {{form.image(class="form_input form-control form-contorl-lg")}}
-      *画像形式はjpg,pngのみ対応しています。
+      *画像形式はjpg,png,jpeg,gifのみ対応しています。
       {% for error in form.image.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
