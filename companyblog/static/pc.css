@@ -1,5 +1,10 @@
 /* index.page */
 
+.event_top{
+  text-align: center;
+  font-size:30px;
+}
+
 .post_box{
   width:50%;
   margin: 50px auto;
@@ -10,12 +15,36 @@
   display: flex;
 }
 
+.index_title{
+  font-size:30px;
+  padding-top:10px;
+}
+
+.card_title{
+  text-decoration: none;
+  color:black;
+}
+
+.card_bottom_box{
+  display: flex;
+  justify-content: space-around;
+  margin-top:5px;
+}
+
+.card_title img{
+  height:100%; width:100%;
+}
+
 
 .user_image{
   height:60px;
   width:60px;
   border-radius:50%;
 }
+
+
+
+
 
 
 
