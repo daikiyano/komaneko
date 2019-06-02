@@ -15,7 +15,7 @@ class BlogPostForm(FlaskForm):
     way = StringField('参加方法',validators=[DataRequired("参加方法を入力してください。")])
     cost = StringField('参加費用',validators=[DataRequired("参加費用を入力してください。")])
     contact = StringField('問い合わせ',validators=[DataRequired("問い合わせ先を入力してください。")])
-    image = FileField('イメージ画像',validators=[FileAllowed(['jpg','png'])])
+    image = FileField('イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif'])])
     submit = SubmitField("新規イベントを投稿する")
 
 class CommentForm(FlaskForm):
