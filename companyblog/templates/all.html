@@ -1,37 +1,37 @@
 {% extends 'base.html'%}
 {% block content %}
-<div style="text-align:center; width:95%; margin: 0 auto;">
-<h1 class="details_title">体育会系団体</h1>
-  <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+<div class="all_container">
+<h1 class="details_title"><b>体育会系団体</b></h1>
+  <div class="all_box">
     {% for sport in sports %}
-      <div style="padding: 10px 10px; width:100%;">
-        <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+      <div class="all_details">
+        <h1 class="all_name"><b>{{sport.username}}</b></h1>
         <a href="{{url_for('users.user_posts',username=sport.username)}}">
-        <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+        <img src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
         </a>
       </div>
     {% endfor %}
   </div>
 
-  <h1 class="details_title">文化系サークル</h1>
-    <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+  <h1 class="details_title"><b>文化系サークル</b></h1>
+    <div class="all_box">
       {% for sport in sports %}
-        <div style="padding: 10px 10px; width:100%;">
-          <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+        <div class="all_details">
+          <h1 class="all_name"><b>{{sport.username}}</b></h1>
           <a href="{{url_for('users.user_posts',username=sport.username)}}">
-          <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+          <img  src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
           </a>
         </div>
       {% endfor %}
     </div>
 
-    <h1 class="details_title">その他/任意団体</h1>
-      <div style="width:80%; margin:50px auto; display: flex; flex-direction: column;">
+    <h1 class="details_title"><b>その他/任意団体</b></h1>
+      <div class="all_box">
         {% for sport in sports %}
-          <div style="padding: 10px 10px; width:100%;">
-            <h1 style="font-size:25px;"><b>{{sport.username}}</b></h1>
+          <div class="all_details">
+            <h1  class="all_name"><b>{{sport.username}}</b></h1>
             <a href="{{url_for('users.user_posts',username=sport.username)}}">
-            <img style="border-radius:50%; height:200px; width:100%;" src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+            <img  src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
             </a>
           </div>
         {% endfor %}

@@ -1,4 +1,40 @@
+
+/* フォーム */
+
+.form_box{
+  width:75%;
+  margin: 20px auto;
+}
+.form_input{
+  height:50px;
+}
+
+/* TOPへボタン */
+
+.page-top{
+  position: fixed;
+  bottom: 10px;
+  right:10%;
+  font-size:77%;
+  z-index:24;
+  width:5%;
+}
+
+.page-top a{
+  background:#ececec;
+  text-decoration: none;
+  color: black;
+  width:100%;
+  padding: 30px 0;
+  text-align: center;
+  display:block;
+  border-radius:5px;
+}
+
+
+
 /* index.page */
+
 
 .event_top{
   text-align: center;
@@ -9,6 +45,7 @@
   width:50%;
   margin: 50px auto;
   border: solid 1px gray;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.6);
 }
 
 .post_top{
@@ -25,71 +62,123 @@
   color:black;
 }
 
+.card_title img{
+  height:800px; width:100%;
+}
+
+
 .card_bottom_box{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top:5px;
 }
 
-.card_title img{
-  height:100%; width:100%;
+.cat_like{
+  color:purple;
+  font-size:140px;
 }
 
+.cat_unlike{
+  color:purple;
+  opacity:0.3;
+  font-size:140px;
+}
+
+.cat_login{
+  color:purple;
+  font-size:140px;
+}
+.like_count{
+  font-size:22px;
+}
+
+.event_date_box{
+  height:150px;
+  width:150px;
+  background:rgba(121,74,168,0.9);
+  border-radius:50%;
+  color:white;
+  float:right;
+  margin-right:20px;
+}
+
+.event_date{
+  font-size:20px;
+  position:relative;
+  left:40px;
+  top:30px;
+}
+
+.post_user_box{
+    display: flex;
+    margin:20px auto;
+    width:95%;
+}
 
 .user_image{
-  height:60px;
-  width:60px;
+  height:80px;
+  width:80px;
   border-radius:50%;
 }
 
 
+/* End index.html  */
+
+/* blog_post.html */
 
 
+.post_details{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
 
-
-
-.social {
-  position: absolute;
-  width: 100%;
-  top: 530px;
-  /* text-align: center; */
-  transform: translateY(-50%);
 }
 
-.social .link {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  /* border: 2px dashed white; */
-  background-clip: content-box;
-  padding: 10px;
-  transition: .5s;
-  color: #D7D0BE;
-  margin-left: 15px;
-  margin-right: 15px;
-  font-size: 40px;
+.cat_like_details{
+  color:purple;
+  font-size:80px;
 }
 
-.social .link span {
-  display: block;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.details_title{
+  border-bottom: 4px solid rgba(121,74,168,0.9);
+  text-align: left;
+  font-size:40px;
 }
 
-.social .link:hover {
-  padding: 20px;
-  color: white;
-  margin-left: -5px;
-  transform: translateX(10px) rotate(360deg);
+.post_details p{
+  font-size:22px;
+  text-align: left;
+
 }
 
-.social .link.twitter {
-  background-color: #00ACEE;
-  color: white;
+
+/* all.html */
+
+
+.all_container{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
+}
+
+.all_box{
+  width:80%;
+  margin:50px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.all_details{
+  padding: 10px 10px;
+  width:100%;
+}
+
+.all_name{
+  font-size:25px;
+}
+
+.all_details img{
+ border-radius:50%;
+ height:400px;
+ width:400px;
 }
