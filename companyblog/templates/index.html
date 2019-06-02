@@ -1,35 +1,40 @@
 {% extends 'base.html'%}
 {% block content %}
+<p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+
 <h1　class="event_top">イベント一覧</h1>
 {% for post in blog_posts.items %}
-  <div class="post_box" style=" box-shadow: 0 5px 5px rgba(0,0,0,0.6);">
+  <div class="post_box">
     <div class="post_top">
       <h1 class="index_title"><b>{{post.title}}</b></h1>
     </div>
     <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
-    <img align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
+    <img class="index_image" align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
 
           <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
-      {% if current_user.is_authenticated %}
+      <div>
+        {% if current_user.is_authenticated %}
         {% if current_user.has_liked_post(post) %}
-          <div class="button condition{{post.id}} fas fa-cat"  condition="unlike" post_id="{{post.id}}" style="color:purple;font-size:80px;"></div>
+          <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
         {% else %}
-          <div  class="button condition{{post.id}} fas fa-cat" condition="like" post_id="{{post.id}}" style="color:purple;opacity:0.3;font-size:80px;"></div>
+          <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
         {% endif %}
       {% else %}
-        <a href="{{url_for('users.login')}}"><i class="fas fa-cat" style="color:purple; font-size:120px;"></i></a>
+          <div><a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a></div>
       {% endif %}
-      <span class="count{{post.id}}" style="font-size:22px;">{{ post.likes.count()}}</span>
-      <div style="height:100px; width:100px; background:rgba(121,74,168,0.9); border-radius:50%;  color:white; position:absolute; right:40px;">
-        <p style="position: relative;left:20px; top:10px;">開催日<br>
+      <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+      </div>
+      <div class="event_date_box">
+        <p class="event_date">開催日<br>
         <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>
     </div>
-    <div class="post_user">
+    <div class="post_user_box">
       <img align='center' class="user_image" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
-      <h6>投稿者(団体名):{{post.author.username}}<br>投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
+      <h6 style="text-align:right;">投稿者(団体名):{{post.author.username}}<br>
+        投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
     </div>
           <!-- <a class="btn btn-primary btn-lg view_btn" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">View More...</a> -->
     </div>

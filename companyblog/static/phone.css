@@ -1,4 +1,38 @@
 
+/* フォーム */
+.form_box{
+  width:95%;
+  margin: 20px auto;
+}
+
+.form_input{
+  height:50px;
+}
+
+/* TOPへボタン */
+
+.page-top{
+  position: fixed;
+  bottom: 5%;
+  right:5%;
+  font-size:77%;
+  z-index:24;
+  width:20%;
+}
+
+.page-top a{
+  background:#ececec;
+  text-decoration: none;
+  color: black;
+  width:100%;
+  padding: 30px 0;
+  text-align: center;
+  display:block;
+  border-radius:5px;
+}
+
+
+
 /* index.page */
 .event_top{
   text-align: center;
@@ -8,6 +42,7 @@
   width:95%;
   margin: 20px auto;
   border: solid 1px gray;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.6);
 }
 
 .post_top{
@@ -26,15 +61,54 @@
   color:black;
 }
 
+.card_title img{
+  height:280px; width:100%;
+}
+
 .card_bottom_box{
   display: flex;
-  justify-content: space-around; 
+  justify-content: space-between;
   margin-top:5px;
 }
 
-.card_title img{
-  height:100%; width:100%;
+.cat_like{
+  color:purple;
+  font-size:80px;
 }
+
+.cat_unlike{
+  color:purple;
+  opacity:0.3;
+  font-size:80px;
+}
+
+.cat_login{
+  color:purple;
+  font-size:120px;
+}
+
+.like_count{
+  font-size:22px;
+}
+
+.event_date_box{
+  height:100px;
+  width:100px;
+  background:rgba(121,74,168,0.9);
+  border-radius:50%;
+  color:white;
+  float:right;
+  margin-right:10px;
+}
+
+.event_date{
+  position:
+  relative;left:20px;
+  top:10px;
+}
+
+
+
 
 .user_image{
   height:40px;
@@ -43,9 +117,10 @@
 
 }
 
-.post_user{
+.post_user_box{
     display: flex;
     margin:20px auto;
+    width:95%;
 }
 
 
@@ -56,61 +131,67 @@
 
 
 
-.view_btn{
-  padding-bottom: 10px;
+/* End index.html  */
+
+/* blog_post.html */
+
+.post_details{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
 }
 
+.post_details h1{
+  font-size:20px;
+}
 
-
-
+.cat_like_details{
+  color:purple;
+  font-size:40px;
+}
 
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);
+  text-align: left;
+  font-size:24px;
 }
 
 
-.social {
-  position: absolute;
-  width: 100%;
-  top: 530px;
-  /* text-align: center; */
-  transform: translateY(-50%);
+/* all.html */
+
+
+.all_container{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
 }
 
-.social .link {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  /* border: 2px dashed white; */
-  background-clip: content-box;
-  padding: 10px;
-  transition: .5s;
-  color: #D7D0BE;
-  margin-left: 15px;
-  margin-right: 15px;
-  font-size: 40px;
+.all_box{
+  width:80%;
+  margin:50px auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.social .link span {
-  display: block;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.all_details{
+  padding: 10px 10px;
+  width:100%;
 }
 
-.social .link:hover {
-  padding: 20px;
-  color: white;
-  margin-left: -5px;
-  transform: translateX(10px) rotate(360deg);
+.all_name{
+  font-size:25px;
 }
 
-.social .link.twitter {
-  background-color: #00ACEE;
-  color: white;
+.all_details img{
+ border-radius:50%;
+ height:200px;
+ width:100%;
+}
+
+
+
+
+
+.view_btn{
+  padding-bottom: 10px;
 }
