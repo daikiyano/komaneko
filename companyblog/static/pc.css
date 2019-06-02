@@ -183,3 +183,51 @@
  height:400px;
  width:400px;
 }
+
+/* all.html */
+
+/* user_blog_post.html */
+
+.user_post_container{
+  text-align:center;
+  width:70%;
+  margin: 0 auto;
+}
+
+.user_post_box{
+  width:100%;
+}
+
+.user_twitter{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_facebook{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_instagram{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_logo{
+  height:600px;
+  width:900px;
+  border-radius:10px;
+}
+
+.user_info{
+  font-size:30px;
+  padding:10px 30px;
+}
+
+.info_title{
+  border-bottom: 4px solid rgba(121,74,168,0.9);
+  margin:30px auto;
+}
