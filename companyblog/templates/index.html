@@ -10,8 +10,7 @@
     </div>
     <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
     <img class="index_image" align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
-
-          <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
+    <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
       <div>
         {% if current_user.is_authenticated %}
@@ -36,9 +35,9 @@
       <h6 style="text-align:right;">投稿者(団体名):{{post.author.username}}<br>
         投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
     </div>
-          <!-- <a class="btn btn-primary btn-lg view_btn" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">View More...</a> -->
     </div>
   {% endfor %}
+  <!-- <a class="btn btn-primary btn-lg view_btn" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">View More...</a> -->
 
   <nav aria-label='Page Navigation example'>
     <ul class="pagination justify-content-center">
