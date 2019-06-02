@@ -133,7 +133,7 @@ def account():
         current_user.facebook = form.facebook.data
         current_user.instagram = form.instagram.data
         db.session.commit()
-        flash('アカウント情報をアップデートしました')
+        flash('アカウント情報を更新しました')
         return redirect(url_for('users.account'))
 
     elif request.method == "GET":
