@@ -1,5 +1,14 @@
 
 /* フォーム */
+/* base.html */
+
+.flash_font{
+  text-align:center; color:white;
+  font-size:20px;
+}
+
+
+/* フォーム */
 .form_box{
   width:95%;
   margin: 20px auto;

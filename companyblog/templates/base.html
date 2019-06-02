@@ -56,11 +56,11 @@
   </div>
 </nav>
 {% for mess in get_flashed_messages() %}
-<div class="alert alert-success alert-dismissible fade show" style="background:rgba(148,110,185,1);" role='alert'>
+<div class="alert alert-success alert-dismissible fade show flash_color" style="background:rgba(148,110,185,1);" role='alert'>
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
-  <h3 style="text-align:center; color:white;">{{ mess }}</h3>
+  <h3 class="flash_font">{{ mess }}</h3>
 </div>
 {% endfor %}
 

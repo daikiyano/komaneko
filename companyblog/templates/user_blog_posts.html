@@ -3,7 +3,7 @@
 
 <div class="user_post_container">
   <div style="user_post_box"align='center'>
-    <h1 class="info_title">団体名</h1>
+    <h1 class="info_title"><b>団体名</b></h1>
     <h2><b>{{user.username}}</b></h2>
       <!-- {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %} -->
     {% if user.twitter %}
@@ -16,11 +16,11 @@
       <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" class="user_instagram"></a>
     {% endif %}
     <img class="user_logo" src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
-    <h1 class="info_title">団体情報</h1>
+    <h1 class="info_title"><b>団体情報</b></h1>
     <p class="user_info">{{user.info}}</p>
   </div>
   <div class="">
-  <h1 class="info_title">過去の投稿</h1>
+  <h1 class="info_title"><b>過去の投稿</b></h1>
   {% for post in blog_posts.items %}
   <div class="post_box">
     <div class="post_top">
@@ -57,11 +57,6 @@
   {% endfor %}
 
 </div>
-
-
-
-
-
 
 <nav aria-label='Page Navigation example'>
   <ul class="pagination justify-content-center">
