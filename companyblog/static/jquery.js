@@ -52,3 +52,24 @@ $(document).ready(function(){
       event.preventDefault();
   });
 });
+
+// TOPページへ戻る
+
+$(function(){
+  var topBtn = $('.page-top');
+  topBtn.hide();
+  // 100に到達したらボタンを出現させる。
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100){
+      topBtn.fadeIn();
+    } else {
+      topBtn.fadeOut();
+    }
+  });
+  topBtn.click(function(){
+    $('body,html').animate({
+      scrollTop: 0
+    },500);
+  });
+
+});
