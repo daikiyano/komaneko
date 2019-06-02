@@ -8,8 +8,8 @@ from companyblog.models import User
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email',validators=[DataRequired(),Email()])
-    password = PasswordField('パスワード',validators=[DataRequired()])
+    email = StringField('Email',validators=[DataRequired("Emailアドレスを入力してください"),Email()])
+    password = PasswordField('パスワード',validators=[DataRequired("パスワードを入力してください")])
     submit = SubmitField('ログイン')
 
 class RegistrationForm(FlaskForm):
@@ -43,7 +43,7 @@ class UpdateUserForm(FlaskForm):
     twitter = StringField('twitterアカウント')
     facebook = StringField('Facebookアカウント')
     instagram = StringField('instagramアカウント')
-    picture = FileField('イメージ画像',validators=[FileAllowed(['jpg','png'])])
+    picture = FileField('イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif'])])
     submit = SubmitField('プロフィールを更新する')
 
     def check_email(self,field):

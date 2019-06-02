@@ -36,6 +36,7 @@
 /* index.page */
 .event_top{
   text-align: center;
+  font-size:30px;
 }
 
 .post_box{
@@ -187,8 +188,53 @@
  height:200px;
  width:100%;
 }
+/* all.html */
 
+/* user_blog_post.html */
 
+.user_post_container{
+  text-align:center;
+  width:95%;
+  margin: 0 auto;
+}
+
+.user_post_box{
+  width:100%;
+}
+
+.user_twitter{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_facebook{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_instagram{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_logo{
+  height:300px;
+  width:100%;
+  border-radius:10px;
+}
+
+.user_info{
+  font-size:20px;
+}
+
+.info_title{
+  border-bottom: 4px solid rgba(121,74,168,0.9);
+  font-size:20px;
+  margin:20px auto;
+}
 
 
 
