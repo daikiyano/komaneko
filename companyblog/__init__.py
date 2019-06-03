@@ -4,9 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from config import Config
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecret'
+app.config.from_object(Config)
 app.config.from_pyfile('config.cfg')
 ######################################
 ###############databwse############

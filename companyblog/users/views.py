@@ -3,7 +3,7 @@
 from datetime import datetime
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user,current_user,logout_user,login_required
-from companyblog import db
+from companyblog import db,app
 from companyblog.models import User,BlogPost
 from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from companyblog.users.picture_handler import add_profile_pic
@@ -25,7 +25,7 @@ def send_email(subject, recipients, html_body):
     mail.send(msg)
 
 def send_confirmation_email(user_email):
-    confirm_serializer = URLSafeTimedSerializer('thisissecret')
+    confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
     confirm_url = url_for(
         'users.confirm_email',
@@ -200,7 +200,7 @@ def all():
 @users.route('/confirm/<token>')
 def confirm_email(token):
     try:
-        confirm_serializer = URLSafeTimedSerializer('thisissecret')
+        confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
         email = confirm_serializer.loads(token, salt='email-confirmation-salt', max_age=3600)
     except:
         flash('トークンが有効ではありません。', 'error')
