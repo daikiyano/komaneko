@@ -60,6 +60,7 @@ def register():
 
         db.session.add(user)
         db.session.commit()
+        login_user(user)
         send_confirmation_email(user.email)
         flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
@@ -85,16 +86,24 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
-        if user.check_password(form.password.data) and user is not None:
-            login_user(user)
-            flash('{}さん　KomaNecoへようこそ！'.format(user.username))
+        if user.email_confirmed == True:
+            if user.check_password(form.password.data) and user is not None:
+                user.authenticated = True
+                db.session.add(user)
+                db.session.commit()
+                login_user(user)
+                flash('{}さん　KomaNecoへようこそ！'.format(user.username))
 
-            next = request.args.get('next')
+                next = request.args.get('next')
 
-            if next == None or not next[0]=='/':
-                next = url_for('core.index')
+                if next == None or not next[0]=='/':
+                    next = url_for('core.index')
 
-            return redirect(next)
+                    return redirect(next)
+        else:
+            flash('アカウント情報が不正です。本登録を完了させてください。', 'error')
+            return redirect(url_for('users.login'))
+
     return render_template('login.html',form=form)
 
 
@@ -210,6 +219,7 @@ def confirm_email(token):
 
     if user.email_confirmed:
         flash('このアカウントは既に本登録完了していますので、ログインしてください。', 'info')
+        return redirect(url_for('users.login'))
     else:
         user.email_confirmed = True
         user.email_confirmed_on = datetime.now()

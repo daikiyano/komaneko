@@ -4,6 +4,7 @@ from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField,FileAllowed
 
+
 class BlogPostForm(FlaskForm):
     title = StringField('イベント名',validators=[DataRequired("イベント名を入力してください。")])
     text = TextAreaField('イベント詳細',validators=[DataRequired("イベント詳細を入力してください。")])
