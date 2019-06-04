@@ -7,6 +7,7 @@ load_dotenv(os.path.join(basedir,'.env'))
 
 
 
+
 class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY")
     MAIL_SERVER = os.environ.get("MAIL_SERVER")
