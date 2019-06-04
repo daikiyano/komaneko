@@ -39,6 +39,7 @@ class User(db.Model,UserMixin):
     type = db.Column(db.Integer,nullable=False)
     last_seen = db.Column(db.DateTime,default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
+    authenticated = db.Column(db.Boolean, default=False)
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
     email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
     email_confirmed_on = db.Column(db.DateTime, nullable=True)
@@ -65,9 +66,13 @@ class User(db.Model,UserMixin):
         self.email_confirmation_sent_on = email_confirmation_sent_on
         self.email_confirmed = False
         self.email_confirmed_on = None
+        self.authenticated = False
 
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
+
+    def is_authenticated(self):
+        return self.authenticated
 
     def __repr__(self):
         return f"Username {self.username}"
