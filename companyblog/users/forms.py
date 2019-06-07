@@ -12,6 +12,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('パスワード',validators=[DataRequired("パスワードを入力してください")])
     submit = SubmitField('ログイン')
 
+    def validate_email(self,email):
+        user = User.query.filter_by(email=email.data).first()
+        if not user:
+            raise ValidationError('Emailまたはパスワードが不正です')
+        if not user.check_password(self.password.data):
+            raise ValidationError('Emailまたはパスワードが不正です')
 class RegistrationForm(FlaskForm):
     email = StringField('Eメールアドレス',validators=[DataRequired(),Email()])
     username = StringField('ユーザー名/団体名',validators=[DataRequired()])
