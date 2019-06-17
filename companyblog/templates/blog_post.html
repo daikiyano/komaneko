@@ -14,7 +14,7 @@
       <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal">Delete</button>
     </div>
     {% endif %}
-    <img style="width:100%; padding: 0 auto;" src="{{url_for('static',filename='event_pics/'+post.event_image)}}" >
+    <img style="width:100%; padding: 0 auto;" src="{{post.event_image}}" >
     <h2>投稿者</h2>
     <p> {{post.author.username}}</p>
     <h2>投稿日</h2>

@@ -14,6 +14,14 @@
 //     event.preventDefault();
 //   });
 // });
+// $(document).ready(function(){
+//   $('#post_file_btn').on('click',function(){
+//
+//   });
+// });
+
+
+
 
 //ajax for likes
 $(document).ready(function(){

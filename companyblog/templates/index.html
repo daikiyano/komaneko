@@ -12,7 +12,7 @@
       <h1 class="index_title"><b>{{post.title}}</b></h1>
     </div>
     <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
-    <img class="index_image" align='center' src="{{url_for('static',filename='event_pics/'+post.event_image)}}"></a>
+    <img class="index_image" align='center' src="{{post.event_image}}"></a>
     <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
       <div>

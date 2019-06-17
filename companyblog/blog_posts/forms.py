@@ -22,3 +22,7 @@ class BlogPostForm(FlaskForm):
 class CommentForm(FlaskForm):
     body = StringField('Add Comment',validators=[DataRequired()])
     submit = SubmitField('Comment')
+
+class ImageForm(FlaskForm):
+    image = FileField('イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif'])])
+    submit = SubmitField('IMAGE submit')
