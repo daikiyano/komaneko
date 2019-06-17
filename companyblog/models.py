@@ -27,7 +27,7 @@ class User(db.Model,UserMixin):
 
 
     id = db.Column(db.Integer,primary_key=True)
-    profile_image = db.Column(db.String(64),nullable=False,default='default_profile.png')
+    profile_image = db.Column(db.String(128),nullable=False,default='default_profile.png')
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
     facebook = db.Column(db.String(64), nullable=True)
