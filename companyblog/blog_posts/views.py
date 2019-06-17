@@ -10,19 +10,19 @@ blog_posts = Blueprint('blog_posts',__name__)
 
 s3 = boto3.client(
     's3',
-    aws_access_key_id=app.config['S3_KEY'],
-    aws_secret_access_key=app.config['S3_SECRET_ACCESS_KEY']
+    aws_access_key_id=app.config['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
     )
 
 
 @blog_posts.route('/files')
 def files():
     s3_resource = boto3.resource('s3')
-    my_bucket = s3_resource.Bucket(app.config['S3_BUCKET'])
+    my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
     summaries = my_bucket.objects.all()
     url = s3.generate_presigned_url('get_object',
                                 Params={
-                                    'Bucket': app.config['S3_BUCKET'],
+                                    'Bucket': app.config['AWS_BUCKET'],
                                     'Key': '190614_155331.jpg',
                                 })
     return render_template('file.html',my_bucket=my_bucket,files=summaries,url=url)
@@ -67,7 +67,7 @@ def create_post():
 
         image = add_image_pic(form.image.data)
         s3_resource = boto3.resource('s3')
-        my_bucket = s3_resource.Bucket(app.config['S3_BUCKET'])
+        my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
         my_bucket.Object(image).put(Body=form.image.data)
         test = 'https://komazawa-app.s3-ap-northeast-1.amazonaws.com/{}'
         images = test.format(image)
