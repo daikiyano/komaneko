@@ -118,7 +118,7 @@ class BlogPost(db.Model):
     users = db.relationship(User)
 
     id = db.Column(db.Integer,primary_key=True)
-    event_image = db.Column(db.String(64),nullable=False,default='default_profile.png')
+    event_image = db.Column(db.String(128),nullable=False,default='default_profile.png')
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
