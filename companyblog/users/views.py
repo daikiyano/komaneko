@@ -10,6 +10,14 @@ from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 from companyblog import mail
+import boto3
+
+s3 = boto3.client(
+    's3',
+    aws_access_key_id=app.config['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
+    )
+
 
 
 users = Blueprint('users',__name__)
@@ -128,9 +136,16 @@ def account():
 
         if form.picture.data:
 
-            username = current_user.username
-            pic = add_profile_pic(form.picture.data,username)
-            current_user.profile_image = pic
+            image = add_profile_pic(form.picture.data)
+            s3_resource = boto3.resource('s3')
+            my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+            my_bucket.Object(image).put(Body=form.picture.data)
+            test = 'https://komazawa-app.s3-ap-northeast-1.amazonaws.com/{}'
+            images = test.format(image)
+
+            # username = current_user.username
+            # pic = add_profile_pic(form.picture.data,username)
+            current_user.profile_image = images
 
         current_user.username = form.username.data
         current_user.email = form.email.data

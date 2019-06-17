@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="post_user_box">
-      <img align='center' class="user_image" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}">
+      <img align='center' class="user_image" src="{{post.author.profile_image}}">
       <h6 style="text-align:right;">投稿者(団体名):{{post.author.username}}<br>
         投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
     </div>
