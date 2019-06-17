@@ -7,7 +7,7 @@
       <div class="all_details">
         <h1 class="all_name"><b>{{sport.username}}</b></h1>
         <a href="{{url_for('users.user_posts',username=sport.username)}}">
-        <img src="{{url_for('static',filename='profile_pics/'+sport.profile_image)}}">
+        <img src="{{sport.profile_image}}">
         </a>
       </div>
     {% endfor %}

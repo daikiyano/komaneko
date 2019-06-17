@@ -15,28 +15,28 @@ s3 = boto3.client(
     )
 
 
-@blog_posts.route('/files')
-def files():
-    s3_resource = boto3.resource('s3')
-    my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
-    summaries = my_bucket.objects.all()
-    url = s3.generate_presigned_url('get_object',
-                                Params={
-                                    'Bucket': app.config['AWS_BUCKET'],
-                                    'Key': '190614_155331.jpg',
-                                })
-    return render_template('file.html',my_bucket=my_bucket,files=summaries,url=url)
+# @blog_posts.route('/files')
+# def files():
+#     s3_resource = boto3.resource('s3')
+#     my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+#     summaries = my_bucket.objects.all()
+#     url = s3.generate_presigned_url('get_object',
+#                                 Params={
+#                                     'Bucket': app.config['AWS_BUCKET'],
+#                                     'Key': '190614_155331.jpg',
+#                                 })
+#     return render_template('file.html',my_bucket=my_bucket,files=summaries,url=url)
 
-@blog_posts.route('/upload',methods=["POST"])
-def upload():
-    if request.method == "POST":
-        file = request.files['file']
-        # file = request.files['file']
-        newfile = add_image_pic(file)
-        # s3_resource = boto3.resource('s3')
-        # my_bucket = s3_resource.Bucket(app.config['S3_BUCKET'])
-        # my_bucket.Object(newfile).put(Body=file)
-        return jsonify({'file': newfile})
+# @blog_posts.route('/upload',methods=["POST"])
+# def upload():
+#     if request.method == "POST":
+#         file = request.files['file']
+#         # file = request.files['file']
+#         newfile = add_image_pic(file)
+#         # s3_resource = boto3.resource('s3')
+#         # my_bucket = s3_resource.Bucket(app.config['S3_BUCKET'])
+#         # my_bucket.Object(newfile).put(Body=file)
+#         return jsonify({'file': newfile})
 
 
 #create
@@ -44,26 +44,9 @@ def upload():
 @login_required
 def create_post():
     form = BlogPostForm()
-    image_form = ImageForm()
-
-    # if request.method == "POST":
-    #     file = request.files['file']
-    #     # file = request.files['file']
-         # newfile = add_image_pic(file)
-         # s3_resource = boto3.resource('s3')
-         # my_bucket = s3_resource.Bucket(app.config['S3_BUCKET'])
-         # my_bucket.Object(newfile).put(Body=file)
-         # return jsonify({'file': newfile})
-
 
     if form.validate_on_submit():
 
-        # if form.image.data:
-
-            # username = current_user.username
-        # pic = add_image_pic(form.image.data)
-        # current_user.event_image = pic
-        # db.session.commit()
 
         image = add_image_pic(form.image.data)
         s3_resource = boto3.resource('s3')
@@ -153,7 +136,13 @@ def update(blog_post_id):
     if form.validate_on_submit():
 
         if form.image.data:
-            blog_post.event_image = add_image_pic(form.image.data)
+            image = add_image_pic(form.image.data)
+            s3_resource = boto3.resource('s3')
+            my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+            my_bucket.Object(image).put(Body=form.image.data)
+            test = 'https://komazawa-app.s3-ap-northeast-1.amazonaws.com/{}'
+            images = test.format(image)
+            blog_post.event_image = images
 
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
