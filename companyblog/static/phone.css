@@ -43,6 +43,43 @@
 
 
 /* index.page */
+.site_box{
+  text-align:center;
+  width:99%;
+  height:auto;
+  margin-bottom:30px;
+  margin-top:0;
+  background:rgba(114,120,224,0.3); border-radius:5px;
+  box-shadow: 0 0 8px gray;
+}
+
+.site_box_title{
+  font-family:arial black;
+  padding:10px 0;
+}
+
+.title_image{
+  height:300px;
+  width:100%;
+  border-radius:10px;
+}
+
+.site_intro_box{
+  height:auto;
+  width:100%;
+}
+
+.intro_p{
+  font-size:20px;
+  padding: 5px 0;
+  width:100%;
+  line-height:35px;
+}
+
+
+
+
+
 .event_top{
   text-align: center;
   font-size:30px;
