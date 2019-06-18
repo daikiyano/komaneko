@@ -27,6 +27,7 @@ class RegistrationForm(FlaskForm):
     pass_confirm = PasswordField('パスワード確認',validators=[DataRequired()])
     submit = Submit = SubmitField('登録する')
 
+
     def validate_email(self,email):
         if User.query.filter_by(email=email.data).first():
             raise ValidationError('このEメールアドレスは既に登録されています')
