@@ -40,7 +40,9 @@
   width:95%;
   height:auto;
   margin: 30px auto;
-  background:rgba(114,120,224,0.3); border-radius:30px;
+background:rgba(51,44,191,0.9);
+color:white;
+ border-radius:30px;
   box-shadow: 0 0 8px gray;
   display: flex;
   justify-content: center;

@@ -45,11 +45,13 @@
 /* index.page */
 .site_box{
   text-align:center;
-  width:99%;
+  width:100%;
+  color:white;
   height:auto;
   margin-bottom:30px;
   margin-top:0;
-  background:rgba(114,120,224,0.3); border-radius:5px;
+  background:rgba(51,44,191,0.9);
+  border-radius:5px;
   box-shadow: 0 0 8px gray;
 }
 
@@ -60,7 +62,7 @@
 
 .title_image{
   height:300px;
-  width:100%;
+  width:95%;
   border-radius:10px;
 }
 
@@ -71,7 +73,7 @@
 
 .intro_p{
   font-size:20px;
-  padding: 5px 0;
+  padding: 5px 10px;
   width:100%;
   line-height:35px;
 }
