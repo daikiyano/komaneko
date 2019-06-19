@@ -95,7 +95,7 @@ def create_post():
 
 #Blog Post (view)
 @blog_posts.route('/<int:blog_post_id>',methods=['GET','POST'])
-@login_required
+# @login_required
 def blog_post(blog_post_id):
     blog_post = BlogPost.query.get_or_404(blog_post_id)
     comments = Comment.query.filter_by(post_id=blog_post_id)

@@ -100,6 +100,7 @@ def login():
                 db.session.add(user)
                 db.session.commit()
                 login_user(user)
+                redirect(url_for('core.index'))
                 flash('{}さん　KomaNecoへようこそ！'.format(user.username))
 
                 next = request.args.get('next')

@@ -49,6 +49,7 @@
   color:white;
   height:auto;
   margin-bottom:30px;
+  padding-bottom:40px;
   margin-top:0;
   background:rgba(51,44,191,0.9);
   border-radius:5px;
@@ -57,7 +58,7 @@
 
 .site_box_title{
   font-family:arial black;
-  padding:10px 0;
+  padding:30px 0;
 }
 
 .title_image{
@@ -73,7 +74,7 @@
 
 .intro_p{
   font-size:20px;
-  padding: 5px 10px;
+  padding: 10px 10px;
   width:100%;
   line-height:35px;
 }
