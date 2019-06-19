@@ -81,17 +81,18 @@
 .site_intro_box_inside{
   height: 400px;
   position: relative;
-  top:200px;
+  top:170px;
 }
 
 .intro_p{
-  font-size:30px;
+  font-size:29px;
+
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;
   padding: 10px 40px;
   width:100%;
-  line-height:35px;
+  line-height:50px;
 }
 
 
@@ -202,6 +203,7 @@
 
 .details_title{
   border-bottom: 4px solid rgba(121,74,168,0.9);
+  padding-top:20px;
   text-align: left;
   font-size:40px;
 }
@@ -209,6 +211,7 @@
 .post_details p{
   font-size:22px;
   text-align: left;
+  line-hieght:30px;
 
 }
 
