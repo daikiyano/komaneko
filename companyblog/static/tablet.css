@@ -35,6 +35,43 @@
 
 /* index.page */
 
+.test2{
+  display:none;
+}
+
+header{
+  height:90px;
+  width:100%;
+  background-color:rgba(121,74,168,0.9);
+  left:0;
+  position: fixed;
+  top:0;
+  z-index: 24;
+}
+
+.header_left{
+  display: inline;
+  position:absolute;
+  top:25px;
+}
+
+.header_list{
+  color:white;
+  display: inline;
+  margin-left:20px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.menu{
+  color:white;
+  text-decoration: none;
+}
+
+.menu:hover{
+  color: #c1a7db;
+}
+
 .site_box{
   text-align:center;
   width:95%;
