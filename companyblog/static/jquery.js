@@ -20,6 +20,17 @@
 //   });
 // });
 
+$(document).ready(function(){
+  $('.menu_btn').on('click',function(){
+    if( $(this).hasClass('active') ){
+      $(this).removeClass('active');
+      $('.header_sp').addClass('close').removeClass('open');
+    }else {
+      $(this).addClass('active');
+      $('.header_sp').addClass('open').removeClass('close');
+    }
+  });
+});
 
 
 

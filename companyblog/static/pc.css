@@ -27,10 +27,24 @@ header{
   z-index: 24;
 }
 
+.header_logo{
+  position:absolute;
+  left:20px;
+  top:10px;
+}
+
 .header_left{
   display: inline;
   position:absolute;
-  top:25px;
+  top:30px;
+  left:300px;
+}
+
+.header_right{
+  display: inline;
+  position:absolute;
+  top:30px;
+  right:60px;
 }
 
 .header_list{
@@ -48,6 +62,17 @@ header{
 
 .menu:hover{
   color: #c1a7db;
+}
+
+.menu_btn{
+  display: none;
+}
+
+.header_logo{
+  color:white;
+  cursor:pointer;
+  font-size:50px;
+
 }
 
 /* .header_list:hover{
@@ -154,7 +179,7 @@ header{
 }
 
 .post_box{
-  width:50%;
+  width:60%;
   margin: 50px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
