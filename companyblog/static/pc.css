@@ -120,11 +120,10 @@ header{
 /* index.page */
 .site_box{
   text-align:center;
-  color:white;
   width:95%;
   height:auto;
   margin: 30px auto;
-  background:rgba(51,44,191,0.9);
+  background:rgba(157,51,214,0.2);
   border-radius:30px;
   box-shadow: 0 0 8px gray;
   display: flex;
@@ -133,6 +132,10 @@ header{
 
 .site_title_box{
   width:100%;
+}
+
+.site_title_box img{
+  border-radius: 30px;
 }
 
 .site_box_title{
@@ -144,7 +147,7 @@ header{
 .title_image{
   height:600px;
   width:100%;
-  border-radius: 30px;
+  margin-top:10px;
   padding-left:30px;
   padding-bottom:30px;
 }
@@ -203,11 +206,15 @@ header{
   height:800px; width:100%;
 }
 
-
 .card_bottom_box{
   display: flex;
   justify-content: space-between;
   margin-top:5px;
+}
+
+.like_box{
+  display:flex;
+  justify-content: flex-start;
 }
 
 .cat_like{
@@ -230,6 +237,11 @@ header{
   font-size:22px;
 }
 
+.post_box_place{
+  margin-top:10px;
+  font-size:20px;
+}
+
 .event_date_box{
   height:150px;
   width:150px;
@@ -239,6 +251,8 @@ header{
   float:right;
   margin-right:20px;
 }
+
+
 
 .event_date{
   font-size:20px;
@@ -270,6 +284,28 @@ header{
   width:95%;
   margin: 0 auto;
 
+}
+
+.post_info_box{
+  display:flex;
+  justify-content: space-around;
+  position:relative;
+  top:30px;
+
+}
+
+.event_date_post{
+  position:relative;
+  left:25px;
+}
+
+.post_info_details{
+  margin:20px auto;
+}
+
+.author_name_post{
+  font-size:25px;
+  text-align:right;
 }
 
 .cat_like_details{
@@ -322,6 +358,7 @@ header{
  height:400px;
  width:400px;
 }
+
 
 /* all.html */
 

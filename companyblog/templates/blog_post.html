@@ -1,5 +1,8 @@
 {%extends "base.html"%}
 {%block content %}
+
+<p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+
 <div class="post_box">
 <!-- <div class="social">
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="link twitter witter-share-button" target="_parent" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false"><span class="fab fa-twitter"></span></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -7,6 +10,7 @@
 
   <div class="post_details">
     <h1><i class="fas fa-cat cat_like_details" ></i><b>{{post.title}}</b></h1>
+    <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class=" twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KomaNeco" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     {% if post.author == current_user %}
     <div>
@@ -15,12 +19,17 @@
     </div>
     {% endif %}
     <img style="width:100%; padding: 0 auto;" src="{{post.event_image}}" >
-    <h2>投稿者</h2>
-    <p> {{post.author.username}}</p>
-    <h2>投稿日</h2>
-    <p>{{post.date.strftime('%B %d,%Y') }}</p>
-    <h2>イベント開催日</h2>
-    <p>{{post.event_date.strftime('%Y年%m月%d日')}}</p>
+    <div class="post_info_box">
+      <div class="post_user_box post_info_details">
+        <img align='center' class="user_image" src="{{post.author.profile_image}}">
+        <h6 class="author_name_post">投稿者:{{post.author.username}}</h6>
+      </div>
+      <div class="event_date_box event_date_blog_post">
+        <p class="event_date event_date_post">開催日<br>
+        <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
+        {{post.event_date.strftime('%m月%d日')}}</p>
+      </div>
+    </div>
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     <p>{{post.text}}</p>
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
@@ -35,8 +44,7 @@
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-
-
+    <a class="btn btn-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
   </div>
 
 </div>
