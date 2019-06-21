@@ -33,7 +33,6 @@ $(document).ready(function(){
 });
 
 
-
 //ajax for likes
 $(document).ready(function(){
   $('.button').on('click',function(){

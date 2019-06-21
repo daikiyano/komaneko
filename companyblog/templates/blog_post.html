@@ -7,11 +7,13 @@
 <!-- <div class="social">
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="link twitter witter-share-button" target="_parent" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false"><span class="fab fa-twitter"></span></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div> -->
-
   <div class="post_details">
-    <h1><i class="fas fa-cat cat_like_details" ></i><b>{{post.title}}</b></h1>
-    <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
+    <h1><i class="far fa-edit"></i><b>{{post.title}}</b></h1>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class=" twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KomaNeco" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
+    <!-- <img align='center' class="user_image" src="{{post.author.profile_image}}"> -->
+
+    <h3 style="text-align:right;" class="author_name_post">投稿者:{{post.author.username}}</h3>
     {% if post.author == current_user %}
     <div>
       <a class="btn btn-primary" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
@@ -21,8 +23,18 @@
     <img style="width:100%; padding: 0 auto;" src="{{post.event_image}}" >
     <div class="post_info_box">
       <div class="post_user_box post_info_details">
-        <img align='center' class="user_image" src="{{post.author.profile_image}}">
-        <h6 class="author_name_post">投稿者:{{post.author.username}}</h6>
+        <div class="like_box_like post_like">
+        {% if current_user.is_authenticated %}
+        {% if current_user.has_liked_post(post) %}
+          <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+        {% else %}
+          <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+        {% endif %}
+        {% else %}
+          <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
+        {% endif %}
+        <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        </div>
       </div>
       <div class="event_date_box event_date_blog_post">
         <p class="event_date event_date_post">開催日<br>
@@ -30,6 +42,7 @@
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>
     </div>
+
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     <p>{{post.text}}</p>
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
