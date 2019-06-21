@@ -189,12 +189,11 @@ header{
 .site_box{
   text-align:center;
   width:100%;
-  color:white;
   height:auto;
   margin-bottom:30px;
   padding-bottom:40px;
   margin-top:0;
-  background:rgba(51,44,191,0.9);
+  background:rgba(157,51,214,0.2);
   border-radius:5px;
   box-shadow: 0 0 8px gray;
 }
@@ -205,6 +204,7 @@ header{
 }
 
 .title_image{
+  margin:20px auto;
   height:300px;
   width:95%;
   border-radius:10px;
@@ -237,6 +237,8 @@ header{
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
 }
+
+
 
 .post_top{
   display: flex;
@@ -284,9 +286,23 @@ header{
   font-size:22px;
 }
 
+
+.post_box_place{
+  font-size:13px;
+}
+
+.like_box{
+  display:flex;
+  flex-direction:column;
+  margin-top:10px;
+  width:200px;
+}
+
+
+
 .event_date_box{
-  height:100px;
-  width:100px;
+  height:110px;
+  width:110px;
   background:rgba(121,74,168,0.9);
   border-radius:50%;
   color:white;
@@ -295,8 +311,8 @@ header{
 }
 
 .event_date{
-  position:
-  relative;left:20px;
+  position:relative;
+  left:30px;
   top:10px;
 }
 
@@ -312,7 +328,7 @@ header{
 
 .post_user_box{
     display: flex;
-    margin:20px auto;
+    margin:10px auto;
     width:95%;
 }
 
@@ -338,11 +354,29 @@ header{
   font-size:20px;
 }
 
+.post_details h3{
+  text-align:right;
+  font-size:12px;
+}
+
 .cat_like_details{
   color:purple;
   font-size:40px;
 }
 
+.event_date_blog_post{
+
+}
+
+.post_info_box{
+  display:flex;
+  justify-content:space-between;
+}
+
+.event_date_post{
+  position: relative;
+  left:0;
+}
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);
   text-align: left;

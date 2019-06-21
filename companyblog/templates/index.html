@@ -5,13 +5,12 @@
 {% if not current_user.is_authenticated %}
 <div class="site_box">
   <div class="site_title_box">
-    <h2 class="site_box_title"><b>ようこそKomaNekoへ</b></h2>
-    <img class="title_image" src="static/v211batch11-filmful-243-customerservice.jpg" alt="Komaneco_logo">
+    <img class="title_image" src="static/19462.jpg" alt="Komaneco_logo">
   </div>
   <div class="site_intro_box">
   <div class="site_intro_box_inside">
     <h2 class="intro_p"><b>KomaNekoは駒澤大学生向けのイベント共有サイトです。<br>
-    ワンキャンパスの強みを持つ駒澤大学には学年学部を超えた交流の場があり、ダイバシティな環境の元で様々な価値観や考えに触れることができます。
+    ワンキャンパスの強みを持つ駒澤大学には学年学部を超えた交流の場があり、ダイバシティな環境で様々な価値観や考えに触れることができます。
     KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます。</b></h2>
     <a href="{{url_for('users.login')}}" class="btn btn-primary btn-lg" style="padding:10px;">ログイン</a>
     <a href="{{url_for('users.register')}}" class="btn btn-success btn-lg">会員登録</a>
@@ -31,17 +30,24 @@
     <img class="index_image" align='center' src="{{post.event_image}}"></a>
     <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
-      <div>
-        {% if current_user.is_authenticated %}
-        {% if current_user.has_liked_post(post) %}
-          <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+        <div class="like_box">
+          <div class="like_box_like" >
+          {% if current_user.is_authenticated %}
+          {% if current_user.has_liked_post(post) %}
+            <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+          {% else %}
+            <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+          {% endif %}
         {% else %}
-          <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+            <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
         {% endif %}
-      {% else %}
-          <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
-      {% endif %}
-      <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        </div>
+        <div class="post_box_place">
+          <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
+            <b><i class="far fa-clock"></i>開始時間:</b></p>
+
+        </div>
       </div>
       <div class="event_date_box">
         <p class="event_date">開催日<br>
@@ -51,7 +57,7 @@
     </div>
     <div class="post_user_box">
       <img align='center' class="user_image" src="{{post.author.profile_image}}">
-      <h6 style="text-align:right;">投稿者(団体名):{{post.author.username}}<br>
+      <h6 style="text-align:right;">投稿者:{{post.author.username}}<br>
         投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
     </div>
     </div>
