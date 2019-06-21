@@ -90,10 +90,12 @@ header{
   margin: 20px auto;
 }
 .form_input{
-  height:50px;
+  height:70px;
 }
 
 /* TOPへボタン */
+
+
 
 .page-top{
   position: fixed;
@@ -233,6 +235,10 @@ header{
   font-size:140px;
   text-decoration: none;
 }
+.cat_login:hover{
+  color:purple;
+  opacity:0.3;
+}
 .like_count{
   font-size:22px;
 }
@@ -277,7 +283,11 @@ header{
 /* End index.html  */
 
 /* blog_post.html */
-
+.post_like{
+  position: fixed;
+  top:240px;
+  left:150px;
+}
 
 .post_details{
   text-align:center;

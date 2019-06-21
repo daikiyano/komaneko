@@ -291,9 +291,15 @@ color:white;
   font-size:120px;
 }
 
+.cat_login:hover{
+  color:purple;
+  opacity:0.3;
+}
+
 .like_count{
   font-size:22px;
 }
+
 
 .event_date_box{
   height:100px;

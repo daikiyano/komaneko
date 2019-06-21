@@ -30,6 +30,8 @@
   height:50px;
 }
 
+
+
 /* TOPへボタン */
 
 .page-top{
@@ -282,6 +284,11 @@ header{
   font-size:120px;
 }
 
+.cat_login:hover{
+  color:purple;
+  opacity:0.3;
+}
+
 .like_count{
   font-size:22px;
 }
@@ -344,6 +351,12 @@ header{
 
 /* blog_post.html */
 
+.post_like{
+  position: fixed;
+  bottom:3%;
+  left:30px;
+}
+
 .post_details{
   text-align:center;
   width:95%;
@@ -364,9 +377,6 @@ header{
   font-size:40px;
 }
 
-.event_date_blog_post{
-
-}
 
 .post_info_box{
   display:flex;
