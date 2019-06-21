@@ -17,10 +17,10 @@
     {% if post.author == current_user %}
     <div>
       <a class="btn btn-primary" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
-      <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal">Delete</button>
+      <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#modal">Delete</button>
     </div>
     {% endif %}
-    <img style="width:100%; padding: 0 auto;" src="{{post.event_image}}" >
+    <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
     <div class="post_info_box">
       <div class="post_user_box post_info_details">
         <div class="like_box_like post_like">
@@ -42,6 +42,30 @@
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Post?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>投稿を削除してもよろしいでしょうか？</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+            <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
+              <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     <p>{{post.text}}</p>
@@ -99,28 +123,7 @@
     {% endfor %}
 
 
-  <div class="modal" tabindex="-1" role="dialog" id="del_modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete Post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete the post?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
-          <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
-            <input class="btn btn-danger" type="submit" value="Delete">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- <div class="modal" tabindex="-1" role="dialog" id="del_comment">
     <div class="modal-dialog" role="document">

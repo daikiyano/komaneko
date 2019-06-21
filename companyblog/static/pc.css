@@ -147,7 +147,7 @@ header{
 }
 
 .title_image{
-  height:600px;
+  height:500px;
   width:100%;
   margin-top:10px;
   padding-left:30px;
@@ -204,8 +204,8 @@ header{
   color:black;
 }
 
-.card_title img{
-  height:800px; width:100%;
+.index_image{
+  height:700px; width:100%;
 }
 
 .card_bottom_box{
