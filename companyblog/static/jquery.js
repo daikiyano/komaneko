@@ -20,6 +20,26 @@
 //   });
 // });
 
+$(function() {
+
+  // ①タブをクリックしたら発動
+  $('.tab_box li').click(function() {
+
+    // ②クリックされたタブの順番を変数に格納
+    var index = $('.tab_box li').index(this);
+
+    // ③クリック済みタブのデザインを設定したcssのクラスを一旦削除
+    $('.tab_box li').removeClass('active');
+
+    // ④クリックされたタブにクリック済みデザインを適用する
+    $(this).addClass('active');
+
+    // ⑤コンテンツを一旦非表示にし、クリックされた順番のコンテンツのみを表示
+    $('.test').removeClass('show').eq(index).addClass('show');
+
+  });
+});
+
 $(document).ready(function(){
   $('.menu_btn').on('click',function(){
     if( $(this).hasClass('active') ){
