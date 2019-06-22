@@ -58,6 +58,43 @@
 
 /* index.page */
 
+.tab_box{
+  text-align:center;
+  width:100%;
+  margin: 0 auto;
+  position:relative;
+  top:20px;
+  left: -20px;
+}
+
+
+
+.tab_list{
+  /* background-color: #c1a7db; */
+  display: inline;
+  font-size:20px;
+  border: 2px solid black;
+  cursor:pointer;
+  transition: .3s;
+}
+.tab_list:hover{
+  background-color: rgba(157,51,214,0.9);
+  color:white;
+}
+
+.tab_box li.active {
+  color: white;
+  background-color: rgba(157,51,214,0.9);
+  cursor: auto;
+}
+
+.test {
+  display: none;
+}
+.test.show {
+  display: block;
+}
+
 header{
   height:60px;
   width:100%;
