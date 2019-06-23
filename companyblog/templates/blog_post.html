@@ -102,48 +102,10 @@
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-    <a class="btn btn-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
+    <a class="btn btn-outline-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
   </div>
 
 </div>
-
-  <!-- <form class="form-group" method="POST">
-    {{form.hidden_tag()}}
-      <div class="form-group">
-        {{form.body.label(class="form-control-label")}}
-        {{form.body(class="form-control form-contorl-lg")}}
-      </div>
-      <div class="form-group">
-        {{form.submit(class="btn btn-outline-info")}}
-      </div>
-  </form> -->
-
-  <!-- <h2>Comments</h2>
-    {% for comment in comments %}
-      {% if comment.poster == current_user %}
-      <div style="text-align:right; background-color:#64bc6e; border-radius:10px; opacity:0.7;">
-        <h3><span style="padding-left:30px;">{{ comment.body }}</span><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
-        </h3>
-        <p>{{comment.poster.username}}</p>
-        {{comment.id}} -->
-          <!-- <form action="{{url_for('blog_posts.delete_comment',blog_comment_id=comment.id)}}" method="post" action="delete">
-            <input class="btn btn-danger" type="submit" value="Delete">
-          </form> -->
-          <!-- <a href="{{ url_for('blog_posts.delete_comment', blog_comment_id=comment.id) }}" style="text-decoration: none; color:black;">delete</a> -->
-
-
-
-
-      </div>
-      {% else %}
-      <h3><img align='center' style="height:50px; width:50px; border-radius:50%;" src="{{url_for('static',filename='profile_pics/'+comment.poster.profile_image)}}">
-      <span style="padding-left:30px;">{{ comment.body }}</span></h3>
-      <p>{{comment.poster.username}}</p>
-      {% endif %}
-      <!-- <p> posted: {{comment.timestamp.strftime('%B %d,%Y')}}</p> -->
-    {% endfor %}
-
-
 
 
 

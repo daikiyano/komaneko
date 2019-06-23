@@ -44,8 +44,22 @@
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
-    {{form.submit(class="btn btn-outline-info")}}
+    {{form.submit(class="btn btn-outline-primary")}}<br>
+    <p><b>すでにアカウントをお持ちですか？</b><a href="{{url_for('users.login')}}">ログイン</a></p>
   </form>
+</div>
+
+<div class="site_box">
+  <div class="site_title_box">
+    <img class="title_image" src="static/19462.jpg" alt="Komaneco_logo">
+  </div>
+  <div class="site_intro_box">
+  <div class="site_intro_box_inside">
+    <h2 class="intro_p"><b>KomaNekoは駒澤大学生向けのイベント共有サイトです。<br>
+    ワンキャンパスの強みを持つ駒澤大学には学年学部を超えた交流の場があり、ダイバシティな環境で様々な価値観や考えに触れることができます。
+    KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます。</b></h2>
+  </div>
+  </div>
 </div>
 
 {% endblock %}
