@@ -1,3 +1,17 @@
+<head>
+  <meta name="twitter:creator" content="@for_engineerb">
+  <meta property="og:title" content="駒澤大学生向けのイベント共有サイト「KomaNeko」">
+  <meta property="og:description" content="KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
+  <meta property="og:url" content="{{url}}">
+  <meta name="twitter:site" content="@for_engineerb">
+  <meta property="og:image" content="{{url}}static/komaneko_logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@for_engineerb">
+  <meta name="twitter:title" content="駒澤大学生向けのイベント共有サイト「KomaNeko」">
+  <meta name="twitter:description" content="KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
+</head>
+
+
 {% extends 'base.html'%}
 {% block content %}
 <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
@@ -49,7 +63,7 @@
                 <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
               {% endif %}
             {% else %}
-                <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
+                <a class="fas fa-cat cat_login" href="{{url_for('users.register')}}"></a>
             {% endif %}
             <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
             </div>

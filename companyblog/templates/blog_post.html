@@ -45,7 +45,7 @@
           <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
         {% endif %}
         {% else %}
-          <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
+          <a class="fas fa-cat cat_login" href="{{url_for('users.register')}}"></a>
         {% endif %}
         <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
         </div>
@@ -82,15 +82,22 @@
 
 
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
-    <p>{{post.text}}</p>
+    {% autoescape false %}
+      <p>{{post.text.replace('\n', '<br>')}}</p>
+    {% endautoescape %}
+
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
     <p>{{post.organizer}}</p>
     <h2 class="details_title"><i class="fas fa-thumbtack"></i>場所</h2>
     <p>{{post.place}}</p>
     <h2 class="details_title"><i class="far fa-check-circle"></i>参加条件</h2>
-    <p>{{post.entry}}</p>
+    {% autoescape false %}
+      <p>{{post.entry.replace('\n', '<br>')}}</p>
+    {% endautoescape %}
     <h2 class="details_title"><i class="far fa-flag"></i>参加方法</h2>
-    <p>{{post.way}}</p>
+    {% autoescape false %}
+      <p>{{post.way.replace('\n', '<br>')}}</p>
+    {% endautoescape %}
     <h2 class="details_title"><i class="fas fa-yen-sign"></i>参加費用</h2>
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
@@ -137,28 +144,6 @@
     {% endfor %}
 
 
-
-
-  <!-- <div class="modal" tabindex="-1" role="dialog" id="del_comment">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete Post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete the comment?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 
 
