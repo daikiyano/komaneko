@@ -1,4 +1,18 @@
+<head>
+  <meta name="twitter:creator" content="@for_engineerb">
+  <meta property="og:title" content="{{post.title}}">
+  <meta property="og:description" content="{{post.text}}">
+  <meta property="og:url" content="{{url}}">
+  <meta name="twitter:site" content="@for_engineerb">
+  <meta property="og:image" content="{{post.event_image}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@granfairs">
+  <meta name="twitter:title" content="{{post.title}}">
+  <meta name="twitter:description" content="{{post.text}}">
+</head>
 {%extends "base.html"%}
+
+
 {%block content %}
 
 <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
@@ -53,7 +67,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>投稿を削除してもよろしいでしょうか？</p>
+            <p>投稿を削除してもよろしいでしょうか</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

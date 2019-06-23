@@ -115,7 +115,7 @@ def blog_post(blog_post_id):
 
 
     return render_template('blog_post.html',title=blog_post.title,
-                                date=blog_post.date,post=blog_post,form=form,comments=comments)
+                                date=blog_post.date,post=blog_post,form=form,comments=comments,url=request.base_url)
 
 
 
