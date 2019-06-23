@@ -19,7 +19,7 @@
         <div class="all_details">
           <h1 class="all_name"><b>{{culture.username}}</b></h1>
           <a href="{{url_for('users.user_posts',username=culture.username)}}">
-          <img  src="{{url_for('static',filename='profile_pics/'+culture.profile_image)}}">
+            <img src="{{culture.profile_image}}">
           </a>
         </div>
       {% endfor %}
@@ -31,7 +31,7 @@
           <div class="all_details">
             <h1  class="all_name"><b>{{other.username}}</b></h1>
             <a href="{{url_for('users.user_posts',username=other.username)}}">
-            <img  src="{{url_for('static',filename='profile_pics/'+other.profile_image)}}">
+            <img src="{{other.profile_image}}">
             </a>
           </div>
         {% endfor %}
