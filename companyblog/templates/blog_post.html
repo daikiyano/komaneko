@@ -1,26 +1,86 @@
+<head>
+  <meta name="twitter:creator" content="@for_engineerb">
+  <meta property="og:title" content="{{post.title}}">
+  <meta property="og:description" content="{{post.text}}">
+  <meta property="og:url" content="{{url}}">
+  <meta name="twitter:site" content="@for_engineerb">
+  <meta property="og:image" content="{{post.event_image}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@granfairs">
+  <meta name="twitter:title" content="{{post.title}}">
+  <meta name="twitter:description" content="{{post.text}}">
+</head>
 {%extends "base.html"%}
+
+
 {%block content %}
+
+<p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+
 <div class="post_box">
 <!-- <div class="social">
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="link twitter witter-share-button" target="_parent" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false"><span class="fab fa-twitter"></span></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div> -->
-
   <div class="post_details">
-    <h1><i class="fas fa-cat cat_like_details" ></i><b>{{post.title}}</b></h1>
+    <h1><i class="far fa-edit"></i><b>{{post.title}}</b></h1>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class=" twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KomaNeco" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
+    <!-- <img align='center' class="user_image" src="{{post.author.profile_image}}"> -->
+
+    <h3 style="text-align:right;" class="author_name_post">投稿者:{{post.author.username}}</h3>
     {% if post.author == current_user %}
     <div>
       <a class="btn btn-primary" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
-      <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#del_modal">Delete</button>
+      <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#modal">Delete</button>
     </div>
     {% endif %}
-    <img style="width:100%; padding: 0 auto;" src="{{post.event_image}}" >
-    <h2>投稿者</h2>
-    <p> {{post.author.username}}</p>
-    <h2>投稿日</h2>
-    <p>{{post.date.strftime('%B %d,%Y') }}</p>
-    <h2>イベント開催日</h2>
-    <p>{{post.event_date.strftime('%Y年%m月%d日')}}</p>
+    <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
+    <div class="post_info_box">
+      <div class="post_user_box post_info_details">
+        <div class="like_box_like post_like">
+        {% if current_user.is_authenticated %}
+        {% if current_user.has_liked_post(post) %}
+          <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+        {% else %}
+          <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+        {% endif %}
+        {% else %}
+          <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
+        {% endif %}
+        <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        </div>
+      </div>
+      <div class="event_date_box event_date_blog_post">
+        <p class="event_date event_date_post">開催日<br>
+        <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
+        {{post.event_date.strftime('%m月%d日')}}</p>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Post?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>投稿を削除してもよろしいでしょうか</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+            <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
+              <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     <p>{{post.text}}</p>
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
@@ -35,8 +95,7 @@
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-
-
+    <a class="btn btn-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
   </div>
 
 </div>
@@ -78,28 +137,7 @@
     {% endfor %}
 
 
-  <div class="modal" tabindex="-1" role="dialog" id="del_modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete Post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete the post?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
-          <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
-            <input class="btn btn-danger" type="submit" value="Delete">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- <div class="modal" tabindex="-1" role="dialog" id="del_comment">
     <div class="modal-dialog" role="document">

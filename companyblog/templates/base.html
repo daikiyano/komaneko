@@ -17,7 +17,35 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity:0.8;　background-color: #794aa8;">
+    <header>
+      <h1 class="header_logo"><a  style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><i class="fas fa-cat header_cat"></i><b>KomaNeko</b></a></h1>
+
+      <div class="header_sp">
+        <ul class="header_left">
+          {% if not current_user.is_authenticated %}
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.login')}}"><b>ログイン</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>ユーザー登録</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>団体サークル一覧</b></a></li>
+          {% endif %}
+        </ul>
+
+        <ul class="header_right">
+          {% if current_user.is_authenticated %}
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.logout')}}"><b>ログアウト</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
+          {% endif %}
+          <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベントを作成する</b></a></li>
+        </ul>
+      </div>
+      <div class="menu_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <div class="header-padding" style="padding:70px 0;"></div>
+<!-- <div class="test2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark header_test" style="opacity:0.8;　background-color: #794aa8;">
   <a style="color:white;" class="navbar-brand" href="#"><i class="fas fa-cat" style="font-size:60px;"></i><b>KomaNeko</b>
 </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,9 +55,6 @@
     <ul class="navbar-nav">
       <li class='nav-link'>
         <a style="color:white;" href="{{url_for('core.index')}}">HOME</a>
-      </li>
-      <li class='nav-link'>
-        <a style="color:white;" href="{{url_for('core.info')}}">Koma Event</a>
       </li>
       <li class='nav-link'>
         <a style="color:white;" href="{{ url_for('users.all') }}">団体サークル一覧</a>
@@ -55,8 +80,9 @@
     </ul>
   </div>
 </nav>
+</div> -->
 {% for mess in get_flashed_messages() %}
-<div class="alert alert-success alert-dismissible fade show flash_color" style="background:rgba(148,110,185,1);" role='alert'>
+<div class="alert alert-success alert-dismissible fade show flash_color" style="background:rgba(60,76,222,0.8);" role='alert'>
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>

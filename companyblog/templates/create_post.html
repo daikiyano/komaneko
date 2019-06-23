@@ -5,14 +5,14 @@
     {{form.hidden_tag()}}
     <div class="form-group">
       <h3><i class="fas fa-cat"></i>{{form.title.label(class="form-control-label")}}</h3>
-        {{form.title(class="form_input form-control form-contorl-lg")}}
+        {{form.title(placeholder="イベント名",class="form_input form-control form-contorl-lg")}}
         {% for error in form.title.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
       <h3><i class="far fa-calendar-alt"></i>{{form.text.label(class="form-control-label")}}</h3>
-      {{form.text(cols="20", rows="5",class="form_input form-control form-contorl-lg")}}
+      {{form.text(style="height:300px;",class="form_input form-control",rows='50',cols='100')}}
       {% for error in form.text.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
@@ -26,42 +26,42 @@
     </div>
     <div class="form-group">
       <h3><i class="far fa-user"></i>{{form.organizer.label(class="form-control-label")}}</h3>
-      {{form.organizer(class="form_input form-control form-contorl-lg")}}
+      {{form.organizer(placeholder="団体名(サークル、部活など)",class="form_input form-control form-contorl-lg")}}
       {% for error in form.organizer.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
     <div class="form-group">
       <h3><i class="fas fa-thumbtack"></i>{{form.place.label(class="form-control-label")}}</h3>
-        {{form.place(class="form_input form-control form-contorl-lg")}}
+        {{form.place(placeholder="例)駒澤大学　8号館8-123)",class="form_input form-control form-contorl-lg")}}
         {% for error in form.place.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
       <h3><i class="far fa-check-circle"></i>{{form.entry.label(class="form-control-label")}}</h3>
-        {{form.entry(class="form_input form-control form-contorl-lg")}}
+        {{form.entry(placeholder="必要な持ち物、資格など",style="height:300px;",class="form_input form-control form-contorl-lg")}}
         {% for error in form.entry.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
       <h3><i class="far fa-flag"></i>{{form.way.label(class="form-control-label")}}</h3>
-        {{form.way(class="form_input form-control form-contorl-lg")}}
+        {{form.way(placeholder="参加フォームなどのURL",style="height:300px;",class="form_input form-control form-contorl-lg")}}
         {% for error in form.way.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
         <h3><i class="fas fa-yen-sign"></i>{{form.cost.label(class="form-control-label")}}</h3>
-        {{form.cost(class="form_input form-control form-contorl-lg")}}
+        {{form.cost(placeholder="参加にかかる費用",class="form_input form-control form-contorl-lg")}}
         {% for error in form.cost.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
     <div class="form-group">
       <h3><i class="far fa-address-card"></i>{{form.contact.label(class="form-control-label")}}</h3>
-        {{form.contact(class="form_input form-control form-contorl-lg")}}
+        {{form.contact(placeholder="メールアドレス、HPのURLなど",class="form_input form-control form-contorl-lg")}}
         {% for error in form.contact.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
@@ -69,7 +69,7 @@
     <div class="form-group">
       <h3><i class="far fa-images"></i>{{form.image.label(class="form-control-label")}}</h3>
       {{form.image(class="form_input form-control form-contorl-lg")}}
-      *画像形式はjpg,png,jpeg,gifのみ対応しています。
+      *画像形式はjpg,png,jpeg,gifのみ対応しています。<br>
       {% for error in form.image.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}

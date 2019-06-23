@@ -22,8 +22,15 @@ def index():
 
 
     page = request.args.get('page',1,type=int)
-    blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.desc()).paginate(page=page,per_page=5)
-    return render_template('index.html',blog_posts=blog_posts)
+    #新着順
+    all_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
+    #直近開催イベント
+    blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.asc()).paginate(page=page,per_page=5)
+    #いいねが多い順
+    # ranking_posts = BlogPost.query.group_by()
+    # blog_post = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow())
+    # like = blog_post.order_by(blog_post.likes.count().asc())
+    return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts)
 
 @core.route('/condition',methods=['GET','POST'])
 @login_required

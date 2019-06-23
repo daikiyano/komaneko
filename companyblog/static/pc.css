@@ -1,10 +1,86 @@
 
 /* base.html */
 
+
 .flash_font{
   text-align:center; color:white;
 
 }
+
+.flash_color{
+  margin-top:-50px;
+}
+
+
+/* header */
+.test2{
+  display:none;
+}
+
+header{
+  height:90px;
+  width:100%;
+  background-color:rgba(121,74,168,0.9);
+  left:0;
+  position: fixed;
+  top:0;
+  z-index: 24;
+}
+
+.header_logo{
+  position:absolute;
+  left:20px;
+  top:10px;
+}
+
+.header_left{
+  display: inline;
+  position:absolute;
+  top:30px;
+  left:300px;
+}
+
+.header_right{
+  display: inline;
+  position:absolute;
+  top:30px;
+  right:60px;
+}
+
+.header_list{
+  color:white;
+  display: inline;
+  margin-left:20px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.menu{
+  color:white;
+  text-decoration: none;
+}
+
+.menu:hover{
+  color: #c1a7db;
+}
+
+.menu_btn{
+  display: none;
+}
+
+.header_logo{
+  color:white;
+  cursor:pointer;
+  font-size:50px;
+
+}
+
+/* .header_list:hover{
+  color: #c1a7db;
+
+
+} */
+
 
 
 /* フォーム */
@@ -14,10 +90,12 @@
   margin: 20px auto;
 }
 .form_input{
-  height:50px;
+  height:70px;
 }
 
 /* TOPへボタン */
+
+
 
 .page-top{
   position: fixed;
@@ -42,13 +120,50 @@
 
 
 /* index.page */
+
+.tab_box{
+  text-align:center;
+  width:100%;
+  margin: 0 auto; 
+  position:relative; top:40px;
+}
+
+.tab_list{
+  /* background-color: #c1a7db; */
+  display: inline;
+  padding: 0 40px;
+  font-size:28px;
+  border: 3px solid black;
+  cursor:pointer;
+  transition: .3s;
+}
+.tab_list:hover{
+  background-color: rgba(157,51,214,0.9);
+  color:white;
+}
+
+.tab_box li.active {
+  color: white;
+  background-color: rgba(157,51,214,0.9);
+  cursor: auto;
+}
+
+.test {
+  display: none;
+}
+.test.show {
+  display: block;
+}
+
+
+
+
 .site_box{
   text-align:center;
-  color:white;
   width:95%;
   height:auto;
   margin: 30px auto;
-  background:rgba(51,44,191,0.9);
+  background:rgba(157,51,214,0.2);
   border-radius:30px;
   box-shadow: 0 0 8px gray;
   display: flex;
@@ -59,6 +174,10 @@
   width:100%;
 }
 
+.site_title_box img{
+  border-radius: 30px;
+}
+
 .site_box_title{
   font-family:arial black;
   font-size:50px;
@@ -66,9 +185,9 @@
 }
 
 .title_image{
-  height:600px;
+  height:500px;
   width:100%;
-  border-radius: 30px;
+  margin-top:10px;
   padding-left:30px;
   padding-bottom:30px;
 }
@@ -81,17 +200,18 @@
 .site_intro_box_inside{
   height: 400px;
   position: relative;
-  top:200px;
+  top:90px;
 }
 
 .intro_p{
-  font-size:30px;
+  font-size:29px;
+
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;
   padding: 10px 40px;
   width:100%;
-  line-height:35px;
+  line-height:50px;
 }
 
 
@@ -102,7 +222,7 @@
 }
 
 .post_box{
-  width:50%;
+  width:60%;
   margin: 50px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
@@ -122,15 +242,19 @@
   color:black;
 }
 
-.card_title img{
-  height:800px; width:100%;
+.index_image{
+  height:700px; width:100%;
 }
-
 
 .card_bottom_box{
   display: flex;
   justify-content: space-between;
   margin-top:5px;
+}
+
+.like_box{
+  display:flex;
+  justify-content: flex-start;
 }
 
 .cat_like{
@@ -149,8 +273,17 @@
   font-size:140px;
   text-decoration: none;
 }
+.cat_login:hover{
+  color:purple;
+  opacity:0.3;
+}
 .like_count{
   font-size:22px;
+}
+
+.post_box_place{
+  margin-top:10px;
+  font-size:20px;
 }
 
 .event_date_box{
@@ -162,6 +295,8 @@
   float:right;
   margin-right:20px;
 }
+
+
 
 .event_date{
   font-size:20px;
@@ -186,13 +321,39 @@
 /* End index.html  */
 
 /* blog_post.html */
-
+.post_like{
+  position: fixed;
+  top:240px;
+  left:150px;
+}
 
 .post_details{
   text-align:center;
   width:95%;
   margin: 0 auto;
 
+}
+
+.post_info_box{
+  display:flex;
+  justify-content: space-around;
+  position:relative;
+  top:30px;
+
+}
+
+.event_date_post{
+  position:relative;
+  left:25px;
+}
+
+.post_info_details{
+  margin:20px auto;
+}
+
+.author_name_post{
+  font-size:25px;
+  text-align:right;
 }
 
 .cat_like_details{
@@ -202,6 +363,7 @@
 
 .details_title{
   border-bottom: 4px solid rgba(121,74,168,0.9);
+  padding-top:20px;
   text-align: left;
   font-size:40px;
 }
@@ -209,6 +371,7 @@
 .post_details p{
   font-size:22px;
   text-align: left;
+  line-hieght:30px;
 
 }
 
@@ -243,6 +406,7 @@
  height:400px;
  width:400px;
 }
+
 
 /* all.html */
 

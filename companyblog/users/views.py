@@ -101,13 +101,12 @@ def login():
                 db.session.commit()
                 login_user(user)
                 flash('{}さん　KomaNecoへようこそ！'.format(user.username))
+                return redirect(url_for('core.index'))
 
-                next = request.args.get('next')
-
-                if next == None or not next[0]=='/':
-                    next = url_for('core.index')
-
-                    return redirect(next)
+        next = request.args.get('next')
+        if next == None or not next[0]=='/':
+            next = url_for('core.index')
+            return redirect(next)
         else:
             flash('アカウント情報が不正です。本登録を完了させてください。', 'error')
             return redirect(url_for('users.login'))
