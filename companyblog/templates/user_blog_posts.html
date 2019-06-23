@@ -17,7 +17,9 @@
     {% endif %}
     <img class="user_logo" src="{{user.profile_image}}">
     <h1 class="info_title"><b>団体情報</b></h1>
-    <p class="user_info">{{user.info}}</p>
+    {% autoescape false %}
+      <p class="user_info">{{user.info.replace('\n', '<br>')}}</p>
+    {% endautoescape %}
   </div>
   <div class="">
   <h1 class="info_title"><b>過去の投稿</b></h1>
