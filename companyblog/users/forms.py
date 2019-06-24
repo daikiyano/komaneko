@@ -8,7 +8,7 @@ from companyblog.models import User
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email',validators=[DataRequired("Emailアドレスを入力してください"),Email()])
+    email = StringField('Email',validators=[DataRequired("メールアドレスを入力してください"),Email('このメールアドレスは無効です')])
     password = PasswordField('パスワード',validators=[DataRequired("パスワードを入力してください")])
     submit = SubmitField('ログイン')
 
@@ -19,12 +19,12 @@ class LoginForm(FlaskForm):
         if not user.check_password(self.password.data):
             raise ValidationError('Emailまたはパスワードが不正です')
 class RegistrationForm(FlaskForm):
-    email = StringField('Eメールアドレス',validators=[DataRequired(),Email()])
-    username = StringField('ユーザー名/団体名',validators=[DataRequired()])
+    email = StringField('Eメールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
+    username = StringField('ユーザー名/団体名',validators=[DataRequired('ユーザー名または団体名を入力してください')])
     university = SelectField(u'大学を選択してください',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'個人か団体アカウントか選択してください',choices=[(0, '所属を選択してください'), (1, '個人'), (2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '(団体)任意団体/その他')],coerce=int, default=0)
-    password = PasswordField('パスワード',validators=[DataRequired(),EqualTo('pass_confirm',message='パスワードが一致しません。')])
-    pass_confirm = PasswordField('パスワード確認',validators=[DataRequired()])
+    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
+    pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
     submit = Submit = SubmitField('登録する')
 
 
