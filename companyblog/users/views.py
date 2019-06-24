@@ -11,9 +11,8 @@ from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 from companyblog import mail
 from PIL import Image
-import flask_resize
 import boto3
-resize = flask_resize.Resize()
+
 
 s3 = boto3.client(
     's3',
@@ -21,8 +20,6 @@ s3 = boto3.client(
     aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
     )
 
-BUCKET_LOCATION = s3.get_bucket_location(Bucket=app.config['AWS_BUCKET'])
-print(BUCKET_LOCATION)
 
 
 users = Blueprint('users',__name__)
