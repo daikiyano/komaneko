@@ -10,7 +10,10 @@ from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 from companyblog import mail
+from PIL import Image
+import flask_resize
 import boto3
+resize = flask_resize.Resize()
 
 s3 = boto3.client(
     's3',
@@ -18,6 +21,8 @@ s3 = boto3.client(
     aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
     )
 
+BUCKET_LOCATION = s3.get_bucket_location(Bucket=app.config['AWS_BUCKET'])
+print(BUCKET_LOCATION)
 
 
 users = Blueprint('users',__name__)
@@ -179,7 +184,7 @@ def user_posts(username):
     page = request.args.get('page',1,type=int)
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user)
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,url=request.base_url)
 
 @users.route("/all")
 def all():

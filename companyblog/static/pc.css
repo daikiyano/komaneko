@@ -124,7 +124,7 @@ header{
 .tab_box{
   text-align:center;
   width:100%;
-  margin: 0 auto; 
+  margin: 0 auto;
   position:relative; top:40px;
 }
 
@@ -133,7 +133,7 @@ header{
   display: inline;
   padding: 0 40px;
   font-size:28px;
-  border: 3px solid black;
+  border: 1px solid black;
   cursor:pointer;
   transition: .3s;
 }
@@ -422,6 +422,11 @@ header{
   width:100%;
 }
 
+.sns_logo{
+  position: fixed;
+  left:200px;
+}
+
 .user_twitter{
   height:80px;
   width:80px;
@@ -441,17 +446,21 @@ header{
 }
 
 .user_logo{
-  height:600px;
-  width:900px;
+  height:500px;
+  width:800px;
   border-radius:10px;
+  position:relative;
+  left:130px;
 }
 
 .user_info{
-  font-size:30px;
-  padding:10px 30px;
+  font-size:22px;
+  text-align: left;
+  padding:5px 30px;
 }
 
 .info_title{
   border-bottom: 4px solid rgba(121,74,168,0.9);
-  margin:30px auto;
+  margin:60px auto;
+  text-align: left;
 }

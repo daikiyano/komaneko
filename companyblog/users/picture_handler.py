@@ -14,9 +14,11 @@ def add_profile_pic(pic_upload):
     #ファイルのパス
     # filepath = os.path.join(current_app.root_path,'static/profile_pics',storage_filename)
     #
+    # filepath = "https://komazawa-app.s3-ap-northeast-1.amazonaws.com/{}"
+    # images = filepath.format(storage_filename)
     # output_size = (400,400)
     # pic = Image.open(pic_upload)
     # pic.thumbnail(output_size)
-    # pic.save(filepath)
+    # pic.save(images)
 
     return storage_filename

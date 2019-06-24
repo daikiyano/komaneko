@@ -465,6 +465,11 @@ header{
 
 /* user_blog_post.html */
 
+.sns_logo{
+  position: fixed;
+  left:10px;
+}
+
 .user_post_container{
   text-align:center;
   width:95%;
