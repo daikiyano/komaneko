@@ -169,6 +169,7 @@ def update(blog_post_id):
         form.way.data = blog_post.way
         form.cost.data = blog_post.cost
         form.contact.data = blog_post.contact
+        
 
     return render_template('create_post.html',title="Updating",form=form)
 

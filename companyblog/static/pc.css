@@ -93,6 +93,15 @@ header{
   height:70px;
 }
 
+.preview{
+  height:300px;
+  width:600px;
+}
+
+.form-group{
+  margin-top:40px;
+}
+
 /* TOPへボタン */
 
 
@@ -222,7 +231,7 @@ header{
 }
 
 .post_box{
-  width:60%;
+  width:55%;
   margin: 50px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
@@ -430,12 +439,13 @@ header{
 
 .user_post_container{
   text-align:center;
-  width:70%;
+  width:100%;
   margin: 0 auto;
 }
 
 .user_post_box{
-  width:100%;
+  width:60%;
+  margin:0 auto;
 }
 
 .sns_logo{
