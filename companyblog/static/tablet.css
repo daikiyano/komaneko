@@ -302,7 +302,7 @@ color:white;
 }
 
 .index_image{
-  height:400px; 
+  height:400px;
   width:100%;
 }
 
@@ -382,6 +382,24 @@ color:white;
 
 /* blog_post.html */
 
+.post_like{
+  position: fixed;
+  bottom:3%;
+  left:15px;
+}
+
+.post_copy{
+  position: fixed;
+  bottom:150px;
+  left:40px;
+  font-size:60px;
+  cursor:pointer;
+}
+
+.post_copy:hover{
+  color:gray;
+}
+
 .post_details{
   text-align:center;
   width:95%;
@@ -392,11 +410,26 @@ color:white;
   font-size:20px;
 }
 
+.post_details h3{
+  text-align:right;
+  font-size:12px;
+}
+
 .cat_like_details{
   color:purple;
   font-size:40px;
 }
 
+
+.post_info_box{
+  display:flex;
+  justify-content:space-between;
+}
+
+.event_date_post{
+  position: relative;
+  left:0;
+}
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);
   text-align: left;

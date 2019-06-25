@@ -16,9 +16,30 @@
 // });
 // $(document).ready(function(){
 //   $('#post_file_btn').on('click',function(){
-//
+//zz
 //   });
 // });
+
+
+
+
+function copyToClipboard() {
+
+           // コピー対象をJavaScript上で変数として定義する
+           document.getElementById('copyTarget').select();
+           document.execCommand('copy');
+
+           // コピー対象のテキストを選択する
+
+
+           // 選択しているテキストをクリップボードにコピーする
+
+           // コピーをお知らせする
+           alert("リンクをコピーしました");
+           // target = document.getElementById("copy_msg");
+           // target.innerHTML = "リンクをコピーしました";
+       }
+
 
 $(function() {
 

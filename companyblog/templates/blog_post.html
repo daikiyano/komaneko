@@ -22,7 +22,7 @@
   <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="link twitter witter-share-button" target="_parent" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KOMAeve" data-size="large"　data-show-count="false"><span class="fab fa-twitter"></span></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div> -->
   <div class="post_details">
-    <h1><i class="far fa-edit"></i><b>{{post.title}}</b></h1>
+    <h1><i class="far fa-edit" style="text-align:center;"></i><b>{{post.title}}</b></h1>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class=" twitter-share-button" data-text="{{post.title}}" data-hashtags="駒澤大学" data-hashtags="KomaNeco" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
     <!-- <img align='center' class="user_image" src="{{post.author.profile_image}}"> -->
@@ -49,6 +49,9 @@
         {% endif %}
         <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
         </div>
+        <!-- コピーボタン -->
+        <i class="far fa-copy post_copy copy_btn" onclick="copyToClipboard()"></i>
+        <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
       </div>
       <div class="event_date_box event_date_blog_post">
         <p class="event_date event_date_post">開催日<br>
@@ -80,12 +83,11 @@
       </div>
     </div>
 
-
+    <div style="text-align:left;">
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     {% autoescape false %}
       <p>{{post.text.replace('\n', '<br>')}}</p>
     {% endautoescape %}
-
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
     <p>{{post.organizer}}</p>
     <h2 class="details_title"><i class="fas fa-thumbtack"></i>場所</h2>
@@ -103,6 +105,7 @@
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
     <a class="btn btn-outline-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
+    </div>
   </div>
 
 </div>
