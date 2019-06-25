@@ -36,7 +36,9 @@
     {% endif %}
     <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
     <div class="post_info_box">
-      <div class="post_user_box post_info_details">
+      <div class="post_info_details">
+        <i class="far fa-copy post_copy copy_btn" onclick="copyToClipboard()"></i>
+        <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
         <div class="like_box_like post_like">
         {% if current_user.is_authenticated %}
         {% if current_user.has_liked_post(post) %}
@@ -50,8 +52,6 @@
         <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
         </div>
         <!-- コピーボタン -->
-        <i class="far fa-copy post_copy copy_btn" onclick="copyToClipboard()"></i>
-        <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
       </div>
       <div class="event_date_box event_date_blog_post">
         <p class="event_date event_date_post">開催日<br>

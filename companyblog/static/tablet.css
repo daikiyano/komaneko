@@ -215,15 +215,16 @@ header{
 }
 
 
+/* index_intro */
+
 
 .site_box{
   text-align:center;
   width:95%;
   height:auto;
   margin: 30px auto;
-background:rgba(51,44,191,0.9);
-color:white;
- border-radius:30px;
+  background:rgba(157,51,214,0.2);
+  border-radius:30px;
   box-shadow: 0 0 8px gray;
   display: flex;
   justify-content: center;
@@ -233,6 +234,10 @@ color:white;
   width:100%;
 }
 
+.site_title_box img{
+  border-radius: 30px;
+}
+
 .site_box_title{
   font-family:arial black;
   font-size:50px;
@@ -240,9 +245,9 @@ color:white;
 }
 
 .title_image{
-  height:600px;
+  height:500px;
   width:100%;
-  border-radius: 30px;
+  margin-top:10px;
   padding-left:30px;
   padding-bottom:30px;
 }
@@ -253,19 +258,19 @@ color:white;
 }
 
 .site_intro_box_inside{
-  height: 400px;
+  height: 440px;
   position: relative;
-  top:200px;
+
 }
 
 .intro_p{
-  font-size:30px;
+  font-size:23px;
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;
-  padding: 10px 40px;
+  padding: 10px 10px;
   width:100%;
-  line-height:35px;
+  line-height:33px;
 }
 
 
@@ -474,4 +479,62 @@ color:white;
 
 .view_btn{
   padding-bottom: 10px;
+}
+
+
+/* user_post */
+
+.user_post_container{
+  text-align:center;
+  width:100%;
+  margin: 0 auto;
+}
+
+.user_post_box{
+  width:60%;
+  margin:0 auto;
+}
+
+.sns_logo{
+  position: fixed;
+  left:200px;
+}
+
+.user_twitter{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_facebook{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_instagram{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+}
+
+.user_logo{
+  height:500px;
+  width:800px;
+  border-radius:10px;
+  position:relative;
+  left:-200px;
+  object-fit: cover;
+}
+
+.user_info{
+  font-size:22px;
+  text-align: left;
+  padding:5px 30px;
+}
+
+.info_title{
+  border-bottom: 4px solid rgba(121,74,168,0.9);
+  margin:60px auto;
+  text-align: left;
 }
