@@ -318,12 +318,12 @@ header{
 
 .cat_login{
   color:purple;
-  font-size:120px;
+  opacity:0.3;
+  font-size:80px;
 }
 
 .cat_login:hover{
   color:purple;
-  opacity:0.3;
 }
 
 .like_count{
@@ -356,8 +356,8 @@ header{
 
 .event_date{
   position:relative;
-  left:30px;
-  top:10px;
+  left:25px;
+  top:15px;
 }
 
 
@@ -373,7 +373,7 @@ header{
 .post_user_box{
     display: flex;
     margin:10px auto;
-    width:95%;
+    width:75%;
 }
 
 
@@ -391,7 +391,19 @@ header{
 .post_like{
   position: fixed;
   bottom:3%;
-  left:30px;
+  left:15px;
+}
+
+.post_copy{
+  position: fixed;
+  bottom:120px;
+  left:20px;
+  font-size:60px;
+  cursor:pointer;
+}
+
+.post_copy:hover{
+  color:gray;
 }
 
 .post_details{

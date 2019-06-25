@@ -244,6 +244,7 @@ header{
 
 .index_image{
   height:700px; width:100%;
+  object-fit: cover;
 }
 
 .card_bottom_box{
@@ -260,18 +261,21 @@ header{
 .cat_like{
   color:purple;
   font-size:140px;
+  cursor:pointer;
 }
 
 .cat_unlike{
   color:purple;
   opacity:0.3;
   font-size:140px;
+  cursor:pointer;
 }
 
 .cat_login{
   color:purple;
   font-size:140px;
   text-decoration: none;
+  cursor:pointer;
 }
 .cat_login:hover{
   color:purple;
@@ -325,6 +329,18 @@ header{
   position: fixed;
   top:240px;
   left:150px;
+}
+
+.post_copy{
+  position: fixed;
+  top:400px;
+  left:190px;
+  font-size:70px;
+  cursor:pointer;
+}
+
+.post_copy:hover{
+  color:gray;
 }
 
 .post_details{
@@ -451,6 +467,7 @@ header{
   border-radius:10px;
   position:relative;
   left:130px;
+  object-fit: cover;
 }
 
 .user_info{

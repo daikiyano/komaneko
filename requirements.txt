@@ -23,12 +23,6 @@ Flask-OAuthlib==0.9.4
 Flask-Scss==0.5
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
-google-api-core==1.11.1
-google-auth==1.6.3
-google-cloud-core==1.0.1
-google-cloud-storage==1.16.1
-google-resumable-media==0.3.2
-googleapis-common-protos==1.6.0
 gunicorn==19.9.0
 httplib2==0.11.3
 idna==2.6
