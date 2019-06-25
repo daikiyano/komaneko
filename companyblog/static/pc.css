@@ -491,3 +491,13 @@ header{
   margin:60px auto;
   text-align: left;
 }
+
+
+/* アカウントページ */
+
+
+.account_image{
+  height:700px;
+  width:100%;
+  object-fit: cover;
+}

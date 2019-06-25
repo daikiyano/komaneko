@@ -538,3 +538,11 @@ header{
   margin:60px auto;
   text-align: left;
 }
+
+
+/* アカウント情報 */
+.account_image{
+  height:400px;
+  width:100%;
+  object-fit: cover;
+}
