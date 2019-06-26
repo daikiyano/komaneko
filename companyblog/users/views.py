@@ -10,7 +10,9 @@ from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 from companyblog import mail
+from PIL import Image
 import boto3
+
 
 s3 = boto3.client(
     's3',
@@ -179,7 +181,7 @@ def user_posts(username):
     page = request.args.get('page',1,type=int)
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user)
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,url=request.base_url)
 
 @users.route("/all")
 def all():

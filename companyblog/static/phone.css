@@ -30,6 +30,14 @@
   height:50px;
 }
 
+.preview{
+  height:200px;
+  width:95%;
+}
+.form-group{
+  margin-top:30px;
+}
+
 
 
 /* TOPへボタン */
@@ -285,7 +293,7 @@ header{
 
 
 .index_title{
-  font-size:20px;
+  font-size:17px;
   padding-top:10px;
 }
 
@@ -318,12 +326,12 @@ header{
 
 .cat_login{
   color:purple;
-  font-size:120px;
+  opacity:0.3;
+  font-size:80px;
 }
 
 .cat_login:hover{
   color:purple;
-  opacity:0.3;
 }
 
 .like_count{
@@ -356,8 +364,8 @@ header{
 
 .event_date{
   position:relative;
-  left:30px;
-  top:10px;
+  left:25px;
+  top:15px;
 }
 
 
@@ -372,8 +380,9 @@ header{
 
 .post_user_box{
     display: flex;
-    margin:10px auto;
-    width:95%;
+    justify-content: space-around;
+    margin:5px auto;
+    width:100%;
 }
 
 
@@ -391,7 +400,18 @@ header{
 .post_like{
   position: fixed;
   bottom:3%;
-  left:30px;
+  left:15px;
+}
+
+.post_copy{
+  position:absolute;
+  left:20px;
+  font-size:40px;
+  cursor:pointer;
+}
+
+.post_copy:hover{
+  color:gray;
 }
 
 .post_details{
@@ -420,6 +440,13 @@ header{
   justify-content:space-between;
 }
 
+.post_info_details{
+    display: flex;
+    justify-content: space-around;
+    margin:5px auto;
+    width:70%;
+}
+
 .event_date_post{
   position: relative;
   left:0;
@@ -427,7 +454,7 @@ header{
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);
   text-align: left;
-  font-size:24px;
+  font-size:20px;
 }
 
 
@@ -458,12 +485,17 @@ header{
 
 .all_details img{
  border-radius:50%;
- height:200px;
- width:100%;
+ height:300px;
+ width:300px;
 }
 /* all.html */
 
 /* user_blog_post.html */
+
+.sns_logo{
+  position: fixed;
+  left:10px;
+}
 
 .user_post_container{
   text-align:center;
@@ -513,4 +545,13 @@ header{
 
 .view_btn{
   padding-bottom: 10px;
+}
+
+
+/* アカウントページ */
+
+.account_image{
+  height:280px;
+  width:100%;
+  object-fit: cover;
 }

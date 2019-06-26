@@ -1,30 +1,48 @@
+<head>
+  <meta name="twitter:creator" content="@for_engineerb">
+  <meta property="og:title" content="{{user.username}}">
+  <meta property="og:description" content="{{user.info}}">
+  <meta property="og:url" content="{{url}}">
+  <meta name="twitter:site" content="@for_engineerb">
+  <meta property="og:image" content="{{user.profile_image}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@gfor_engineerb">
+  <meta name="twitter:title" content="{{user.username}}">
+  <meta name="twitter:description" content="{{user.info}}">
+</head>
+
+
 {% extends 'base.html'%}
 {% block content %}
 
-<div class="user_post_container">
-  <div style="user_post_box"align='center'>
-    <h1 class="info_title"><b>団体名</b></h1>
-    <h2><b>{{user.username}}</b></h2>
+<div class="user_post_container" style="text-align:left;">
+  <div class="user_post_box">
+    <h1 class="info_title"><i class="fas fa-user-friends"></i><b>{{user.username}}</b></h1>
+    <div class="sns_logo">
+      {% if user.twitter %}
+        <a href="https://twitter.com/{{user.twitter}}"><img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" class="user_twitter"></a><br>
+      {% endif %}
+      {% if user.facebook %}
+        <a href="https://facebook.com/{{user.facebook}}"><img src="static/f_logo_RGB-Blue_100.png" alt="facebook" class="user_facebook"></a><br>
+      {% endif %}
+      {% if user.instagram %}
+        <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" class="user_instagram"></a><br>
+      {% endif %}
+    </div>
+
       <!-- {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %} -->
-    {% if user.twitter %}
-      <a href="https://twitter.com/{{user.twitter}}"><img src="static/Twitter_Social_Icon_Square_Color.png" alt="Twitter" class="user_twitter"></a>
-    {% endif %}
-    {% if user.facebook %}
-      <a href="https://facebook.com/{{user.facebook}}"><img src="static/f_logo_RGB-Blue_100.png" alt="facebook" class="user_facebook"></a>
-    {% endif %}
-    {% if user.instagram %}
-      <a href="https://www.instagram.com/{{user.instagram}}"><img src="static/IG_Glyph_Fill.jpg" alt="instagram" class="user_instagram"></a>
-    {% endif %}
+
     <img class="user_logo" src="{{user.profile_image}}">
-    <h1 class="info_title"><b>団体情報</b></h1>
+    <h1 class="info_title"><i class="far fa-address-card"></i><b>団体情報</b><br></h1>
     {% autoescape false %}
     {% if user.info %}
       <p class="user_info">{{user.info.replace('\n', '<br>')}}</p>
     {% endif %}
     {% endautoescape %}
+<h1 class="info_title"><i class="fas fa-map-pin"></i><b>団体HP:</b>{{user.url}}</h1>
+
+  <h1 class="info_title"><i class="far fa-address-book"></i><b>過去の投稿</b></h1>
   </div>
-  <div class="">
-  <h1 class="info_title"><b>過去の投稿</b></h1>
   {% for post in blog_posts.items %}
   <div class="post_box">
     <div class="post_top">
@@ -34,34 +52,39 @@
     <img class="index_image" align='center' src="{{post.event_image}}"></a>
     <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
     <div class="card_bottom_box">
-      <div>
-        {% if current_user.is_authenticated %}
-        {% if current_user.has_liked_post(post) %}
-          <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+        <div class="like_box">
+          <div class="like_box_like" >
+          {% if current_user.is_authenticated %}
+          {% if current_user.has_liked_post(post) %}
+            <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+          {% else %}
+            <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+          {% endif %}
         {% else %}
-          <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+            <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
         {% endif %}
-      {% else %}
-          <div><a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a></div>
-      {% endif %}
-      <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+        </div>
+        <div class="post_box_place">
+          <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
+            <b><i class="far fa-clock"></i>開始時間:</b></p>
+        </div>
       </div>
       <div class="event_date_box">
-        <p class="event_date event_date_user_blog">開催日<br>
+        <p class="event_date">開催日<br>
         <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>
     </div>
     <div class="post_user_box">
       <img align='center' class="user_image" src="{{post.author.profile_image}}">
-      <!-- <img align='center' class="user_image" src="{{url_for('static',filename='profile_pics/'+post.author.profile_image)}}"> -->
-
-      <h6 style="text-align:right;">投稿者(団体名):{{post.author.username}}<br>
+      <h6 style="text-align:right;">投稿者:{{post.author.username}}<br>
         投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
     </div>
-    </div>
+  </div>
   {% endfor %}
 
+</div>
 </div>
 
 <nav aria-label='Page Navigation example'>

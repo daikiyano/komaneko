@@ -15,7 +15,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
-  <body style="width:100%;">
+  <script type="text/javascript">
+
+  </script>
+
+  <body>
     <header>
       <h1 class="header_logo"><a  style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><i class="fas fa-cat header_cat"></i><b>KomaNeko</b></a></h1>
       <div class="header_sp">
@@ -30,6 +34,7 @@
           {% if current_user.is_authenticated %}
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.logout')}}"><b>ログアウト</b></a></li>
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>団体サークル一覧</b></a></li>
           {% endif %}
           <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベントを作成する</b></a></li>
         </ul>
@@ -48,7 +53,7 @@
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
-  <h3 class="flash_font">{{ mess }}</h3>
+  <h3 class="flash_font" id="copy_msg">{{ mess }}</h3>
 </div>
 {% endfor %}
 

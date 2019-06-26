@@ -3,6 +3,7 @@
 <div class="container">
   <form class="form-group" method="POST" action="" enctype="multipart/form-data">
     {{form.hidden_tag()}}
+
     <div class="form-group">
       <h3><i class="fas fa-cat"></i>{{form.title.label(class="form-control-label")}}</h3>
         {{form.title(placeholder="イベント名",class="form_input form-control form-contorl-lg")}}
@@ -68,14 +69,16 @@
     </div>
     <div class="form-group">
       <h3><i class="far fa-images"></i>{{form.image.label(class="form-control-label")}}</h3>
+        *画像形式はjpg,png,jpeg,gifのみ対応しています。
       {{form.image(class="form_input form-control form-contorl-lg")}}
-      *画像形式はjpg,png,jpeg,gifのみ対応しています。<br>
+    <br>
       {% for error in form.image.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
-    <div class="form-group">
-      {{form.submit(class="btn btn-outline-info")}}
+    <div class="preview"></div>
+    <div class="form-group" style="width:100%;">
+      {{form.submit(class="btn btn-primary btn-lg",style="padding:0 auto;")}}
     </div>
 
 
