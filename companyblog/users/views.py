@@ -141,8 +141,8 @@ def account():
             s3_resource = boto3.resource('s3')
             my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
             my_bucket.Object(image).put(Body=form.picture.data)
-            test = 'https://{}.s3-ap-northeast-1.amazonaws.com/{}'
-            images = test.format(app.config['AWS_BUCKET'],image)
+            test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
+            images = test.format(image)
 
             # username = current_user.username
             # pic = add_profile_pic(form.picture.data,username)

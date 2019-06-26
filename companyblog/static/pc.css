@@ -18,32 +18,28 @@
 }
 
 header{
-  height:90px;
+  height:70px;
   width:100%;
   background-color:rgba(121,74,168,0.9);
   left:0;
   position: fixed;
   top:0;
   z-index: 24;
+
 }
 
-.header_logo{
-  position:absolute;
-  left:20px;
-  top:10px;
-}
 
 .header_left{
   display: inline;
   position:absolute;
-  top:30px;
-  left:300px;
+  top:23px;
+  left:180px;
 }
 
 .header_right{
   display: inline;
   position:absolute;
-  top:30px;
+  top:23px;
   right:60px;
 }
 
@@ -52,7 +48,7 @@ header{
   display: inline;
   margin-left:20px;
   cursor:pointer;
-  font-size:20px;
+  font-size:17px;
 }
 
 .menu{
@@ -71,16 +67,16 @@ header{
 .header_logo{
   color:white;
   cursor:pointer;
-  font-size:50px;
+  font-size:30px;
+  position:absolute;
+  top:15px;
+  left:20px;
 
 }
 
-/* .header_list:hover{
-  color: #c1a7db;
-
-
-} */
-
+.header-padding{
+  padding:60px 0;
+}
 
 
 /* フォーム */
@@ -90,7 +86,7 @@ header{
   margin: 20px auto;
 }
 .form_input{
-  height:70px;
+  height:50px;
 }
 
 .preview{
@@ -99,7 +95,7 @@ header{
 }
 
 .form-group{
-  margin-top:40px;
+  margin-top:20px;
 }
 
 /* TOPへボタン */
@@ -141,7 +137,7 @@ header{
   /* background-color: #c1a7db; */
   display: inline;
   padding: 0 40px;
-  font-size:28px;
+  font-size:23px;
   border: 1px solid black;
   cursor:pointer;
   transition: .3s;
@@ -190,11 +186,11 @@ header{
 .site_box_title{
   font-family:arial black;
   font-size:50px;
-  padding:10px 0;
+  padding:5px 0;
 }
 
 .title_image{
-  height:500px;
+  height:450px;
   width:100%;
   margin-top:10px;
   padding-left:30px;
@@ -209,29 +205,28 @@ header{
 .site_intro_box_inside{
   height: 400px;
   position: relative;
-  top:90px;
+  top:50px;
 }
 
 .intro_p{
-  font-size:29px;
-
+  font-size:23px;
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;
   padding: 10px 40px;
   width:100%;
-  line-height:50px;
+  line-height:35px;
 }
 
 
 
 .event_top{
   text-align: center;
-  font-size:40px;
+  font-size:30px;
 }
 
 .post_box{
-  width:55%;
+  width:60%;
   margin: 50px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
@@ -242,7 +237,7 @@ header{
 }
 
 .index_title{
-  font-size:30px;
+  font-size:20px;
   padding-top:10px;
 }
 
@@ -252,7 +247,7 @@ header{
 }
 
 .index_image{
-  height:700px; width:100%;
+  height:450px; width:100%;
   object-fit: cover;
 }
 
@@ -269,20 +264,20 @@ header{
 
 .cat_like{
   color:purple;
-  font-size:140px;
+  font-size:100px;
   cursor:pointer;
 }
 
 .cat_unlike{
   color:purple;
   opacity:0.3;
-  font-size:140px;
+  font-size:100px;
   cursor:pointer;
 }
 
 .cat_login{
   color:purple;
-  font-size:140px;
+  font-size:100px;
   text-decoration: none;
   cursor:pointer;
 }
@@ -296,12 +291,12 @@ header{
 
 .post_box_place{
   margin-top:10px;
-  font-size:20px;
+  font-size:16px;
 }
 
 .event_date_box{
-  height:150px;
-  width:150px;
+  height:110px;
+  width:110px;
   background:rgba(121,74,168,0.9);
   border-radius:50%;
   color:white;
@@ -312,24 +307,27 @@ header{
 
 
 .event_date{
-  font-size:20px;
+  font-size:15px;
   position:relative;
-  left:40px;
-  top:30px;
+  left:30px;
+  top:20px;
 }
 
 .post_user_box{
     display: flex;
-    margin:20px auto;
+    justify-content: space-between;
+    margin:10px auto;
     width:95%;
 }
 
 .user_image{
-  height:80px;
-  width:80px;
+  height:60px;
+  width:60px;
   border-radius:50%;
 }
-
+.post_user_box h6{
+  padding-top:20px;
+}
 
 /* End index.html  */
 
@@ -342,9 +340,9 @@ header{
 
 .post_copy{
   position: fixed;
-  top:400px;
-  left:190px;
-  font-size:70px;
+  top:370px;
+  left:170px;
+  font-size:50px;
   cursor:pointer;
 }
 
@@ -359,6 +357,13 @@ header{
 
 }
 
+.post_details h1{
+  font-size:22px;
+}
+
+.post_details h3{
+  font-size:15px;
+}
 .post_info_box{
   display:flex;
   justify-content: space-around;
@@ -367,9 +372,13 @@ header{
 
 }
 
+.event_date_blog_post p{
+  font-size:10px;
+}
+
 .event_date_post{
   position:relative;
-  left:25px;
+  left:20px;
 }
 
 .post_info_details{
@@ -387,10 +396,10 @@ header{
 }
 
 .details_title{
-  border-bottom: 4px solid rgba(121,74,168,0.9);
+  border-bottom: 2px solid rgba(121,74,168,0.9);
   padding-top:20px;
   text-align: left;
-  font-size:40px;
+  font-size:25px;
 }
 
 .post_details p{
@@ -423,13 +432,13 @@ header{
 }
 
 .all_name{
-  font-size:25px;
+  font-size:20px;
 }
 
 .all_details img{
  border-radius:50%;
- height:400px;
- width:400px;
+ height:300px;
+ width:300px;
 }
 
 
@@ -450,24 +459,24 @@ header{
 
 .sns_logo{
   position: fixed;
-  left:200px;
+  left:150px;
 }
 
 .user_twitter{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
 .user_facebook{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
 .user_instagram{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
@@ -476,20 +485,21 @@ header{
   width:800px;
   border-radius:10px;
   position:relative;
-  left:130px;
+  left:30px;
   object-fit: cover;
 }
 
 .user_info{
-  font-size:22px;
+  font-size:15px;
   text-align: left;
-  padding:5px 30px;
+  padding:3px 30px;
 }
 
 .info_title{
   border-bottom: 4px solid rgba(121,74,168,0.9);
-  margin:60px auto;
+  margin:40px auto;
   text-align: left;
+  font-size:20px;
 }
 
 
@@ -497,7 +507,7 @@ header{
 
 
 .account_image{
-  height:700px;
+  height:550px;
   width:100%;
   object-fit: cover;
 }
