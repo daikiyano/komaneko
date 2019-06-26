@@ -8,6 +8,7 @@ load_dotenv(os.path.join(basedir,'.env'))
 
 
 class Config(object):
+    DEBUG=True
     SECRET_KEY = os.environ.get("SECRET_KEY")
     MAIL_SERVER = os.environ.get("MAIL_SERVER")
     MAIL_PORT = 465
@@ -20,3 +21,6 @@ class Config(object):
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_BUCKET = os.environ.get("AWS_BUCKET")
+
+class TestingConfig(Config):
+    Testing = True
