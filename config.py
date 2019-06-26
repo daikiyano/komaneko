@@ -32,3 +32,4 @@ class StagingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
+    AWS_BUCKET = os.environ.get("AWS_BUCKET_PRODUCTION")

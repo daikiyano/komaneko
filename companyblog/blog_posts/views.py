@@ -140,8 +140,8 @@ def update(blog_post_id):
             s3_resource = boto3.resource('s3')
             my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
             my_bucket.Object(image).put(Body=form.image.data)
-            test = 'https://komazawa-app.s3-ap-northeast-1.amazonaws.com/{}'
-            images = test.format(image)
+            test = 'https://{}.s3-ap-northeast-1.amazonaws.com/{}'
+            images = test.format(app.config['AWS_BUCKET'],image)
             blog_post.event_image = images
 
         blog_post.title  = form.title.data
@@ -169,7 +169,7 @@ def update(blog_post_id):
         form.way.data = blog_post.way
         form.cost.data = blog_post.cost
         form.contact.data = blog_post.contact
-        
+
 
     return render_template('create_post.html',title="Updating",form=form)
 
