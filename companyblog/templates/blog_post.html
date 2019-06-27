@@ -30,8 +30,8 @@
     <h3 style="text-align:right;" class="author_name_post">投稿者:{{post.author.username}}</h3>
     {% if post.author == current_user %}
     <div>
-      <a class="btn btn-primary" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
-      <button type="button" class="btn btn-danger" data-toggle='modal' data-target="#modal">Delete</button>
+      <a class="btn btn-outline-primary btn-sm" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">投稿内容を編集する</a>
+      <button type="button" class="btn btn-outline-danger btn-sm" data-toggle='modal' data-target="#modal">投稿を削除する</button>
     </div>
     {% endif %}
     <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
@@ -64,26 +64,26 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Delete Post?</h5>
+            <h5 class="modal-title">投稿の削除</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>投稿を削除してもよろしいでしょうか</p>
+            <p>投稿を削除してもよろしいでしょうか?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">キャンセル</button>
 
             <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
-              <input class="btn btn-danger" type="submit" value="Delete">
+              <input class="btn btn-outline-danger" type="submit" value="削除">
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="text-align:left;">
+    <div style="text-align:left;width:100%;">
     <h2 class="details_title"><i class="far fa-calendar-alt"></i>イベント詳細</h2>
     {% autoescape false %}
       <p>{{post.text.replace('\n', '<br>')}}</p>
@@ -104,7 +104,9 @@
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-    <a class="btn btn-outline-primary" style="padding-bottom:10px;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
+
+    <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
+
     </div>
   </div>
 

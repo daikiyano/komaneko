@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,TextAreaField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
+from wtforms_components import TimeField
 from flask_wtf.file import FileField,FileAllowed
 
 
@@ -9,6 +10,7 @@ class BlogPostForm(FlaskForm):
     title = StringField('イベント名',validators=[DataRequired("イベント名を入力してください")])
     text = TextAreaField('イベント詳細',validators=[DataRequired("イベント詳細を入力してください")])
     event_date = DateField(u'イベント日時',validators=[DataRequired("イベント日時を登録してください")], format='%Y-%m-%d')
+    event_time = TimeField('イベント開始時間', validators=[DataRequired("イベント開始時間を入力してください")], format='%H:%M')
     organizer = StringField('主催者',validators=[DataRequired("主催者を入力してください")])
     place = StringField('場所',validators=[DataRequired("場所を入力してください")])
     entry = TextAreaField('参加条件',validators=[DataRequired("参加条件を入力してください")])
