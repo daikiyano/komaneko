@@ -20,7 +20,6 @@ followers = db.Table(
 
 
 
-
 class User(db.Model,UserMixin):
 
     __tablename__ = 'users'
