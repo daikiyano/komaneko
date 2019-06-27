@@ -4,6 +4,7 @@ from companyblog import db,login_manager,app
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+import time
 
 
 @login_manager.user_loader
@@ -123,6 +124,7 @@ class BlogPost(db.Model):
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
     event_date = db.Column(db.DateTime,default=datetime.utcnow)
+    event_time = db.Column(db.Time,default=datetime.utcnow)
     organizer = db.Column(db.String(140),nullable=False)
     place = db.Column(db.String(140),nullable=False)
     entry = db.Column(db.Text,nullable=False)
@@ -135,10 +137,11 @@ class BlogPost(db.Model):
     likes = db.relationship('PostLike', backref='post', lazy='dynamic')
 
 
-    def __init__(self,organizer,place,title,event_date,entry,text,way,user_id,cost,event_image,contact):
+    def __init__(self,organizer,place,title,event_date,event_time,entry,text,way,user_id,cost,event_image,contact):
         self.title = title
         self.text = text
         self.event_date = event_date
+        self.event_time = event_time
         self.user_id = user_id
         self.event_image = event_image
         self.organizer = organizer

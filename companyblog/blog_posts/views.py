@@ -56,6 +56,7 @@ def create_post():
         images = test.format(image)
         blog_post = BlogPost(title=form.title.data,
                             event_date=form.event_date.data,
+                            event_time=form.event_time.data,
                             text=form.text.data,
                             organizer=form.organizer.data,
                             place=form.place.data,
@@ -147,6 +148,7 @@ def update(blog_post_id):
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
         blog_post.event_date = form.event_date.data
+        blog_post.event_time = form.event_time.data
         blog_post.organizer  = form.organizer.data
         blog_post.place  = form.place.data
         blog_post.entry  = form.entry.data
@@ -162,6 +164,7 @@ def update(blog_post_id):
         form.title.data = blog_post.title
         form.text.data = blog_post.text
         form.event_date.data = blog_post.event_date
+        form.event_time.data = blog_post.event_time
         form.image.data = blog_post.event_image
         form.organizer.data = blog_post.organizer
         form.place.data = blog_post.place
