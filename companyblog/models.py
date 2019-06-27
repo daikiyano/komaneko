@@ -28,7 +28,7 @@ class User(db.Model,UserMixin):
 
 
     id = db.Column(db.Integer,primary_key=True)
-    profile_image = db.Column(db.String(128),nullable=False,default='https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png')
+    profile_image = db.Column(db.Text,nullable=False,default='https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png')
     email = db.Column(db.String(140),unique=True,index=True)
     username = db.Column(db.String(140),unique=True,index=True)
     facebook = db.Column(db.String(140), nullable=True)
