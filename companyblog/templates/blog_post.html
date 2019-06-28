@@ -37,7 +37,7 @@
     <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
     <div class="post_info_box">
       <div class="post_info_details">
-        <i class="far fa-copy post_copy copy_btn" onclick="copyToClipboard()"></i>
+        <i class="far fa-copy post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
         <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
         <div class="like_box_like post_like">
         {% if current_user.is_authenticated %}
