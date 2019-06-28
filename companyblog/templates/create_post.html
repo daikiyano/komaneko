@@ -1,33 +1,58 @@
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94" type="text/javascript"></script>
 
 <script type="text/javascript">
 
-  function initMap()
-      {
-          var myLatLng = {lat: 35.658581, lng: 139.745433};
-          var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: myLatLng
-          });
-          var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map
-          });
-          var geocoder = new google.maps.Geocoder();
+    var map;
+    function initialize() {
+      // 地図を表示する際のオプションを設定
+      var mapOptions = {
+        center: new google.maps.LatLng(35.6288505, 139.65863579999996),
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
 
-          document.getElementById('submit').addEventListener('click', function() {
-              geocodeAddress(geocoder, map);
-          });
-      } -->
+      // Mapオブジェクトに地図表示要素情報とオプション情報を渡し、インスタンス生成
+      map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+    }
 
+    function search(){
+       var place = document.getElementById('place').value;
+       var geocoder = new google.maps.Geocoder();
+       // ジオコーディング　検索実行
+       geocoder.geocode({"address" : place}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
 
+            var lat = results[0].geometry.location.lat();//緯度を取得
+            var lng = results[0].geometry.location.lng();//経度を取得
+            var ido = document.getElementById('ido')
+            ido.innerHTML = lat;
+            var keido = document.getElementById('keido')
+            keido.innerHTML = lng;
+            var mark = {
+                lat: lat, // 緯度
+                lng: lng // 経度
+            };
+            marker = new google.maps.Marker({ // マーカーの追加
+            position: mark, // マーカーを立てる位置を指定
+            map: map // マーカーを立てる地図を指定
+            });
 
-</script>
+            map.setCenter(results[0].geometry.location); // 地図の中心を移動
+            cnt =0;
+       }
+       });
+       //}
+    }
+
+  </script>
 
 {% extends "base.html" %}
 {% block content %}
-<!-- <div id="google_map" style="width:90%;height:500px"></div> -->
+<span id="ido" style="display:none;">35.6585805</span><br />
+<span id="keido" style="display:none;">139.74543289999997</span>
+    <!-- <input type="text" value="駒澤大学" size="20" id="place"> -->
 <div class="container">
   <form class="form-group" method="POST" action="" enctype="multipart/form-data">
     {{form.hidden_tag()}}
@@ -69,10 +94,13 @@
     </div>
     <div class="form-group">
       <h5><i class="fas fa-thumbtack"></i>{{form.place.label(class="form-control-label")}}</h5>
-        {{form.place(placeholder="例)駒澤大学　8号館8-123)",class="form_input form-control form-contorl-lg")}}
+        {{form.place(placeholder="例)駒澤大学　8号館8-123)",class="form_input form-control form-contorl-lg",id="place")}}
         {% for error in form.place.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
+        <button type="button" class="btn btn-outline-primary" onclick="search()">検索</button>
+
+        <div id="map_canvas" style="width:70%; height:50%"></div>
     </div>
     <div class="form-group">
       <h5><i class="far fa-check-circle"></i>{{form.entry.label(class="form-control-label")}}</h5>

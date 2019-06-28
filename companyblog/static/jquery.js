@@ -56,15 +56,15 @@ $(function(){
 });
 
 
-var button = document.getElementById('copyButton');
-  button.addEventListener('click', function(){
-    var yourCode = document.getElementById('copyTarget');
-    var range = document.createRange();
-    range.selectNode(yourCode);
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    alert('リンクをコピーしました');
-  });
+// var button = document.getElementById('copyButton');
+//   button.addEventListener('click', function(){
+//     var yourCode = document.getElementById('copyTarget');
+//     var range = document.createRange();
+//     range.selectNode(yourCode);
+//     window.getSelection().addRange(range);
+//     document.execCommand('copy');
+//     alert('リンクをコピーしました');
+//   });
 
 function copyToClipboard() {
 
