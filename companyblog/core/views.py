@@ -70,8 +70,11 @@ def like_action():
 #     return redirect(request.referrer)
 
 
-
-
 @core.route('/term')
 def term():
     return render_template('term.html')
+
+
+@core.route('/term/privacy-policy')
+def privacy():
+    return render_template('privacy.html')

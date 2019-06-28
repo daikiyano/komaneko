@@ -8,6 +8,8 @@ from companyblog.models import User,BlogPost
 from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,SignupForm
 from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
+from sqlalchemy.exc import IntegrityError
+from threading import Thread
 from flask_mail import Message
 from companyblog import mail
 from PIL import Image
@@ -32,7 +34,8 @@ def send_email(subject, recipients, html_body):
     msg = Message(subject, recipients=recipients)
     # msg.body = text_body
     msg.html = html_body
-    mail.send(msg)
+    thr = Thread(target=send_async_email, args=[msg])
+    thr.start()
 
 def send_confirmation_email(user_email):
     confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
@@ -61,17 +64,16 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-
-        user = User(email=form.email.data,
-                    username=form.username.data,
-                    university=form.university.data,
-                    type=form.type.data,
-                    password=form.password.data)
-
-        db.session.add(user)
-        db.session.commit()
-        send_confirmation_email(user.email)
-        flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
+        try:
+            user = User(email=form.email.data,
+                        username=form.username.data,
+                        university=form.university.data,
+                        type=form.type.data,
+                        password=form.password.data)
+            db.session.add(user)
+            db.session.commit()
+            send_confirmation_email(user.email)
+            flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
         #                    ['1mg5326d@komazawa-u.ac.jp'],
         #                    'Thanks for registering with Kennedy Family Recipes!',
@@ -82,8 +84,10 @@ def register():
         #                       recipients=['1mg5326d@komazawa-u.ac.jp'])
         # mail.send(msg)
         # flash('Thanks for registration!')
-        return redirect(url_for('users.login'))
-
+            return redirect(url_for('users.login'))
+        except IntegrityError:
+            db.session.rollback()
+            flash('エラーが発生しました。')
     return render_template('register.html',form=form)
 
 @users.route('/signup',methods=['GET','POST'])
@@ -91,18 +95,17 @@ def signup():
     form = SignupForm()
 
     if form.validate_on_submit():
+        try:
+            user = User(email=form.email.data,
+                        username=form.username.data,
+                        university=form.university.data,
+                        type=form.type.data,
+                        password=form.password.data)
 
-        user = User(email=form.email.data,
-                    username=form.username.data,
-                    university=form.university.data,
-                    type=form.type.data,
-                    password=form.password.data)
-
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        send_confirmation_email(user.email)
-        flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
+            db.session.add(user)
+            db.session.commit()
+            send_confirmation_email(user.email)
+            flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
         #                    ['1mg5326d@komazawa-u.ac.jp'],
         #                    'Thanks for registering with Kennedy Family Recipes!',
@@ -113,8 +116,10 @@ def signup():
         #                       recipients=['1mg5326d@komazawa-u.ac.jp'])
         # mail.send(msg)
         # flash('Thanks for registration!')
-        return redirect(url_for('users.login'))
-
+            return redirect(url_for('users.login'))
+        except IntegrityError:
+            db.session.rollback()
+            flash('エラーが発生しました。')
     return render_template('signup.html',form=form)
 
 #login_view
