@@ -56,15 +56,15 @@ $(function(){
 });
 
 
-function copyToClipboard(){
-    var copytext = document.getElementById('copyTarget');
-    //この部分を追加
+var button = document.getElementById('copyButton');
+  button.addEventListener('click', function(){
+    var yourCode = document.getElementById('copyTarget');
     var range = document.createRange();
-    range.selectNode(copytext);
+    range.selectNode(yourCode);
     window.getSelection().addRange(range);
-    document.execCommand("copy");
-}
-
+    document.execCommand('copy');
+    alert('リンクをコピーしました');
+  });
 
 function copyToClipboard() {
 
