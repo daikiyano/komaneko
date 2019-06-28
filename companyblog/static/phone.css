@@ -84,7 +84,7 @@
 .tab_list{
   /* background-color: #c1a7db; */
   display: inline;
-  font-size:20px;
+  font-size:18px;
   border: 2px solid black;
   cursor:pointer;
   transition: .3s;
@@ -231,6 +231,25 @@ header{
 
 .menu:hover{
   color: #c1a7db;
+}
+
+
+.footer_right{
+  display: inline;
+  width:95%;
+  position: relative;
+  left:-12px;
+
+
+}
+
+.footer_list{
+  color:white;
+  display: inline;
+  cursor:pointer;
+  font-size:12px;
+  padding-right:10px;
+
 }
 
 
