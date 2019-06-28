@@ -10,11 +10,14 @@
   <meta name="twitter:title" content="{{post.title}}">
   <meta name="twitter:description" content="{{post.text}}">
 </head>
+
+
+
 {%extends "base.html"%}
 
 
 {%block content %}
-
+<!-- <button type="button" onclick="search()">検索</button> -->
 <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
 
 <div class="post_box">
@@ -37,7 +40,7 @@
     <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
     <div class="post_info_box">
       <div class="post_info_details">
-        <i class="far fa-copy post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
+        <i class="fas fa-paperclip post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
         <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
         <div class="like_box_like post_like">
         {% if current_user.is_authenticated %}
@@ -91,7 +94,8 @@
     <h2 class="details_title"><i class="far fa-user"></i>主催者</h2>
     <p>{{post.organizer}}</p>
     <h2 class="details_title"><i class="fas fa-thumbtack"></i>場所</h2>
-    <p>{{post.place}}</p>
+    <p id="places">{{post.place}}</p>
+    <iframe src="http://maps.google.co.jp/maps?q={{post.place}}&output=embed&t=m&z=16&hl=ja" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="600" height="450"></iframe>
     <h2 class="details_title"><i class="far fa-check-circle"></i>参加条件</h2>
     {% autoescape false %}
       <p>{{post.entry.replace('\n', '<br>')}}</p>
