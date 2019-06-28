@@ -5,7 +5,7 @@ from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user,current_user,logout_user,login_required
 from companyblog import db,app
 from companyblog.models import User,BlogPost
-from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm
+from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,SignupForm
 from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
@@ -70,7 +70,6 @@ def register():
 
         db.session.add(user)
         db.session.commit()
-        login_user(user)
         send_confirmation_email(user.email)
         flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
@@ -86,6 +85,37 @@ def register():
         return redirect(url_for('users.login'))
 
     return render_template('register.html',form=form)
+
+@users.route('/signup',methods=['GET','POST'])
+def signup():
+    form = SignupForm()
+
+    if form.validate_on_submit():
+
+        user = User(email=form.email.data,
+                    username=form.username.data,
+                    university=form.university.data,
+                    type=form.type.data,
+                    password=form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        send_confirmation_email(user.email)
+        flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
+        # send_email('Registration',
+        #                    ['1mg5326d@komazawa-u.ac.jp'],
+        #                    'Thanks for registering with Kennedy Family Recipes!',
+        #                    '<h3>Thanks for registering with Kennedy Family Recipes!</h3>')
+        # flash('Thanks for registering!  Please check your email to confirm your email address.', 'success')
+        # msg = Message(subject='テスト',
+        #                       body='ご登録ありがとうございます。',
+        #                       recipients=['1mg5326d@komazawa-u.ac.jp'])
+        # mail.send(msg)
+        # flash('Thanks for registration!')
+        return redirect(url_for('users.login'))
+
+    return render_template('signup.html',form=form)
 
 #login_view
 
@@ -104,11 +134,10 @@ def login():
                 login_user(user)
                 flash('{}さん　KomaNecoへようこそ！'.format(user.username))
                 return redirect(url_for('core.index'))
-
-        next = request.args.get('next')
-        if next == None or not next[0]=='/':
-            next = url_for('core.index')
-            return redirect(next)
+                next = request.args.get('next')
+            if next == None or not next[0]=='/':
+                next = url_for('core.index')
+                return redirect(next)
         else:
             flash('アカウント情報が不正です。本登録を完了させてください。', 'error')
             return redirect(url_for('users.login'))

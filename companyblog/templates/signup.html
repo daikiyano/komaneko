@@ -1,8 +1,8 @@
 {% extends "base.html"%}
 {% block content %}
 <div class="form_box">
-  <h1>団体アカウント登録</h1>
-  <p><b>個人の方はこちら</b><a href="{{url_for('users.signup')}}">ユーザー登録(個人)</a></p>
+  <h1>個人用ユーザー登録</h1>
+  <p><b>団体アカウントを登録の方はこちら</b><a href="{{url_for('users.register')}}">団体アカウントを登録</a></p>
   <form  method="POST">
     {{form.hidden_tag()}}
     <div class="form-group">
@@ -48,7 +48,8 @@
     <p><a href="{{url_for('core.term')}}">KOMANEKO利用規約</a></p>
     {{form.submit(class="btn btn-outline-primary")}}<br>
     <p><b>すでにアカウントをお持ちですか？</b><a href="{{url_for('users.login')}}">ログイン</a><br>
-      <b>個人の方はこちら</b><a href="{{url_for('users.signup')}}">ユーザー登録(個人)</a></p>
+    <b>団体アカウントを登録の方はこちら</b><a href="{{url_for('users.register')}}">団体アカウントを登録</a></p>
+
   </form>
 </div>
 
