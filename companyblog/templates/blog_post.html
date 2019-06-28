@@ -95,7 +95,7 @@
     <p>{{post.organizer}}</p>
     <h2 class="details_title"><i class="fas fa-thumbtack"></i>場所</h2>
     <p id="places">{{post.place}}</p>
-    <iframe src="http://maps.google.co.jp/maps?q={{post.place}}&output=embed&t=m&z=16&hl=ja" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="600" height="450"></iframe>
+    <iframe src="https://maps.google.co.jp/maps?q={{post.place}}&output=embed&t=m&z=16&hl=ja" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="600" height="450"></iframe>
     <h2 class="details_title"><i class="far fa-check-circle"></i>参加条件</h2>
     {% autoescape false %}
       <p>{{post.entry.replace('\n', '<br>')}}</p>
