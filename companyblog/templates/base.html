@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html style="height:100%;" lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -19,22 +19,23 @@
 
   </script>
 
-  <body>
+  <body style="height:100%;">
     <header>
       <h1 class="header_logo"><a  style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><i class="fas fa-cat header_cat"></i><b>KomaNeko</b></a></h1>
       <div class="header_sp">
         <ul class="header_left">
           {% if not current_user.is_authenticated %}
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.login')}}"><b>ログイン</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>ユーザー登録</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>団体サークル一覧</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>団体アカウントを登録</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
           {% endif %}
         </ul>
         <ul class="header_right">
           {% if current_user.is_authenticated %}
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.logout')}}"><b>ログアウト</b></a></li>
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>団体サークル一覧</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
           {% endif %}
           <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベントを作成する</b></a></li>
         </ul>
@@ -60,13 +61,20 @@
 
 
 
-<!-- <div class="container"> -->
+ <div style="min-height: 100%;">
     {% block content %}
     {% endblock %}
-<!-- </div> -->
+ </div>
 
 <footer style="height:70px; background-color:rgba(121,74,168,0.9); width:100%; text-align:center;">
 <p style=" font-size:20px; cursor:pointer;" class="menu"><b>© 2019 KomaNeko</b></p>
+<ul class="footer_right">
+
+  <li class="footer_list"><a style="text-decoration:none;" class="menu" href="{{url_for('core.term')}}"><b>利用規約</b></a></li>
+  <li class="footer_list"><a style="text-decoration:none;" class="menu" href=""><b>プライバシーポリシー</b></a></li>
+  <li class="footer_list"><a style="text-decoration:none;" class="menu" href=""><b>運営メンバー</b></a></li>
+
+</ul>
 </footer>
 
   </body>

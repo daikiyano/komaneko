@@ -72,6 +72,6 @@ def like_action():
 
 
 
-@core.route('/info')
-def info():
-    return render_template('info.html')
+@core.route('/term')
+def term():
+    return render_template('term.html')
