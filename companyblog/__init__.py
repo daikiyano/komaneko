@@ -1,8 +1,9 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask_migrate import Migrate, MigrateCommand
 from flask_login import LoginManager
+from flask_script import Manager
 from flask_mail import Mail
 from config import Config
 
@@ -17,8 +18,10 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+manager = Manager(app)
 db = SQLAlchemy(app)
 Migrate(app,db)
+manager.add_command('db', MigrateCommand)
 mail = Mail(app)
 
 
