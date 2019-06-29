@@ -47,7 +47,7 @@ $(function(){
                   'display':'block',
                   title: file.name
               }));
-        $
+        $('#remove_image').remove();
       };
     })(file);
 
@@ -56,15 +56,17 @@ $(function(){
 });
 
 
-// var button = document.getElementById('copyButton');
-//   button.addEventListener('click', function(){
-//     var yourCode = document.getElementById('copyTarget');
+
+//
+// function clipboadCopy(copyid){
+//     var copytext = document.getElementById(copyid);
+//     //この部分を追加
 //     var range = document.createRange();
-//     range.selectNode(yourCode);
+//     range.selectNode(copytext);
 //     window.getSelection().addRange(range);
-//     document.execCommand('copy');
-//     alert('リンクをコピーしました');
-//   });
+//     document.execCommand("copy");
+// }
+
 
 function copyToClipboard() {
 

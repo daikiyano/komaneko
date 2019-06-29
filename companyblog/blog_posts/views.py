@@ -173,8 +173,10 @@ def update(blog_post_id):
         form.cost.data = blog_post.cost
         form.contact.data = blog_post.contact
 
+    post_image = blog_post.event_image
 
-    return render_template('create_post.html',title="Updating",form=form)
+
+    return render_template('create_post.html',title="Updating",form=form,post_image=post_image)
 
 
 
