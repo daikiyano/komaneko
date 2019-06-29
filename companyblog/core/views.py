@@ -78,3 +78,8 @@ def term():
 @core.route('/term/privacy-policy')
 def privacy():
     return render_template('privacy.html')
+
+
+@core.route('/komaneko-member')
+def member():
+    return render_template('member.html')

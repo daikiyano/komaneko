@@ -16,8 +16,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
-
-
   <body style="height:100%;" onload="initialize()">
     <header>
       <h1 class="header_logo"><a  style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><i class="fas fa-cat header_cat"></i><b>KomaNeko</b></a></h1>
@@ -69,7 +67,7 @@
 <p style=" font-size:20px; cursor:pointer;" class="menu"><b>© 2019 KomaNeko</b></p>
 <ul class="footer_right">
   <li class="footer_list"><a style="text-decoration:none;" class="menu" href="{{url_for('core.term')}}"><b>利用規約</b></a></li>
-  <li class="footer_list"><a style="text-decoration:none;" class="menu" href=""><b>プライバシーポリシー</b></a></li>
+  <li class="footer_list"><a style="text-decoration:none;" class="menu" href="{{url_for('core.privacy')}}"><b>プライバシーポリシー</b></a></li>
   <li class="footer_list"><a style="text-decoration:none;" class="menu" href=""><b>運営メンバー</b></a></li>
 </ul>
 </footer>
