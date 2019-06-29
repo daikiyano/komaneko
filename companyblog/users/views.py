@@ -37,7 +37,7 @@ def send_email(subject, recipients, html_body):
     thr = Thread(target=send_async_email, args=[msg])
     thr.start()
 
-def send_confirmation_email(user_email):
+def send_confirmation_email(user_email,username):
     confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
     confirm_url = url_for(
@@ -47,9 +47,9 @@ def send_confirmation_email(user_email):
 
     html = render_template(
         'email_confirmation.html',
-        confirm_url=confirm_url)
+        confirm_url=confirm_url,username=username)
 
-    send_email('KomaNeco確認メール', [user_email], html)
+    send_email('KomaNeco仮登録完了メール', [user_email], html)
 
 @users.before_request
 def before_request():
@@ -72,7 +72,7 @@ def register():
                         password=form.password.data)
             db.session.add(user)
             db.session.commit()
-            send_confirmation_email(user.email)
+            send_confirmation_email(user.email,user.username)
             flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
         #                    ['1mg5326d@komazawa-u.ac.jp'],
@@ -104,7 +104,7 @@ def signup():
 
             db.session.add(user)
             db.session.commit()
-            send_confirmation_email(user.email)
+            send_confirmation_email(user.email,user.username)
             flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
         # send_email('Registration',
         #                    ['1mg5326d@komazawa-u.ac.jp'],
