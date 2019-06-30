@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 manager = Manager(app)
 db = SQLAlchemy(app)
-Migrate(app,db)
+Migrate(app,db,compare_type=True)
 manager.add_command('db', MigrateCommand)
 mail = Mail(app)
 
