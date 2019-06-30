@@ -1,4 +1,4 @@
-web: python companyblog/app.py runserver
-init: python companyblog/app.py db init
-migrate: python companyblog/app.py db migrate
-upgrade: python companyblog/app.py db upgrade
+web: python companyblog/__init__.py runserver
+init: python companyblog/__init__.py db init
+migrate: python companyblog/__init__.py db migrate
+upgrade: python companyblog/__init__.py db upgrade
