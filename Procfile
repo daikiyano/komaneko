@@ -1,4 +1,4 @@
-web: python app.py runserver
-init: python app.py db init
-migrate: python app.py db migrate
-upgrade: python app.py db upgrade
+web: python companyblog/app.py runserver
+init: python companyblog/app.py db init
+migrate: python companyblog/app.py db migrate
+upgrade: python companyblog/app.py db upgrade
