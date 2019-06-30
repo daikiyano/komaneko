@@ -11,8 +11,6 @@
   <meta name="twitter:description" content="{{post.text}}">
 </head>
 
-
-
 {%extends "base.html"%}
 
 
@@ -111,7 +109,27 @@
     <p>{{post.contact}}</p>
 
     <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
+    <div id="qrcode" style="width:50%; margin:0 auto;">
+      <script type="text/javascript">
+        var url = '';
+        url += 'https://api.qrserver.com/v1/create-qr-code/?data=';
+        url += encodeURIComponent(location.href);
+        // 背景の色
+        url += '&bgcolor=FFFFFF';
+        // バーコードの色
+        url += '&color=000000';
+        // 余白
+        url += '&qzone=0';
+        // こっちも余白
+        url += '&margin=0';
+        // エラー訂正レベル
+        url += '&ecc=L';
+        // サイズ
+        url += '&size=150x150';
+        document.write('<img src=\"' + url + '\" />');
+      </script>
 
+    </div>
     </div>
   </div>
 
