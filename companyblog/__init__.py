@@ -25,7 +25,8 @@ manager.add_command('db', MigrateCommand)
 mail = Mail(app)
 
 
-
+if __name__ == '__main__':
+    manager.run()
 
 
 ##########################
