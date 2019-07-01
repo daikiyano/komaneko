@@ -34,6 +34,7 @@ class User(db.Model,UserMixin):
     instagram = db.Column(db.String(140),nullable=True)
     info = db.Column(db.Text,nullable=True)
     url = db.Column(db.String(140),nullable=True)
+    test = db.Column(db.String(140),nullable=True)
     university = db.Column(db.Integer,nullable=False)
     type = db.Column(db.Integer,nullable=False)
     last_seen = db.Column(db.DateTime,default=datetime.utcnow)
