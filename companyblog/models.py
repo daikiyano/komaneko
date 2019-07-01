@@ -25,7 +25,6 @@ class User(db.Model,UserMixin):
     __tablename__ = 'users'
 
 
-
     id = db.Column(db.Integer,primary_key=True)
     profile_image = db.Column(db.Text,nullable=False,default='https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png')
     email = db.Column(db.String(140),unique=True,index=True)
