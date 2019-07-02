@@ -1,7 +1,8 @@
 from companyblog import db,login_manager,app
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import UserMixin,current_user
+from flask_login import UserMixin,current_user,LoginManager
 from flask_admin import Admin
+from flask import session, redirect, url_for, request
 from flask_admin.contrib.sqla import ModelView
 from datetime import datetime
 import time
@@ -42,6 +43,8 @@ class User(db.Model,UserMixin):
     profile_image = db.Column(db.Text,nullable=False,default='https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png')
     email = db.Column(db.String(140),unique=True,index=True)
     username = db.Column(db.String(140),unique=True,index=True)
+    name = db.Column(db.String(140),nullable=True)
+    event = db.Column(db.Text,nullable=True)
     facebook = db.Column(db.String(140), nullable=True)
     twitter = db.Column(db.String(140), nullable=True)
     instagram = db.Column(db.String(140),nullable=True)
@@ -199,7 +202,10 @@ from companyblog.models import User,BlogPost
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return current_user.authenticated
+        if current_user.is_authenticated and current_user.username == app.config['ADMIN_NAME']:
+            return True
+        return False
+
 
 admin = Admin(app)
 admin.add_view(MyModelView(User,db.session))

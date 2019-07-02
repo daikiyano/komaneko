@@ -32,6 +32,29 @@
 </div>
 {% endif %}
 
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.bxslider').bxSlider({
+    auto: true,
+    captions:true,
+speed: 500
+
+  });
+
+});
+</script>
+
+
+<div class="width:100%;">
+  <div class="bxslider-wrap">
+    <ul class="bxslider">
+      {% for post in all_posts.items %}
+      <li><img src="{{post.event_image}}" title="{{post.title}}" class="slide_img"></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
 
 <h1 class="event_top"><b>イベント一覧</b></h1>
 <div class="tab_box">
@@ -151,6 +174,12 @@
       {% endfor %}
     </ul>
 </nav>
+
+
+
+
+
+
 
 
   {% endblock %}

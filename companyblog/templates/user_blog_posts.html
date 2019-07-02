@@ -41,6 +41,12 @@
       <p class="user_info">{{user.info.replace('\n', '<br>')}}</p>
     {% endif %}
     {% endautoescape %}
+    <h1 class="info_title"><i class="far fa-address-card"></i><b>年間行事</b><br></h1>
+    {% autoescape false %}
+    {% if user.event %}
+      <p class="user_info">{{user.event.replace('\n', '<br>')}}</p>
+    {% endif %}
+    {% endautoescape %}
 <h1 class="info_title"><i class="fas fa-map-pin"></i><b>団体HP:</b>{{user.url}}</h1>
 
   <h1 class="info_title"><i class="far fa-address-book"></i><b>過去の投稿</b></h1>

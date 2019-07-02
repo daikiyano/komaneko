@@ -17,6 +17,7 @@ class Config(object):
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+    ADMIN_NAME = os.environ.get("ADMIN_NAME")
 
 
 class DevelopmentConfig(Config):
@@ -24,7 +25,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
     AWS_BUCKET = os.environ.get("AWS_BUCKET")
-    
+
 class StagingConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')

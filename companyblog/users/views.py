@@ -9,6 +9,7 @@ from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,Si
 from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError
+from flask_sqlalchemy import SQLAlchemy
 from threading import Thread
 from flask_mail import Message
 from companyblog import mail
@@ -142,6 +143,7 @@ def login():
                 next = request.args.get('next')
             if next == None or not next[0]=='/':
                 next = url_for('core.index')
+                flash('ログインしてください')
                 return redirect(next)
         else:
             flash('アカウント情報が不正です。本登録を完了させてください。', 'error')
@@ -183,6 +185,8 @@ def account():
             current_user.profile_image = images
 
         current_user.username = form.username.data
+        current_user.name = form.name.data
+        current_user.event = form.event.data
         current_user.email = form.email.data
         current_user.type = form.type.data
         current_user.info = form.info.data
@@ -197,6 +201,8 @@ def account():
 
     elif request.method == "GET":
         form.username.data = current_user.username
+        form.name.data = current_user.name
+        form.event.data = current_user.event
         form.email.data = current_user.email
         form.info.data = current_user.info
         form.url.data = current_user.url
@@ -223,7 +229,9 @@ def all():
     sports = User.query.filter(User.type==2)
     cultures = User.query.filter(User.type==3)
     others = User.query.filter(User.type==4)
-    return render_template('all.html',sports=sports,cultures=cultures,others=others)
+    alls = User.query.filter(User.type==2,User.type==3,User.type==4)
+
+    return render_template('all.html',alls=alls,sports=sports,cultures=cultures,others=others)
 
 # @users.route('/follow/<username>')
 # @login_required

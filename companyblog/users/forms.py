@@ -21,6 +21,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     email = StringField('Eメールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
     username = StringField('団体名',validators=[DataRequired('団体名を入力してください')])
+    name = StringField('代表者',validators=[DataRequired('代表者を入力してください')])
     university = SelectField(u'大学を選択してください',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'個人か団体アカウントか選択してください',choices=[(0, '所属を選択してください'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '(団体)任意団体/その他')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
@@ -78,7 +79,9 @@ class SignupForm(FlaskForm):
 class UpdateUserForm(FlaskForm):
     email = StringField('Eメール',validators=[DataRequired(),Email()])
     username = StringField('ユーザー名/団体名',validators=[DataRequired()])
+    name = StringField('代表者',validators=[DataRequired('代表者を入力してください')])
     info = TextAreaField('詳細')
+    event = TextAreaField('年間行事')
     university = SelectField(u'大学を選択してください',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'個人か団体アカウントか選択してください',choices=[(0, '所属を選択してください。'), (1, '個人'), (2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '(団体)任意団体/その他')],coerce=int)
     url = StringField('団体HP URL')

@@ -145,6 +145,20 @@ header{
 }
 
 
+/* スライドショー */
+
+.bxslider-wrap{
+  width:70%;
+  margin: 0
+  auto;
+}
+
+.slide_img{
+  width:100%;
+  height:500px;
+}
+
+
 
 /* index.page */
 
