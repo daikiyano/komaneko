@@ -8,6 +8,9 @@ from flask_mail import Mail
 from config import Config
 
 
+
+
+
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 ######################################
@@ -25,6 +28,7 @@ manager.add_command('db', MigrateCommand)
 mail = Mail(app)
 
 
+
 if __name__ == '__main__':
     manager.run()
 
@@ -36,6 +40,7 @@ login_manager = LoginManager()
 
 login_manager.init_app(app)
 login_manager.login_view = 'users.login'
+
 
 
 

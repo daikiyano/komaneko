@@ -107,9 +107,8 @@
     <p>{{post.cost}}</p>
     <h2 class="details_title"><i class="far fa-address-card"></i>問い合わせ</h2>
     <p>{{post.contact}}</p>
-
-    <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
-    <div id="qrcode" style="width:50%; margin:0 auto;">
+    <h2 class="details_title"><i class="fas fa-qrcode"></i>QRコード</h2>
+    <div id="qrcode" style="width:150px; margin:0 auto;">
       <script type="text/javascript">
         var url = '';
         url += 'https://api.qrserver.com/v1/create-qr-code/?data=';
@@ -130,6 +129,8 @@
       </script>
 
     </div>
+
+    <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">イベント一覧へ戻る</a>
     </div>
   </div>
 
