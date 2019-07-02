@@ -4,7 +4,7 @@
   <meta property="og:description" content="KomaNekoは駒澤大学生向けのイベント共有サイトです。KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
   <meta property="og:url" content="{{url}}">
   <meta name="twitter:site" content="@for_engineerb">
-  <meta property="og:image" content="{{url}}static/komaneko_logo.jpg">
+  <meta property="og:image" content="{{url}}static/komazawa-app-logo.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@for_engineerb">
   <meta name="twitter:title" content="駒澤大学生向けのイベント共有サイト「KomaNeko」">
@@ -21,9 +21,9 @@
   </div>
   <div class="site_intro_box">
   <div class="site_intro_box_inside">
-    <h2 class="intro_p"><b>KomaNekoは駒澤大学生向けのイベント共有サイトです。<br>
+    <h2 class="intro_p"><b>KOMANEKOは駒澤大学生向けのイベント共有サイトです。<br>
     ワンキャンパスの強みを持つ駒澤大学には学年学部を超えた交流の場があり、ダイバシティな環境で様々な価値観や考えに触れることができます。
-    KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有し、TwitterやFacebookでシェアすることができます。</b></h2>
+    KOMANEKOでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有し、TwitterやFacebookでシェアすることができます。</b></h2>
     <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a>
     <a href="{{url_for('users.register')}}" class="btn btn-outline-success">団体アカウントを登録</a>
 
@@ -69,7 +69,6 @@
             <div class="post_box_place">
               <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
                 <b><i class="far fa-clock"></i>開始時間:{{post.event_time.strftime('%H:%M')}}〜</b></p>
-
             </div>
           </div>
           <div class="event_date_box">
@@ -84,6 +83,7 @@
             投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
         </div>
       </div>
+
       {% endfor %}
   </div>
   <div class="test">

@@ -1,33 +1,27 @@
 from companyblog import db,login_manager,app
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin,current_user
-# from flask_admin import Admin
-# from flask_admin.contrib.sqla import ModelView
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from datetime import datetime
 import time
-# from flask_admin import Admin
+from flask_admin import Admin
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 # login = LoginManager(app)
 #
 #
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
+
 
 #
 # @login.user_loader
 # def load_user(user_id):
 #     return User.query.get(user_id)
 
-# from companyblog.models import User,BlogPost
-#
-# class MyModelView(ModelView):
-#     def is_accessible(self):
-#         return current_user.authenticated
-#
-# admin = Admin(app)
-# admin.add_view(ModelView(User,db.session))
-# admin.add_view(MyModelView(BlogPost,db.session))
+
 
 
 
@@ -200,3 +194,13 @@ class Comment(db.Model):
 
 def init():
     db.create_all()
+
+from companyblog.models import User,BlogPost
+
+class MyModelView(ModelView):
+    def is_accessible(self):
+        return current_user.authenticated
+
+admin = Admin(app)
+admin.add_view(MyModelView(User,db.session))
+admin.add_view(MyModelView(BlogPost,db.session))

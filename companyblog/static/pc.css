@@ -20,7 +20,9 @@
 header{
   height:70px;
   width:100%;
-  background-color:rgba(121,74,168,0.9);
+  background-color: #794aa8;
+  opacity:0.9;
+  /* background-color:rgba(121,74,168,0.9); */
   left:0;
   position: fixed;
   top:0;
@@ -398,7 +400,7 @@ header{
   display:flex;
   justify-content: space-around;
   position:relative;
-  top:30px;
+
 
 }
 

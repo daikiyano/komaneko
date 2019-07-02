@@ -117,7 +117,8 @@
 header{
   height:60px;
   width:100%;
-  background-color:rgba(121,74,168,0.9);
+  background-color: #794aa8;
+  opacity:0.9;
   left:0;
   position: fixed;
   top:0;
@@ -127,7 +128,7 @@ header{
   color:white;
   cursor:pointer;
   font-size:35px;
-  top:5px;
+  top:10px;
   left:10px;
   position:absolute;
   display:block;

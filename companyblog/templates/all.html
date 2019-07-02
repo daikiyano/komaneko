@@ -13,6 +13,8 @@
         <img src="{{sport.profile_image}}">
         </a>
       </div>
+    {% else %}
+      <h2>登録している団体はありません</h2>
     {% endfor %}
 
   </div>
@@ -26,6 +28,8 @@
             <img src="{{culture.profile_image}}">
           </a>
         </div>
+      {% else %}
+        <h2>登録している団体はありません</h2>
       {% endfor %}
     </div>
 
@@ -38,6 +42,8 @@
             <img src="{{other.profile_image}}">
             </a>
           </div>
+        {% else %}
+          <h2>登録している団体はありません</h2>
         {% endfor %}
       </div>
 

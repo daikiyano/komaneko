@@ -36,6 +36,7 @@
     </div>
     {% endif %}
     <img style="width:100%; padding: 0 auto;" class="index_image" src="{{post.event_image}}" >
+    <p style="text-align:left;"><b><i class="far fa-clock"></i>開始時間:{{post.event_time.strftime('%H:%M')}}〜</b></p>
     <div class="post_info_box">
       <div class="post_info_details">
         <i class="fas fa-paperclip post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
