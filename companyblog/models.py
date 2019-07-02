@@ -1,11 +1,11 @@
 from companyblog import db,login_manager,app
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin,current_user
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
+# from flask_admin import Admin
+# from flask_admin.contrib.sqla import ModelView
 from datetime import datetime
 import time
-from flask_admin import Admin
+# from flask_admin import Admin
 
 # login = LoginManager(app)
 #
