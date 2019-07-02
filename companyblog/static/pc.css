@@ -146,6 +146,7 @@ header{
 
 /* index.page */
 
+
 .tab_box{
   text-align:center;
   width:100%;
@@ -155,22 +156,31 @@ header{
 
 .tab_list{
   /* background-color: #c1a7db; */
-  display: inline;
-  padding: 0 40px;
-  font-size:23px;
-  border: 1px solid black;
+  display: inline-block;
+  font-size:22px;
+  padding: 0 20px;
+  /* border: 2px solid black; */
   cursor:pointer;
   transition: .3s;
+  border-radius: 5px;
+
 }
 .tab_list:hover{
-  background-color: rgba(157,51,214,0.9);
-  color:white;
+  background-color: #c6baea;
+  color: black;
+  opacity: 0.9;
+  border-radius: 5px;
+
 }
 
 .tab_box li.active {
-  color: white;
-  background-color: rgba(157,51,214,0.9);
-  cursor: auto;
+  color: black;
+  opacity: 0.9;
+
+  /* background-color: rgba(157,51,214,0.9); */
+  background-color: #c6baea;
+  cursor:pointer;
+
 }
 
 .test {

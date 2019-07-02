@@ -82,22 +82,29 @@
 
 
 .tab_list{
-  /* background-color: #c1a7db; */
   display: inline;
-  font-size:18px;
-  border: 2px solid black;
+  font-size:19px;
   cursor:pointer;
+  padding: 0 2px;
   transition: .3s;
+  border-radius: 5px;
+
 }
 .tab_list:hover{
-  background-color: rgba(157,51,214,0.9);
-  color:white;
+  background-color: #c6baea;
+  color: black;
+  opacity: 0.9;
+  border-radius: 5px;
+
+
 }
 
 .tab_box li.active {
-  color: white;
-  background-color: rgba(157,51,214,0.9);
-  cursor: auto;
+  color: black;
+  opacity: 0.9;
+  background-color: #c6baea;
+  cursor:pointer;
+
 }
 
 .test {

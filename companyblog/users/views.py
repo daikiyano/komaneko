@@ -275,7 +275,7 @@ def confirm_email(token):
         user.email_confirmed_on = datetime.now()
         db.session.add(user)
         db.session.commit()
-        flash('ようこそ！KomaNeco！メール認証ありがとうございます。')
+        flash('ようこそ！KOMANEKO！メール認証ありがとうございます。')
 
     return redirect(url_for('core.index'))
 
