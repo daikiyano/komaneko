@@ -52,6 +52,9 @@
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
+    <div class="form-group">
+      {{ form.recaptcha }}
+    </div>
     <p><a href="{{url_for('core.term')}}">KOMANEKO利用規約</a></p>
     {{form.submit(class="btn btn-outline-primary")}}<br>
     <p><b>すでにアカウントをお持ちですか？</b><a href="{{url_for('users.login')}}">ログイン</a><br>

@@ -117,6 +117,7 @@ header{
 
 
 .menu{
+  transition: .3s;
   color:white;
   text-decoration: none;
 }
@@ -171,20 +172,8 @@ header{
     transform: translateY(-16px) rotate(45deg);
   }
 
-  .footer_right{
-    display: inline;
-    position:relative;
-    bottom:20px;
-    left:-20px;
-  }
 
-  .footer_list{
-    color:white;
-    display: inline;
-    margin-left:20px;
-    cursor:pointer;
-    font-size:12px;
-  }
+
 
 
 
@@ -210,8 +199,34 @@ header{
 
 /* ヘッダー */
 
+/* フッター */
 
+.footer_right{
+  display: inline;
+  position:relative;
+  bottom:20px;
+  left:-20px;
+}
 
+.footer_list{
+  color:white;
+  display: inline;
+  margin-left:20px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.footer_menu{
+  transition: .3s;
+  color:#666;
+  text-decoration: none;
+}
+
+.footer_menu:hover{
+  color: #c1a7db;
+}
+
+/* フッター */
 
 
 /* index.page */
