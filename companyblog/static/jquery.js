@@ -29,18 +29,12 @@ $(function(){
         reader = new FileReader(),
         $preview = $(".preview");
         t = this;
-
-    // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
       return false;
     }
-
-    // ファイル読み込みが完了した際のイベント登録
     reader.onload = (function(file) {
       return function(e) {
-        //既存のプレビューを削除
         $preview.empty();
-        // .prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   'src': e.target.result,
                   'class': 'preview',
@@ -50,7 +44,6 @@ $(function(){
         $('#remove_image').remove();
       };
     })(file);
-
     reader.readAsDataURL(file);
   });
 });
@@ -68,45 +61,28 @@ $(function(){
 // }
 
 
-function copyToClipboard() {
 
-           // コピー対象をJavaScript上で変数として定義する
+// コピーリンク
+function copyToClipboard() {
            document.getElementById('copyTarget').select();
            document.execCommand('copy');
-
-           // コピー対象のテキストを選択する
-
-
-           // 選択しているテキストをクリップボードにコピーする
-
-           // コピーをお知らせする
            alert("リンクをコピーしました");
-           // target = document.getElementById("copy_msg");
-           // target.innerHTML = "リンクをコピーしました";
-       }
+}
 
 
 
+// tab button
 $(function() {
-
-  // ①タブをクリックしたら発動
   $('.tab_box li').click(function() {
-
-    // ②クリックされたタブの順番を変数に格納
     var index = $('.tab_box li').index(this);
-
-    // ③クリック済みタブのデザインを設定したcssのクラスを一旦削除
     $('.tab_box li').removeClass('active');
-
-    // ④クリックされたタブにクリック済みデザインを適用する
     $(this).addClass('active');
-
-    // ⑤コンテンツを一旦非表示にし、クリックされた順番のコンテンツのみを表示
     $('.test').removeClass('show').eq(index).addClass('show');
-
   });
 });
 
+
+// menu function for SP
 $(document).ready(function(){
   $('.menu_btn').on('click',function(){
     if( $(this).hasClass('active') ){
@@ -159,7 +135,6 @@ $(document).ready(function(){
 });
 
 // TOPページへ戻る
-
 $(function(){
   var topBtn = $('.page-top');
   topBtn.hide();
@@ -176,5 +151,4 @@ $(function(){
       scrollTop: 0
     },500);
   });
-
 });

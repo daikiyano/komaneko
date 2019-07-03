@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>KOMANEKO</title>
-    <link rel="icon" href="static/favicon.ico">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="jquery.qrcode.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pc.css') }}"media="(min-width: 1024px)">
@@ -18,11 +18,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
+
+
   </head>
 
   <body style="height:100%; background: #fff;" onload="initialize()">
     <header>
-      <h1 class="header_logo"><a style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><img src="static/komazawa-app-logo.jpg" style="position:absolute; top:-10px;height:60px; width:180px;" alt=""></a></h1>
+      <h1 class="header_logo"><a style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><img src="{{ url_for('static', filename='komazawa-app-logo.jpg') }}" style="position:absolute; top:-10px;height:60px; width:180px;" alt=""></a></h1>
       <div class="header_sp">
         <ul class="header_left">
           {% if not current_user.is_authenticated %}

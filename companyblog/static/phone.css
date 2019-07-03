@@ -554,7 +554,7 @@ header{
 
 .sns_logo{
   position: fixed;
-  left:10px;
+  left:20px;
 }
 
 .user_post_container{
@@ -595,7 +595,8 @@ header{
 }
 
 .user_info{
-  font-size:20px;
+  font-size:19px;
+  text-align:left;
 }
 
 .info_title{

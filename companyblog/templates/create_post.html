@@ -49,18 +49,18 @@
 {% block content %}
 <span id="ido" style="display:none;">35.6585805</span><br />
 <span id="keido" style="display:none;">139.74543289999997</span>
-    <!-- <input type="text" value="駒澤大学" size="20" id="place"> -->
 <div class="container"　style="color:#45494b;">
   <form class="form-group" method="POST" action="" enctype="multipart/form-data">
     {{form.hidden_tag()}}
 
     <div class="form-group">
       <h5><i class="fas fa-cat"></i>{{form.title.label(class="form-control-label")}}</h5>
-        {{form.title(placeholder="イベント名",class="form_input form-control form-contorl-lg")}}
+        {{form.title(placeholder="イベント名",class="form_input form-control form-contorl-lg",onkeyup="ShowLength(value,inputlength1);")}}
         {% for error in form.title.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
     </div>
+
     <div class="form-group">
       <h5><i class="far fa-calendar-alt"></i>{{form.text.label(class="form-control-label")}}</h5>
       {{form.text(style="height:300px;",class="form_input form-control",rows='50',cols='100')}}
