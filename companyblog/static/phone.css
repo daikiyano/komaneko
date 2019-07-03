@@ -436,6 +436,11 @@ header{
 }
 
 
+.no_post{
+  font-size:20px;
+  padding: 120px 0;
+  text-align:center;
+}
 
 /* End index.html  */
 

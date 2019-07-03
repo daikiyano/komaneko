@@ -226,12 +226,12 @@ def user_posts(username):
 @users.route("/all")
 def all():
     page = request.args.get('page',1,type=int)
-    sports = User.query.filter(User.type==2)
-    cultures = User.query.filter(User.type==3)
-    others = User.query.filter(User.type==4)
-    alls = User.query.filter(User.type==2,User.type==3,User.type==4)
+    # sports = User.query.filter(User.type==2)
+    # cultures = User.query.filter(User.type==3)
+    # others = User.query.filter(User.type==4)
+    alls = User.query.filter(User.type >= 1)
 
-    return render_template('all.html',alls=alls,sports=sports,cultures=cultures,others=others)
+    return render_template('all.html',alls=alls)
 
 # @users.route('/follow/<username>')
 # @login_required

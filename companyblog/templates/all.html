@@ -4,7 +4,7 @@
 <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
 
 <div class="all_container">
-<h1 class="details_title"><b>体育会系団体</b></h1>
+<h1 class="details_title"><b>登録団体一覧</b></h1>
   <div class="all_box">
     {% for all in alls %}
       <div class="all_details">
@@ -16,38 +16,6 @@
     {% else %}
       <h2>登録している団体はありません</h2>
     {% endfor %}
-
   </div>
-
-  <h1 class="details_title"><b>文化系サークル</b></h1>
-    <div class="all_box">
-      {% for culture in cultures %}
-        <div class="all_details">
-          <h1 class="all_name"><b>{{culture.username}}</b></h1>
-          <a href="{{url_for('users.user_posts',username=culture.username)}}">
-            <img src="{{culture.profile_image}}">
-          </a>
-        </div>
-      {% else %}
-        <h2>登録している団体はありません</h2>
-      {% endfor %}
-    </div>
-
-    <h1 class="details_title"><b>その他/任意団体</b></h1>
-      <div class="all_box">
-        {% for other in others %}
-          <div class="all_details">
-            <h1  class="all_name"><b>{{other.username}}</b></h1>
-            <a href="{{url_for('users.user_posts',username=other.username)}}">
-            <img src="{{other.profile_image}}">
-            </a>
-          </div>
-        {% else %}
-          <h2>登録している団体はありません</h2>
-        {% endfor %}
-      </div>
-
-
-
 </div>
 {% endblock %}

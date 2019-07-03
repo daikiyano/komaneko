@@ -37,26 +37,30 @@
   $('.bxslider').bxSlider({
     auto: true,
     captions:true,
-speed: 500
+     touchEnabled:false,
+     speed: 500
 
   });
 
 });
 </script>
 
-
+<h1 class="event_top"><b><i class="fas fa-users"></i>登録団体</b></h1>
 <div class="width:100%;">
   <div class="bxslider-wrap">
     <ul class="bxslider">
-      {% for post in all_posts.items %}
-      <li><img src="{{post.event_image}}" title="{{post.title}}" class="slide_img"></li>
+      {% for all in alls %}
+      <li><a href="{{url_for('users.user_posts',username=all.username)}}">
+        <img src="{{all.profile_image}}" title="{{all.username}}" class="slide_img">
+        </a>
+      </li>
       {% endfor %}
     </ul>
   </div>
 </div>
 
 
-<h1 class="event_top"><b>イベント一覧</b></h1>
+<h1 class="event_top"><b><i class="fas fa-university"></i>イベント一覧</b></h1>
 <div class="tab_box">
   <ul class="tab" style="display: inline-block;">
     <li class="tab_list active"><b>新着</b></li>
@@ -106,7 +110,8 @@ speed: 500
             投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
         </div>
       </div>
-
+      {% else %}
+      <h2 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h2>
       {% endfor %}
   </div>
   <div class="test">
@@ -149,10 +154,12 @@ speed: 500
             投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
         </div>
       </div>
+      {% else %}
+      <h2 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h2>
       {% endfor %}
   </div>
   <div class="test">
-    <h1 style="text-align:center; padding-top:30px;">現在準備中です</h1>
+    <h2 class="no_post">現在準備中です</h2>
   </div>
 </div>
 

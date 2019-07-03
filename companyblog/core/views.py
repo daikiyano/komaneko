@@ -30,7 +30,8 @@ def index():
     # ranking_posts = BlogPost.query.group_by()
     # blog_post = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow())
     # like = blog_post.order_by(blog_post.likes.count().asc())
-    return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url)
+    alls = User.query.filter(User.type >= 1)
+    return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url,alls=alls)
 
 @core.route('/condition',methods=['GET','POST'])
 @login_required
