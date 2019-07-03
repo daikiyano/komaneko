@@ -20,7 +20,7 @@
 
   </head>
 
-  <body style="height:100%;" onload="initialize()">
+  <body style="height:100%; background: #fff;" onload="initialize()">
     <header>
       <h1 class="header_logo"><a style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><img src="static/komazawa-app-logo.jpg" style="position:absolute; top:-10px;height:60px; width:180px;" alt=""></a></h1>
       <div class="header_sp">
@@ -55,7 +55,7 @@
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
-  <h3 class="flash_font" id="copy_msg">{{ mess }}</h3>
+  <h3 style="color:white;" class="flash_font" id="copy_msg">{{ mess }}</h3>
 </div>
 {% endfor %}
 
