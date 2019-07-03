@@ -109,6 +109,7 @@ header{
 }
 .form_input{
   height:50px;
+  /* background: #e6ecf0; */
 }
 
 .preview{
@@ -183,15 +184,13 @@ header{
 }
 .tab_list:hover{
   background-color: #c6baea;
-  color: black;
-  opacity: 0.9;
+  color:#45494b;
   border-radius: 5px;
 
 }
 
 .tab_box li.active {
-  color: black;
-  opacity: 0.9;
+  color:#45494b;
 
   /* background-color: rgba(157,51,214,0.9); */
   background-color: #c6baea;
@@ -533,10 +532,9 @@ header{
 
 .user_logo{
   height:500px;
-  width:800px;
+  width:100%;
   border-radius:10px;
   position:relative;
-  left:30px;
   object-fit: cover;
 }
 
@@ -551,6 +549,11 @@ header{
   margin:40px auto;
   text-align: left;
   font-size:20px;
+}
+
+.no_user_info{
+  padding: 50px 0;
+  text-align:center;
 }
 
 
