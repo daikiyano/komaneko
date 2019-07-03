@@ -18,6 +18,10 @@ class Config(object):
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
     ADMIN_NAME = os.environ.get("ADMIN_NAME")
+    RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
+    RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
+    RECAPTCHA_USE_SSL = False
+
 
 
 class DevelopmentConfig(Config):

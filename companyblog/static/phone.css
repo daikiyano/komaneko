@@ -48,7 +48,7 @@
 
 .page-top{
   position: fixed;
-  bottom: 5%;
+  bottom: 2%;
   right:5%;
   font-size:77%;
   z-index:24;
@@ -186,6 +186,7 @@ header{
 
 
 .menu{
+  transition: .3s;
   color:white;
   text-decoration: none;
 }
@@ -271,6 +272,16 @@ header{
   font-size:12px;
   padding-right:10px;
 
+}
+
+.footer_menu{
+  transition: .3s;
+  color:#666;
+  text-decoration: none;
+}
+
+.footer_menu:hover{
+  color: #c1a7db;
 }
 
 

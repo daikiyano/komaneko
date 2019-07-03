@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField,PasswordField,SubmitField,TextAreaField,SelectField
 from wtforms.validators import DataRequired,Email,EqualTo
 from wtforms import ValidationError
@@ -26,6 +26,7 @@ class RegistrationForm(FlaskForm):
     type = SelectField(u'個人か団体アカウントか選択してください',choices=[(0, '所属を選択してください'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '(団体)任意団体/その他')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
     pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
+    recaptcha = RecaptchaField()
     submit = Submit = SubmitField('利用規約に同意して登録する')
 
 
@@ -48,6 +49,7 @@ class SignupForm(FlaskForm):
     type = SelectField(u'アカウントの種類',choices=[(1, '個人')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
     pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
+    recaptcha = RecaptchaField()
     submit = Submit = SubmitField('利用規約に同意して登録する')
 
 
