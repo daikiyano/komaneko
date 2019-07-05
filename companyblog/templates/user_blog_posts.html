@@ -1,13 +1,13 @@
 <head>
   <meta name="twitter:creator" content="@for_engineerb">
-  <meta property="og:title" content="{{user.username}}">
+  <meta property="og:title" content="{{user.club_name}}">
   <meta property="og:description" content="{{user.info}}">
-  <meta property="og:url" content="{{url}}">
+  <meta property="og:url" content="{{urls}}">
   <meta name="twitter:site" content="@for_engineerb">
   <meta property="og:image" content="{{user.profile_image}}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@gfor_engineerb">
-  <meta name="twitter:title" content="{{user.username}}">
+  <meta name="twitter:title" content="{{user.club_name}}">
   <meta name="twitter:description" content="{{user.info}}">
 </head>
 
@@ -17,7 +17,7 @@
 
 <div class="user_post_container" style="color:#45494b;">
   <div class="user_post_box">
-    <h1 class="info_title"><i class="fas fa-user-friends"></i><b>{{user.username}}
+    <h1 class="info_title"><i class="fas fa-user-friends"></i><b>{{user.club_name}}
       {% if user.username == current_user.username %}
         <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.account')}}"><b>プロフィールを修正する</b></a>
       {% endif %}
@@ -38,6 +38,28 @@
       <!-- {% if user.last_seen %} <p>Last seen on:{{user.last_seen}}</p>{% endif %} -->
 
     <img class="user_logo" src="{{user.profile_image}}">
+    <h1 class="info_title"><i class="far fa-address-card"></i><b>団体プロフィールQRコード</b><br></h1>
+    <div id="qrcode" style="width:150px; margin:0 auto;">
+      <script type="text/javascript">
+        var url = '';
+        url += 'https://api.qrserver.com/v1/create-qr-code/?data=';
+        url += encodeURIComponent(location.href);
+        // 背景の色
+        url += '&bgcolor=FFFFFF';
+        // バーコードの色
+        url += '&color=000000';
+        // 余白
+        url += '&qzone=0';
+        // こっちも余白
+        url += '&margin=0';
+        // エラー訂正レベル
+        url += '&ecc=L';
+        // サイズ
+        url += '&size=150x150';
+        document.write('<img src=\"' + url + '\" />');
+      </script>
+
+    </div>
     <h1 class="info_title"><i class="far fa-address-card"></i><b>団体情報</b><br></h1>
     {% autoescape false %}
     {% if user.info %}
@@ -86,7 +108,7 @@
         </div>
       </div>
       <div class="event_date_box">
-        <p class="event_date">開催日<br>
+        <p class="past_event_date">開催日<br>
         <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>

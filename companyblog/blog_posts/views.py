@@ -198,31 +198,3 @@ def delete_post(blog_post_id):
     db.session.commit()
     flash('投稿を削除しました。')
     return redirect(url_for('core.index'))
-
-
-#comment delete
-
-@blog_posts.route('/comment/<int:blog_comment_id>/delete',methods=["POST"])
-@login_required
-
-def delete_comment(blog_comment_id):
-
-    # comment = Comment.query.get_or_404(blog_comment_id)
-    comment = Comment.query.get_or_404(blog_comment_id)
-    # comment = Comment.query.filter_by(id=blog_comment_id).first_or_404()
-    # comment = Comment.query.get(id=blog_comment_id)
-    if comment.poster != current_user:
-        abort(403)
-
-    db.session.delete(comment)
-    db.session.commit()
-    flash('comment blog delete')
-    return redirect(url_for('core.index'))
-
-
-
-# comment = Coment.query.filter_by(id=blog_comment_id).first_or_404()
-# if action == 'like':
-#     current_user.delete_comment(comment)
-#     db.session.commit()
-#     return redirect(request.referrer)

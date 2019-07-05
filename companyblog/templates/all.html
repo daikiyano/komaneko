@@ -8,7 +8,7 @@
   <div class="all_box">
     {% for all in alls %}
       <div class="all_details">
-        <h1 class="all_name"><b>{{all.username}}</b></h1>
+        <h1 class="all_name"><b>{{all.club_name}}</b></h1>
         <a href="{{url_for('users.user_posts',username=all.username)}}">
         <img src="{{all.profile_image}}">
         </a>

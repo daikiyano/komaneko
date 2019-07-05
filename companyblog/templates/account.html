@@ -3,7 +3,7 @@
 
     <div class="container" style="color:#45494b;">
     <div align='center'>
-      <h4><b>{{ current_user.username}}さんのアカウントページ</b>
+      <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
 
         <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.user_posts',username=current_user.username)}}">プロフィールを確認する</a>
 
@@ -12,57 +12,102 @@
     </div>
     <form method="POST" action="" enctype="multipart/form-data">
       {{form.hidden_tag()}}
+      {% if not current_user.type == 1%}
+        <div class="form-group">
+          <h5><i class="fas fa-user-check"></i>{{form.type.label(class="form-control-label")}}</h5>
+          {{form.type(class="form-control form-contorl-lg")}}<br>
+          {% for error in form.type.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+          {% endfor %}
+        </div>
+      {% endif %}
       <div class="form-group">
-        <h5><i class="fas fa-user-check"></i>{{form.type.label(class="form-control-label")}}</h5>
-        {{form.type(class="form-control form-contorl-lg")}}<br>
-        {% for error in form.type.errors %}
+        <h5><i class="fas fa-users"></i>{{form.username.label(class='form-group')}}</h5>
+        {{form.username(class='form_input form-control')}}
+        {% for error in form.username.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
       </div>
       <div class="form-group">
-        <h5><i class="fas fa-users"></i>{{form.username.label(class='form-group')}}</h5>
-        {{form.username(class='form_input form-control')}}
-      </div>
-      <div class="form-group">
-        <h5><i class="fas fa-users"></i>{{form.name.label(class='form-group')}}</h5>
-        {{form.name(class='form_input form-control')}}
-      </div>
-      <div class="form-group">
-      <h5><i class="fas fa-university"></i>{{form.university.label(class='form-group')}}</h5>
-      {{form.university(placeholder="所属大学",class='form_input form-control')}}
-      </div>
-      <div class="form-group">
        <h5><i class="far fa-envelope"></i>{{form.email.label(class='form-group')}}</h5>
       {{form.email(placeholder="komazawa@gmail.com",class='form_input form-control')}}
+      {% for error in form.email.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
       </div>
       <div class="form-group">
-      <h5><i class="fas fa-info"></i>{{form.info.label(class='form-group')}}</h5>
-      {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="15",class='form-control')}}
+        <h5><i class="fas fa-university"></i>{{form.university.label(class='form-group')}}</h5>
+        {{form.university(placeholder="所属大学",class='form_input form-control')}}
+        {% for error in form.university.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
       </div>
-      <div class="form-group">
-      <h5><i class="fas fa-info"></i>{{form.event.label(class='form-group')}}</h5>
-      {{form.event(placeholder="年間行事",rows="15",class='form-control')}}
-      </div>
-      <div class="form-group">
-      <h5><i class="fas fa-calendar-day"></i>{{form.url.label(class='form-group')}}</h5>
-      {{form.url(placeholder="HP URL",class='form_input form-control')}}
-      </div>
-      <div class="form-group">
-        <h5><i class="fab fa-twitter" style="color:#00acee; "></i>{{form.twitter.label(class='form-group')}}</h5>
-      <span>https://twitter.com</span>{{form.twitter(placeholder="/username/",class='form_input form-control')}}
-      </div>
-      <div class="form-group">
-      <h5><i class="fab fa-facebook-square" style="color:#3B5998;"></i>{{form.facebook.label(class='form-group')}}</h5>
-      <span>https://www.facebook.com</span>{{form.facebook(placeholder="/username/",class='form_input form-control')}}
-      </div>
-      <div class="form-group">
-      <h5><i class="fab fa-instagram"></i>{{form.instagram.label(class='form-group')}}<br></h5>
-      <span>https://www.instagram.com</span>{{form.instagram(placeholder="/username/",class='form_input form-control')}}
-      </div>
+      {% if not current_user.type == 1%}
+        <div class="form-group">
+          <h5><i class="fas fa-users"></i>{{form.name.label(class='form-group')}}</h5>
+          {{form.name(class='form_input form-control')}}
+          {% for error in form.name.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+          {% endfor %}
+        </div>
+
+        <div class="form-group">
+          <h5><i class="fas fa-users"></i>{{form.club_name.label(class='form-group')}}</h5>
+          {{form.club_name(class='form_input form-control')}}
+          {% for error in form.club_name.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-info"></i>{{form.info.label(class='form-group')}}</h5>
+        {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="15",class='form-control')}}
+        {% for error in form.info.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-info"></i>{{form.event.label(class='form-group')}}</h5>
+        {{form.event(placeholder="年間行事",rows="15",class='form-control')}}
+        {% for error in form.event.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-calendar-day"></i>{{form.url.label(class='form-group')}}</h5>
+        {{form.url(placeholder="HP URL",class='form_input form-control')}}
+        {% for error in form.url.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+          <h5><i class="fab fa-twitter" style="color:#00acee; "></i>{{form.twitter.label(class='form-group')}}</h5>
+        <span>https://twitter.com</span>{{form.twitter(placeholder="/username/",class='form_input form-control')}}
+        {% for error in form.twitter.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fab fa-facebook-square" style="color:#3B5998;"></i>{{form.facebook.label(class='form-group')}}</h5>
+        <span>https://www.facebook.com</span>{{form.facebook(placeholder="/username/",class='form_input form-control')}}
+        {% for error in form.facebook.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fab fa-instagram"></i>{{form.instagram.label(class='form-group')}}<br></h5>
+        <span>https://www.instagram.com</span>{{form.instagram(placeholder="/username/",class='form_input form-control')}}
+        {% for error in form.instagram.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+      {% endif %}
       <div class="form-group">
         ※jpg、png,jpeg,gifのみアップロードできます。
       {{form.picture.label(class='form-group')}}
       {{form.picture(class='form_input form-control')}}<br>
+      {% for error in form.picture.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
       </div>
       <div class="preview"></div>
       <div class="form-group">

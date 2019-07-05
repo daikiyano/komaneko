@@ -173,8 +173,8 @@ header{
 
 }
 .header_sp{
-  position: fixed;
-  left: 0;
+    position: fixed;
+    left: 0;
     top: 0;
     display: none;
     z-index: 10;
@@ -528,7 +528,7 @@ header{
 }
 
 .all_box{
-  width:80%;
+  width:90%;
   margin:50px auto;
   display: flex;
   flex-direction: column;
@@ -605,6 +605,11 @@ header{
   margin:20px auto;
 }
 
+.past_event_date{
+  font-size: 15px;
+    position: relative;
+    top: 20px;
+}
 
 
 .view_btn{

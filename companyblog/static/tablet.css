@@ -561,24 +561,25 @@ header{
 
 .sns_logo{
   position: fixed;
-  left:200px;
+  left:30px;
+  top:130px;
 }
 
 .user_twitter{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
 .user_facebook{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
 .user_instagram{
-  height:80px;
-  width:80px;
+  height:70px;
+  width:70px;
   border-radius:50%;
 }
 
@@ -589,6 +590,12 @@ header{
   position:relative;
 
   object-fit: cover;
+}
+
+.past_event_date{
+  font-size: 15px;
+  position: relative;
+  top: 20px;
 }
 
 .user_info{

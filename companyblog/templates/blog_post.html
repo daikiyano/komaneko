@@ -29,7 +29,7 @@
     <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
     <!-- <img align='center' class="user_image" src="{{post.author.profile_image}}"> -->
 
-    <h3 style="text-align:right;" class="author_name_post">投稿者:{{post.author.username}}</h3>
+    <h3 style="text-align:right;" class="author_name_post">投稿者:{{post.author.club_name}}</h3>
     {% if post.author == current_user %}
     <div>
       <a class="btn btn-outline-primary btn-sm" href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">投稿内容を編集する</a>

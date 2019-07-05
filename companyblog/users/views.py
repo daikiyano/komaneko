@@ -68,6 +68,8 @@ def register():
         try:
             user = User(email=form.email.data,
                         username=form.username.data,
+                        name=form.name.data,
+                        club_name=form.club_name.data,
                         university=form.university.data,
                         type=form.type.data,
                         password=form.password.data)
@@ -187,6 +189,7 @@ def account():
         current_user.username = form.username.data
         current_user.name = form.name.data
         current_user.event = form.event.data
+        current_user.club_name = form.club_name.data
         current_user.email = form.email.data
         current_user.type = form.type.data
         current_user.info = form.info.data
@@ -202,6 +205,8 @@ def account():
     elif request.method == "GET":
         form.username.data = current_user.username
         form.name.data = current_user.name
+        form.club_name.data = current_user.club_name
+        form.university.data = current_user.university
         form.event.data = current_user.event
         form.email.data = current_user.email
         form.info.data = current_user.info
@@ -221,7 +226,7 @@ def user_posts(username):
     page = request.args.get('page',1,type=int)
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,url=request.base_url)
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,urls=request.base_url)
 
 @users.route("/all")
 def all():
@@ -229,7 +234,7 @@ def all():
     # sports = User.query.filter(User.type==2)
     # cultures = User.query.filter(User.type==3)
     # others = User.query.filter(User.type==4)
-    alls = User.query.filter(User.type >= 1)
+    alls = User.query.filter(User.type > 1)
 
     return render_template('all.html',alls=alls)
 
@@ -262,6 +267,19 @@ def all():
 #     db.session.commit()
 #     flash('{} さんをフォロー解除しました！'.format(username))
 #     return redirect(url_for('users.user_posts',username=username))
+
+# @users.route('/users/<int:user_id>/delete',method=["POST"])
+# @login_required
+#
+# def delete_user(user_id):
+#
+#     user = User.query.get_or_404(user_id)
+#
+#     if user.id != current_user.id:
+#         abort(403)
+#
+#     db.session.delete(user)
+#     db.session.commit()
 
 
 @users.route('/confirm/<token>')

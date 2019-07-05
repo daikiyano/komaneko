@@ -17,9 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-
-
   </head>
 
   <body style="height:100%; background: #fff;" onload="initialize()">
@@ -40,7 +37,13 @@
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
           {% endif %}
+          {% if current_user.is_authenticated %}
           <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベントを作成する</b></a></li>
+          {% else %}
+          <li class="header_list header_event"><a style="text-decoration:none;"  class="menu" data-toggle="modal" data-target="#myModal">
+            <b>イベントを作成する</b>
+          </a></li>
+          {% endif %}
         </ul>
       </div>
       <div class="menu_btn">
@@ -65,6 +68,30 @@
 
 
  <div style="min-height: 100%;">
+   <!-- モーダルの設定 -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog" role="document">
+       <div style="color:#45494b; border: 3px solid #794aa8;" class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel"><b>ようこそKOMANEKOへ</b><br>イベントを作成するにはログインが必要です</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+           <p><b>アカウントを既にお持ちの方</b><br>
+           <a href="{{url_for('users.login')}}" class="btn btn-outline-primary">ログイン</a></p>
+           <p><b>まだアカウント登録されていない方</b><br>
+           <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a>
+           <a href="{{url_for('users.register')}}" class="btn btn-outline-success">団体アカウントを登録</a>
+           </p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+         </div><!-- /.modal-footer -->
+       </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+   </div><!-- /.modal -->
     {% block content %}
     {% endblock %}
  </div>

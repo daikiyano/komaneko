@@ -170,6 +170,10 @@ header{
   height:500px;
 }
 
+/* .slide_img:hover{
+  background-color:red;
+} */
+
 
 
 /* index.page */
@@ -539,6 +543,12 @@ header{
   height:60px;
   width:60px;
   border-radius:50%;
+}
+
+.past_event_date{
+  font-size: 15px;
+  position: relative;
+  top: 20px;
 }
 
 .user_logo{

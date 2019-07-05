@@ -44,6 +44,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(140),unique=True,index=True)
     username = db.Column(db.String(140),unique=True,index=True)
     name = db.Column(db.String(140),nullable=True)
+    club_name = db.Column(db.String(140),nullable=True)
     event = db.Column(db.Text,nullable=True)
     facebook = db.Column(db.String(140), nullable=True)
     twitter = db.Column(db.String(140), nullable=True)

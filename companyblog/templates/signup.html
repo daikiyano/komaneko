@@ -15,6 +15,7 @@
     <div class="form-group">
       {{form.username.label(class="form-control-label")}}
       {{form.username(class="form_input form-control form-contorl-lg")}}<br>
+      <span>*半角英数字のみ有効</span><br>
       {% for error in form.username.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
@@ -37,6 +38,7 @@
     <div class="form-group">
       {{form.password.label(class="form-control-label")}}
       {{form.password(class="form_input form-control form-contorl-lg")}}<br>
+      <span>*8文字以上のパスワードを設定してください</span>
     </div>
     <div class="form-group">
       {{form.pass_confirm.label(class="form-control-label")}}
