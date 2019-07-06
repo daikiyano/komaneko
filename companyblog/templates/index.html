@@ -1,14 +1,14 @@
 <head>
   <meta name="twitter:creator" content="@for_engineerb">
-  <meta property="og:title" content="駒澤大学生向けのイベント共有サイト「KomaNeko」">
-  <meta property="og:description" content="KomaNekoは駒澤大学生向けのイベント共有サイトです。KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
+  <meta property="og:title" content="駒澤大学生向けイベント共有サイト「KOMANEKO」">
+  <meta property="og:description" content="KOMANEKOは駒澤大学生向けイベント共有サイトです。KOMANEKOでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
   <meta property="og:url" content="{{url}}">
   <meta name="twitter:site" content="@for_engineerb">
-  <meta property="og:image" content="{{url}}static/komazawa-app-logo.jpg">
+  <meta property="og:image" content="{{url}}static/komaneko_twitter.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@for_engineerb">
-  <meta name="twitter:title" content="駒澤大学生向けのイベント共有サイト「KomaNeko」">
-  <meta name="twitter:description" content="KomaNekoは駒澤大学生向けのイベント共有サイトです。KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
+  <meta name="twitter:title" content="駒澤大学生向けイベント共有サイト「KOMANEKO」">
+  <meta name="twitter:description" content="KomaNekoは駒澤大学生向けイベント共有サイトです。KOMANEKOでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
 </head>
 {% extends 'base.html'%}
 {% block content %}
@@ -81,7 +81,7 @@
         <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.club_name}}</a> -->
         <div class="card_bottom_box">
             <div class="like_box">
-              <div class="like_box_like" >
+              <div>
               {% if current_user.is_authenticated %}
               {% if current_user.has_liked_post(post) %}
                 <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
@@ -125,7 +125,7 @@
         <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.username}}</a> -->
         <div class="card_bottom_box">
             <div class="like_box">
-              <div class="like_box_like" >
+              <div>
               {% if current_user.is_authenticated %}
               {% if current_user.has_liked_post(post) %}
                 <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>

@@ -16,6 +16,9 @@
         <div class="form-group">
           <h5><i class="fas fa-user-check"></i>{{form.type.label(class="form-control-label")}}</h5>
           {{form.type(class="form-control form-contorl-lg")}}<br>
+          <p>団体カテゴリについては下記サイトをご参照ください。<br>
+            <a target=”_blank” href="https://www.komazawa-u.ac.jp/campuslife/contact-information/student-part/extracurricular-activities-circle/introduction.html">駒澤大学サークル紹介</a>
+          </p>
           {% for error in form.type.errors %}
             <span style="color: red;">{{ error }}</span><br>
           {% endfor %}

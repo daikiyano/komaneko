@@ -49,7 +49,7 @@
 .page-top{
   position: fixed;
   bottom: 2%;
-  right:5%;
+  right:2%;
   font-size:77%;
   z-index:24;
   width:20%;
@@ -457,11 +457,11 @@ header{
 
 /* blog_post.html */
 
-.post_like{
+/* .post_like{
   position: fixed;
   bottom:3%;
   left:15px;
-}
+} */
 
 .post_copy{
   position:absolute;
@@ -492,6 +492,11 @@ header{
 .cat_like_details{
   color:purple;
   font-size:40px;
+}
+
+.like_box_like{
+  position:absolute;
+  left:20px;
 }
 
 
@@ -595,7 +600,7 @@ header{
 }
 
 .user_info{
-  font-size:19px;
+  font-size:17px;
   text-align:left;
 }
 

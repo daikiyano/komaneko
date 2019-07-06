@@ -40,8 +40,8 @@
     <p style="text-align:left;"><b><i class="far fa-clock"></i>開始時間:{{post.event_time.strftime('%H:%M')}}〜</b></p>
     <div class="post_info_box">
       <div class="post_info_details">
-        <i class="fas fa-paperclip post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
-        <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}">
+        <!-- <i class="fas fa-paperclip post_copy copy_btn" id="copyButton" onclick="copyToClipboard()"></i>
+        <input style="position: absolute; top:-3000px;" type="text" id="copyTarget" value="{{url}}"> -->
         <div class="like_box_like post_like">
         {% if current_user.is_authenticated %}
         {% if current_user.has_liked_post(post) %}
