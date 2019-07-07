@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user,current_user,logout_user,login_required
 from companyblog import db,app
-from companyblog.models import User,BlogPost
+from companyblog.models import User,BlogPost,PostLike
 from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,SignupForm
 from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
@@ -14,6 +14,7 @@ from threading import Thread
 from flask_mail import Message
 from companyblog import mail
 from PIL import Image
+import random
 import boto3
 
 
@@ -226,10 +227,11 @@ def account():
 @users.route("/<username>")
 def user_posts(username):
     page = request.args.get('page',1,type=int)
-    user = User.query.filter_by(username=username).first_or_404()
+    users = User.query.filter_by(username=username).first_or_404()
+    # postlikes = User.query.filter(user.user_id == users.id)
     # like = PostLike.query.filter_by(user_id==user.id)
-    blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,urls=request.base_url)
+    blog_posts = BlogPost.query.filter_by(author=users).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=users,urls=request.base_url)
 
 @users.route("/all")
 def all():
@@ -239,6 +241,7 @@ def all():
     # others = User.query.filter(User.type==4)
     alls = User.query.filter(User.type > 1)
     return render_template('all.html',alls=alls)
+
 
 
 

@@ -350,6 +350,7 @@ header{
   font-size:60px;
   text-decoration: none;
   cursor:pointer;
+  transition: .3s;
 }
 
 .cat_like{
@@ -370,11 +371,18 @@ header{
   font-size:100px;
   text-decoration: none;
   cursor:pointer;
+  transition: .3s;
 }
 .cat_login:hover{
   color:purple;
   opacity:0.3;
 }
+
+.cat_login_index:hover{
+  color:purple;
+  opacity:0.3;
+}
+
 .like_count{
   font-size:22px;
 }
@@ -437,7 +445,15 @@ header{
 
 .no_post{
   padding: 200px 0;
-  text-align:center;
+  position: relative;
+  left:10px;
+
+
+}
+
+.no_post_index{
+
+  margin: 0 auto;
 }
 
 /* End index.html  */

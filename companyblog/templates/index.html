@@ -4,7 +4,7 @@
   <meta property="og:description" content="KOMANEKOは駒澤大学生向けイベント共有サイトです。KOMANEKOでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます">
   <meta property="og:url" content="{{url}}">
   <meta name="twitter:site" content="@for_engineerb">
-  <meta property="og:image" content="{{ url_for('static', filename='komaneko_twitter.jpg') }}">
+  <meta property="og:image" content="{{url}}static/komaneko_twitter.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@for_engineerb">
   <meta name="twitter:title" content="駒澤大学生向けイベント共有サイト「KOMANEKO」">
@@ -111,9 +111,10 @@
             投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
         </div>
       </div>
-
       {% else %}
-      <h2 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h2>
+      <div class="no_post_index" style="color:#45494b;">
+        <h3 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h3>
+      </div>
       {% endfor %}
     </div>
   </div>
@@ -159,7 +160,9 @@
       </div>
     </div>
       {% else %}
-      <h2 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h2>
+      <div class="no_post_index" style="color:#45494b;">
+        <h2 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h2>
+      </div>
       {% endfor %}
   </div>
   </div>

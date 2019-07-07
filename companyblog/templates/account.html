@@ -2,6 +2,9 @@
 {% block content %}
 
     <div class="container" style="color:#45494b;">
+      {% for postlike in postlikes.item%}
+          <p>{{postlike.id}}</p>
+      {% endfor %}
     <div align='center'>
       <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
 
@@ -117,7 +120,6 @@
       {{form.submit(class='btn btn-primary')}}
       </div>
     </form>
-
   </div>
 
   {% endblock %}
