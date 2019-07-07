@@ -101,6 +101,8 @@ def signup():
         try:
             user = User(email=form.email.data,
                         username=form.username.data,
+                        name=form.club_name.data,
+                        club_name=form.club_name.data,
                         university=form.university.data,
                         type=form.type.data,
                         password=form.password.data)
@@ -225,6 +227,7 @@ def account():
 def user_posts(username):
     page = request.args.get('page',1,type=int)
     user = User.query.filter_by(username=username).first_or_404()
+    # like = PostLike.query.filter_by(user_id==user.id)
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user,urls=request.base_url)
 
@@ -235,8 +238,10 @@ def all():
     # cultures = User.query.filter(User.type==3)
     # others = User.query.filter(User.type==4)
     alls = User.query.filter(User.type > 1)
-
     return render_template('all.html',alls=alls)
+
+
+
 
 # @users.route('/follow/<username>')
 # @login_required

@@ -73,9 +73,11 @@ class User(db.Model,UserMixin):
         backref='user',lazy='dynamic')
 
 
-    def __init__(self,email,username,type,university,password,email_confirmation_sent_on=None):
+    def __init__(self,email,username,name,club_name,type,university,password,email_confirmation_sent_on=None):
         self.email = email
         self.username = username
+        self.name = name
+        self.club_name = club_name
         self.type = type
         self.university = university
         self.password_hash = generate_password_hash(password)

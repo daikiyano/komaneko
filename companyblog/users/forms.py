@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField,PasswordField,SubmitField,TextAreaField,SelectField
+from wtforms import StringField,PasswordField,SubmitField,TextAreaField,SelectField,HiddenField
 from wtforms.validators import DataRequired,Email,EqualTo,Length,Regexp
 from wtforms import ValidationError
 from flask_wtf.file import FileField,FileAllowed
@@ -51,6 +51,7 @@ class RegistrationForm(FlaskForm):
 class SignupForm(FlaskForm):
     email = StringField('Eメールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
     username = StringField('KOMANEKO ID',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
+    club_name = StringField('ユーザー名',validators=[DataRequired('ユーザー名を入力してください')])
     university = SelectField(u'大学を選択してください',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'アカウントの種類',choices=[(1, '個人')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])

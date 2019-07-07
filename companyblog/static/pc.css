@@ -278,6 +278,10 @@ header{
   line-height:35px;
 }
 
+.index_box{
+  display: flex;
+  flex-direction: row;
+}
 
 
 .event_top{
@@ -285,12 +289,13 @@ header{
   font-size:30px;
 }
 
-.post_box{
-  width:60%;
+.post_box_index{
+  width:30%;
   margin: 50px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
 }
+
 
 .post_top{
   display: flex;
@@ -311,6 +316,11 @@ header{
   object-fit: cover;
 }
 
+.index_image_index{
+  height:250px; width:100%;
+  object-fit: cover;
+}
+
 .card_bottom_box{
   display: flex;
   justify-content: space-between;
@@ -322,9 +332,29 @@ header{
   justify-content: flex-start;
 }
 
+
+.cat_like_index{
+  color:purple;
+  font-size:60px;
+  cursor:pointer;
+}
+
+.cat_unlike_index{
+  color:purple;
+  opacity:0.3;
+  font-size:60px;
+  cursor:pointer;
+}
+.cat_login_index{
+  color:purple;
+  font-size:60px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
 .cat_like{
   color:purple;
-  font-size:100px;
+  font-size:80px;
   cursor:pointer;
 }
 
@@ -349,29 +379,45 @@ header{
   font-size:22px;
 }
 
+.post_box_place_index{
+  margin-top:10px;
+  font-size:14px;
+}
+
 .post_box_place{
   margin-top:10px;
   font-size:16px;
 }
 
-.event_date_box{
-  height:110px;
-  width:110px;
+.event_date_box_index{
+  height:90px;
+  width:90px;
   background:rgba(121,74,168,0.9);
   border-radius:50%;
   color:white;
   float:right;
+  position:relative;
+  left:15px;
+
   margin-right:20px;
 }
 
 
 
-.event_date{
+.event_date_index{
+  font-size:15px;
+  position:relative;
+  left:15px;
+  top:15px;
+}
+
+
+/* .event_date{
   font-size:15px;
   position:relative;
   left:30px;
   top:20px;
-}
+} */
 
 .post_user_box{
     display: flex;
@@ -397,6 +443,13 @@ header{
 /* End index.html  */
 
 /* blog_post.html */
+
+.post_box{
+  width:60%;
+  margin: 50px auto;
+  border: solid 1px gray;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.6);
+}
 .post_like{
   position: fixed;
   top:240px;
@@ -443,7 +496,8 @@ header{
 
 .event_date_post{
   position:relative;
-  left:30px;
+  left:17px;
+  top:15px;
 }
 
 .post_info_details{
@@ -460,6 +514,16 @@ header{
   font-size:80px;
 }
 
+.event_date_box{
+  height:110px;
+  width:110px;
+  background:rgba(121,74,168,0.9);
+  border-radius:50%;
+  color:white;
+  float:right;
+  margin-right:20px;
+}
+
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);
   padding-top:20px;
@@ -468,9 +532,10 @@ header{
 }
 
 .post_details p{
+
   font-size:15px;
   text-align: left;
-
+  padding:3px 10px;
 
 }
 

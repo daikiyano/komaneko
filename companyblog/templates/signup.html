@@ -21,6 +21,13 @@
       {% endfor %}
     </div>
     <div class="form-group">
+      {{form.club_name.label(class="form-control-label")}}
+      {{form.club_name(class="form_input form-control form-contorl-lg")}}<br>
+      {% for error in form.type.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
       {{form.university.label(class="form-control-label")}}
       {{form.university(class="form_input form-control form-contorl-lg")}}<br>
       {% for error in form.university.errors %}
@@ -34,7 +41,6 @@
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
-
     <div class="form-group">
       {{form.password.label(class="form-control-label")}}
       {{form.password(class="form_input form-control form-contorl-lg")}}<br>

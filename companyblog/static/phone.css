@@ -76,7 +76,7 @@
 
 .slide_img{
   width:100%;
-  height:280px;
+  height:250px;
 }
 
 
@@ -333,8 +333,8 @@ header{
   font-size:30px;
 }
 
-.post_box{
-  width:95%;
+.post_box_index{
+  width:98%;
   margin: 20px auto;
   border: solid 1px gray;
   box-shadow: 0 5px 5px rgba(0,0,0,0.6);
@@ -368,18 +368,18 @@ header{
   margin-top:5px;
 }
 
-.cat_like{
+.cat_like_index{
   color:purple;
   font-size:80px;
 }
 
-.cat_unlike{
+.cat_unlike_index{
   color:purple;
   opacity:0.3;
   font-size:80px;
 }
 
-.cat_login{
+.cat_login_index{
   color:purple;
   opacity:0.3;
   font-size:80px;
@@ -394,7 +394,7 @@ header{
 }
 
 
-.post_box_place{
+.post_box_place_index{
   font-size:13px;
 }
 
@@ -407,7 +407,7 @@ header{
 
 
 
-.event_date_box{
+.event_date_box_index{
   height:110px;
   width:110px;
   background:rgba(121,74,168,0.9);
@@ -417,7 +417,7 @@ header{
   margin-right:10px;
 }
 
-.event_date{
+.event_date_index{
   position:relative;
   left:25px;
   top:15px;

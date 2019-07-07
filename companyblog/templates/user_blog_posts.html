@@ -93,22 +93,22 @@
           <div class="like_box_like" >
           {% if current_user.is_authenticated %}
           {% if current_user.has_liked_post(post) %}
-            <div class="button condition{{post.id}} fas fa-cat cat_like"  condition="unlike" post_id="{{post.id}}"></div>
+            <div class="button condition{{post.id}} fas fa-cat cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
           {% else %}
-            <div  class="button condition{{post.id}} fas fa-cat cat_unlike" condition="like" post_id="{{post.id}}"></div>
+            <div  class="button condition{{post.id}} fas fa-cat cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
           {% endif %}
         {% else %}
-            <a class="fas fa-cat cat_login" href="{{url_for('users.login')}}"></a>
+            <a class="fas fa-cat cat_login cat_login_index" href="{{url_for('users.login')}}"></a>
         {% endif %}
         <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
         </div>
-        <div class="post_box_place">
+        <div class="post_box_place post_box_place_index">
           <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
             <b><i class="far fa-clock"></i>開始時間:</b></p>
         </div>
       </div>
-      <div class="event_date_box">
-        <p class="past_event_date">開催日<br>
+      <div class="event_date_box event_date_box_index">
+        <p class="past_event_date past_event_date_index">開催日<br>
         <span style="font-size:12px;">{{post.event_date.strftime('%Y年')}}</span><br>
         {{post.event_date.strftime('%m月%d日')}}</p>
       </div>

@@ -341,7 +341,7 @@ header{
   font-size:40px;
 }
 
-.post_box{
+.post_box_index{
   width:95%;
   margin: 20px auto;
   border: solid 1px gray;
@@ -364,7 +364,7 @@ header{
   color:black;
 }
 
-.index_image{
+.index_image_index{
   height:400px;
   width:100%;
 }
@@ -375,18 +375,18 @@ header{
   margin-top:5px;
 }
 
-.cat_like{
+.cat_like_index{
   color:purple;
   font-size:80px;
 }
 
-.cat_unlike{
+.cat_unlike_index{
   color:purple;
   opacity:0.3;
   font-size:80px;
 }
 
-.cat_login{
+.cat_login_index{
   color:purple;
   font-size:120px;
 }
@@ -401,7 +401,7 @@ header{
 }
 
 
-.event_date_box{
+.event_date_box_index{
   height:100px;
   width:100px;
   background:rgba(121,74,168,0.9);
@@ -411,7 +411,7 @@ header{
   margin-right:10px;
 }
 
-.event_date{
+.event_date_index{
   position:
   relative;left:20px;
   top:10px;
