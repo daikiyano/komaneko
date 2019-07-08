@@ -2,9 +2,7 @@
 {% block content %}
 
     <div class="container" style="color:#45494b;">
-      {% for postlike in postlikes.item%}
-          <p>{{postlike.id}}</p>
-      {% endfor %}
+
     <div align='center'>
       <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
 
@@ -33,6 +31,7 @@
         {% for error in form.username.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
+        <p>*半角英数字のみ有効です</p>
       </div>
       <div class="form-group">
        <h5><i class="far fa-envelope"></i>{{form.email.label(class='form-group')}}</h5>
@@ -48,39 +47,38 @@
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
       </div>
+      <div class="form-group">
+        <h5><i class="fas fa-users"></i>{{form.club_name.label(class='form-group')}}</h5>
+        {{form.club_name(placeholder="サークルやゼミの団体名を入力してください",class='form_input form-control')}}
+        {% for error in form.club_name.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+      </div>
       {% if not current_user.type == 1%}
         <div class="form-group">
           <h5><i class="fas fa-users"></i>{{form.name.label(class='form-group')}}</h5>
-          {{form.name(class='form_input form-control')}}
+          {{form.name(placeholder="団体の代表者を入力してください",class='form_input form-control')}}
           {% for error in form.name.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-          {% endfor %}
-        </div>
-
-        <div class="form-group">
-          <h5><i class="fas fa-users"></i>{{form.club_name.label(class='form-group')}}</h5>
-          {{form.club_name(class='form_input form-control')}}
-          {% for error in form.club_name.errors %}
             <span style="color: red;">{{ error }}</span><br>
           {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-info"></i>{{form.info.label(class='form-group')}}</h5>
-        {{form.info(placeholder="団体(サークル情報などを入力してください)",rows="15",class='form-control')}}
+        {{form.info(placeholder="団体の概要、活動内容、人数、活動頻度、活動場所、会費などを入力してください",rows="15",class='form-control')}}
         {% for error in form.info.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-info"></i>{{form.event.label(class='form-group')}}</h5>
-        {{form.event(placeholder="年間行事",rows="15",class='form-control')}}
+        {{form.event(placeholder="例)4月新歓活動,5月BBQ,6月大会出場など、月ごとに縦書きで記入すると見やすいですよ　",rows="15",class='form-control')}}
         {% for error in form.event.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.url.label(class='form-group')}}</h5>
-        {{form.url(placeholder="HP URL",class='form_input form-control')}}
+        {{form.url(placeholder="公式HPなどがあればURLを記入してください",class='form_input form-control')}}
         {% for error in form.url.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
@@ -91,6 +89,8 @@
         {% for error in form.twitter.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
+        <p>*@以降のユーザー名のみを入力してください。例)Komanek43918143</p>
+
         </div>
         <div class="form-group">
         <h5><i class="fab fa-facebook-square" style="color:#3B5998;"></i>{{form.facebook.label(class='form-group')}}</h5>
@@ -98,6 +98,8 @@
         {% for error in form.facebook.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
+        <p>*https://www.facebook.com/以降に記載されているURLのみを入力してください。例)Komanek43918143</p>
+
         </div>
         <div class="form-group">
         <h5><i class="fab fa-instagram"></i>{{form.instagram.label(class='form-group')}}<br></h5>
@@ -105,6 +107,7 @@
         {% for error in form.instagram.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
+        <p>*ユーザー名のみを入力してください。例)Komanek43918143</p>
         </div>
       {% endif %}
       <div class="form-group">
@@ -117,7 +120,7 @@
       </div>
       <div class="preview"></div>
       <div class="form-group">
-      {{form.submit(class='btn btn-primary')}}
+      {{form.submit(class='btn btn-outline-primary')}}
       </div>
     </form>
   </div>

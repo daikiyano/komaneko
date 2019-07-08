@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField,TextAreaField
+from wtforms import StringField,SubmitField,TextAreaField,HiddenField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired,Length
 from wtforms_components import TimeField
@@ -17,7 +17,13 @@ class BlogPostForm(FlaskForm):
     cost = StringField('参加費用',validators=[DataRequired("参加費用を入力してください"),Length(max=20)])
     contact = StringField('問い合わせ',validators=[DataRequired("問い合わせ先を入力してください"),Length(max=50)])
     image = FileField('イメージ画像',validators=[DataRequired("画像投稿は必須です"),FileAllowed(['jpg','png','jpeg','gif', 'ファイルの拡張子が不正です'])])
+    # image_hidden = HiddenField('イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif', 'ファイルの拡張子が不正です'])])
+
     submit = SubmitField("新規イベントを投稿する")
+
+    # def validate_image(self,image):
+    #     if image.data == "" &&
+    #         raise ValidationError('画像投稿は必須です')
 
 class CommentForm(FlaskForm):
     body = StringField('Add Comment',validators=[DataRequired()])

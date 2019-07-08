@@ -28,6 +28,8 @@
 
 .form_input{
   height:50px;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #EBEBEB;
 }
 
 .preview{
@@ -336,8 +338,8 @@ header{
 .post_box_index{
   width:98%;
   margin: 20px auto;
-  border: solid 1px gray;
-  box-shadow: 0 5px 5px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #EBEBEB;
 }
 
 
@@ -552,6 +554,8 @@ header{
  border-radius:50%;
  height:300px;
  width:300px;
+ box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
+ border: 1px solid #EBEBEB;
 }
 /* all.html */
 

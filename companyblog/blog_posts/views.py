@@ -145,6 +145,8 @@ def update(blog_post_id):
             images = test.format(app.config['AWS_BUCKET'],image)
             blog_post.event_image = images
 
+
+
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
         blog_post.event_date = form.event_date.data
@@ -156,6 +158,7 @@ def update(blog_post_id):
         blog_post.cost  = form.cost.data
         blog_post.contact  = form.contact.data
 
+
         db.session.commit()
         flash("投稿を更新しました。")
         return redirect(url_for('blog_posts.blog_post',blog_post_id=blog_post.id))
@@ -165,7 +168,6 @@ def update(blog_post_id):
         form.text.data = blog_post.text
         form.event_date.data = blog_post.event_date
         form.event_time.data = blog_post.event_time
-        form.image.data = blog_post.event_image
         form.organizer.data = blog_post.organizer
         form.place.data = blog_post.place
         form.entry.data = blog_post.entry
