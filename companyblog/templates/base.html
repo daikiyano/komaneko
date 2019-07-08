@@ -56,7 +56,7 @@
 
 
 {% for mess in get_flashed_messages() %}
-<div class="alert alert-success alert-dismissible fade show flash_color" style="background:rgba(60,76,222,0.8);" role='alert'>
+<div class="alert alert-success alert-dismissible fade show flash_color" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;" role='alert'>
   <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
     <span aria-hidden="true">&times;</span>
   </button>
@@ -71,7 +71,7 @@
    <!-- モーダルの設定 -->
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
-       <div style="color:#45494b; border: 3px solid #794aa8;" class="modal-content">
+       <div style="color:#45494b; box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);border: 1px solid #EBEBEB;" class="modal-content">
          <div class="modal-header">
            <h5 class="modal-title" id="exampleModalLabel"><b>ようこそKOMANEKOへ</b><br>イベントを作成するにはログインが必要です</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">

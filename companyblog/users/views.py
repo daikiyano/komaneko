@@ -143,7 +143,7 @@ def login():
                 db.session.add(user)
                 db.session.commit()
                 login_user(user)
-                flash('{}さん　KomaNecoへようこそ！'.format(user.username))
+                flash('{}さん　KOMANEKOへようこそ！'.format(user.username))
                 return redirect(url_for('core.index'))
                 next = request.args.get('next')
             if next == None or not next[0]=='/':
