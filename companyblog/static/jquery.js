@@ -21,6 +21,29 @@
 // });
 
 
+$(document).ready(function(){
+$('.bxslider').bxSlider({
+  auto: true,
+  captions:true,
+   touchEnabled:false,
+   speed: 500
+
+});
+
+});
+
+$(function(){
+  //ローディングエリアを取得
+  var loading = $("#loading");
+  //ローディングエリアを隠す処理
+  var isHidden = function(){
+    loading.fadeOut(1000); //1000ミリ秒かけてフェードアウト
+  };
+  //1000ミリ秒後にloadingFunc開始
+  setTimeout(isHidden,1000);
+});
+
+
 
 $(function(){
   //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録

@@ -1,0 +1,61 @@
+
+
+body{
+  height:100%;
+  background: #FAFAFA;
+  font-family: sans-serif;
+}
+
+/* base.html */
+.loading {
+position: fixed;
+z-index: 100;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background: #fff;
+}
+.loading__img {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+
+
+/* index.html */
+
+/* index.html */
+.site_box{
+  background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%);
+  opacity:0.9;
+}
+
+.intro_p{
+  color:white;
+}
+
+.event_top{
+  color:#45494b;
+}
+
+/* モーダル 画面 */
+.modal-content{
+  color:#45494b;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #EBEBEB;
+}
+
+footer{
+  height:70px;
+  background-color:#f0f0f0;
+  width:100%;
+  text-align:center;
+}
+
+footer p{
+  font-size:20px;
+  cursor:pointer;
+  color:#666;
+}

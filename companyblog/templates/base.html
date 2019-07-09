@@ -6,6 +6,7 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="jquery.qrcode.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pc.css') }}"media="(min-width: 1024px)">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tablet.css') }}"media="(min-width: 640px) and (max-width: 1023px)">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='phone.css') }}"media="(min-width: 320px) and (max-width: 639px)">
@@ -19,7 +20,13 @@
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   </head>
 
-  <body style="height:100%; background: #FAFAFA; font-family: sans-serif;" onload="initialize()">
+  <body onload="initialize()">
+    <!-- ローディング画面 -->
+    <section id="loading" class="loading">
+      <div class="loading__img">
+        <img src="https://goo.gl/8XdHq9">
+      </div>
+    </section>
     <header>
       <h1 class="header_logo"><a style="text-decoration:none; color:white;" href="{{url_for('core.index')}}"><img src="{{ url_for('static', filename='komazawa-app-logo.jpg') }}" style="position:absolute; top:-10px;height:60px; width:180px;" alt=""></a></h1>
       <div class="header_sp">
@@ -71,7 +78,7 @@
    <!-- モーダルの設定 -->
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
-       <div style="color:#45494b; box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);border: 1px solid #EBEBEB;" class="modal-content">
+       <div class="modal-content">
          <div class="modal-header">
            <h5 class="modal-title" id="exampleModalLabel"><b>ようこそKOMANEKOへ</b><br>イベントを作成するにはログインが必要です</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
@@ -96,8 +103,8 @@
     {% endblock %}
  </div>
 
-<footer style="height:70px; background-color:#f0f0f0; width:100%; text-align:center;">
-<p style=" font-size:20px; cursor:pointer; color:#666;" class="menu"><b>© 2019 KomaNeko</b></p>
+<footer>
+<p class="menu"><b>© 2019 KomaNeko</b></p>
 <ul class="footer_right">
   <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.term')}}"><b>利用規約</b></a></li>
   <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.privacy')}}"><b>プライバシーポリシー</b></a></li>

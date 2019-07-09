@@ -373,21 +373,27 @@ header{
 .cat_like_index{
   color:purple;
   font-size:80px;
+  transition: .3s;
 }
 
 .cat_unlike_index{
   color:purple;
   opacity:0.3;
   font-size:80px;
+  transition: .3s;
 }
 
 .cat_login_index{
   color:purple;
   opacity:0.3;
   font-size:80px;
+  transition: .3s;
 }
 
 .cat_login:hover{
+  color:purple;
+}
+.cat_login_index:hover{
   color:purple;
 }
 
