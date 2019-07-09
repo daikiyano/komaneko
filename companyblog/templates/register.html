@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {% block content %}
 <div class="form_box">
-  <h1>団体アカウント登録</h1>
+  <h1>アカウント登録(団体)</h1>
   <p><b>個人の方はこちら</b><a href="{{url_for('users.signup')}}">ユーザー登録(個人)</a></p>
   <form  method="POST">
     {{form.hidden_tag()}}

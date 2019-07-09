@@ -230,7 +230,9 @@ def user_posts(username):
     page = request.args.get('page',1,type=int)
     users = User.query.filter_by(username=username).first_or_404()
     # postlikes = User.query.filter(user.user_id == users.id)
-    # like = PostLike.query.filter_by(user_id==user.id)
+    # like = PostLike.query.filter(PostLike.user_id==users.id)
+    # blog = BlogPost.query.filter_by(id=like)
+
     blog_posts = BlogPost.query.filter_by(author=users).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
     return render_template('user_blog_posts.html',blog_posts=blog_posts,user=users,urls=request.base_url)
 

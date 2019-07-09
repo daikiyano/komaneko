@@ -285,7 +285,9 @@ header{
 
 .index_box{
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  
+
 }
 
 

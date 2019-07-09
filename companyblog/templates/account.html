@@ -111,8 +111,8 @@
         </div>
       {% endif %}
       <div class="form-group">
-        ※jpg、png,jpeg,gifのみアップロードできます。
-      {{form.picture.label(class='form-group')}}
+      <h5><i class="far fa-images"></i>{{form.picture.label(class='form-group')}}</h5>
+      ※jpg、png,jpeg,gifのみアップロードできます。<br>
       {{form.picture(class='form_input form-control')}}<br>
       {% for error in form.picture.errors %}
         <span style="color: red;">{{ error }}</span><br>
