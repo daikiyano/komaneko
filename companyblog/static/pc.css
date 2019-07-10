@@ -191,6 +191,8 @@ header{
   position:relative; top:40px;
 }
 
+
+
 .tab_list{
   /* background-color: #c1a7db; */
   display: inline-block;
@@ -286,7 +288,7 @@ header{
 .index_box{
   display: flex;
   flex-wrap: wrap;
-  
+
 
 }
 

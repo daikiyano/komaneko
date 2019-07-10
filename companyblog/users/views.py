@@ -173,6 +173,10 @@ def logout():
 @users.route('/account',methods=['GET','POST'])
 @login_required
 def account():
+
+
+    likes = PostLike.query.filter(PostLike.user_id==current_user.id)
+
     form = UpdateUserForm()
     if form.validate_on_submit():
 
@@ -223,18 +227,17 @@ def account():
 
 
     profile_image = url_for('static',filename='profile_pics/'+current_user.profile_image)
-    return render_template('account.html',profile_image=profile_image,form=form)
+    return render_template('account.html',profile_image=profile_image,form=form,likes=likes)
 
 @users.route("/<username>")
 def user_posts(username):
     page = request.args.get('page',1,type=int)
     users = User.query.filter_by(username=username).first_or_404()
-    # postlikes = User.query.filter(user.user_id == users.id)
-    # like = PostLike.query.filter(PostLike.user_id==users.id)
-    # blog = BlogPost.query.filter_by(id=like)
-
     blog_posts = BlogPost.query.filter_by(author=users).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=users,urls=request.base_url)
+    likes = PostLike.query.filter(PostLike.user_id==users.id)
+
+
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=users,urls=request.base_url,likes=likes)
 
 @users.route("/all")
 def all():

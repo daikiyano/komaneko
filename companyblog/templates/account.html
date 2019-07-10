@@ -2,13 +2,73 @@
 {% block content %}
 
     <div class="container" style="color:#45494b;">
-
-    <div align='center'>
       <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
 
         <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.user_posts',username=current_user.username)}}">プロフィールを確認する</a>
-
       </h4>
+
+<div class="tab_box tab_box_user">
+  <ul class="tab" style="display: inline-block;">
+    <li class="tab_list active"><b>ブックマーク</b></li>
+    <li class="tab_list"><b>アカウント情報</b></li>
+  </ul>
+</div>
+
+<div class="area">
+  <div class="test show">
+<div class="index_box">
+{% for like in likes %}
+{% if like.post %}
+  <div class="post_box_index" style="color:#45494b;">
+    <div class="post_top">
+      <h1 class="index_title"><b>{{like.post.title}}</b></h1>
+    </div>
+    <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=like.post.id)}}">
+      <img class="index_image_index" align='center' src="{{like.post.event_image}}"></a>
+      <div class="card_bottom_box">
+          <div class="like_box">
+            <div>
+            {% if current_user.is_authenticated %}
+            {% if current_user.has_liked_post(like.post) %}
+              <div class="button condition{{like.post.id}} fas fa-cat cat_like_index"  condition="unlike" post_id="{{like.post.id}}"></div>
+            {% else %}
+              <div  class="button condition{{like.post.id}} fas fa-cat cat_unlike_index" condition="like" post_id="{{like.post.id}}"></div>
+            {% endif %}
+          {% else %}
+              <a class="fas fa-cat cat_login_index" href="{{url_for('users.register')}}"></a>
+          {% endif %}
+          <span style="font-size:13px;" class="count{{like.post.id}} like_count">{{ like.post.likes.count()}}</span>
+          </div>
+          <div class="post_box_place_index">
+            <p><i class="fas fa-thumbtack"></i>場所:<b>{{like.post.place}}</b><br>
+              <b><i class="far fa-clock"></i>開始時間{{like.post.event_time.strftime('%H:%M')}}〜</b></p>
+          </div>
+        </div>
+        <div class="event_date_box_index">
+          <p class="event_date_index">開催日<br>
+          <span style="font-size:10px;">{{like.post.event_date.strftime('%Y年')}}</span><br>
+          {{like.post.event_date.strftime('%m月%d日')}}</p>
+        </div>
+      </div>
+      <div class="post_user_box">
+        <img align='center' class="user_image" src="{{like.post.author.profile_image}}">
+        <h6 style="text-align:right;">投稿者:{{like.post.author.club_name}}<br>
+          投稿日{{like.post.date.strftime('%Y年%m月%d日')}}</h6>
+      </div>
+    </div>
+
+  {% endif %}
+  {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+<div class="test">
+    <div style="padding-top:50px;" align='center'>
       <img class="account_image" src="{{current_user.profile_image}}" >
     </div>
     <form method="POST" action="" enctype="multipart/form-data">
@@ -111,7 +171,9 @@
         </div>
       {% endif %}
       <div class="form-group">
-      <h5><i class="far fa-images"></i>{{form.picture.label(class='form-group')}}</h5>
+      <h5><i class="far fa-images"></i>
+
+</h5>{{form.picture.label(class='form-group')}}
       ※jpg、png,jpeg,gifのみアップロードできます。<br>
       {{form.picture(class='form_input form-control')}}<br>
       {% for error in form.picture.errors %}
@@ -123,6 +185,8 @@
       {{form.submit(class='btn btn-outline-primary')}}
       </div>
     </form>
+    </div>
+  </div>
   </div>
 
   {% endblock %}
