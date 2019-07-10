@@ -72,12 +72,12 @@
               <div>
               {% if current_user.is_authenticated %}
               {% if current_user.has_liked_post(post) %}
-                <div class="button condition{{post.id}} fas fa-cat cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
+                <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
               {% else %}
-                <div  class="button condition{{post.id}} fas fa-cat cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
+                <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
               {% endif %}
             {% else %}
-                <a class="fas fa-cat cat_login_index" href="{{url_for('users.register')}}"></a>
+                <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
             {% endif %}
             <span style="font-size:13px;" class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
             </div>
@@ -120,12 +120,12 @@
             <div>
             {% if current_user.is_authenticated %}
             {% if current_user.has_liked_post(post) %}
-              <div class="button condition{{post.id}} fas fa-cat cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
+              <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
             {% else %}
-              <div  class="button condition{{post.id}} fas fa-cat cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
+              <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
             {% endif %}
           {% else %}
-              <a class="fas fa-cat cat_login_index" href="{{url_for('users.register')}}"></a>
+              <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
           {% endif %}
           <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
           </div>
