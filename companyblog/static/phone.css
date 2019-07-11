@@ -364,7 +364,7 @@ header{
   height:280px;
   width:100%;
 }
-.index_image_index{
+.index_image{
   height:280px;
   width:100%;
 }
@@ -528,6 +528,7 @@ header{
 .event_date_post{
   position: relative;
   left:0;
+  top:13px;
 }
 .details_title{
   border-bottom: 2px solid rgba(121,74,168,0.9);

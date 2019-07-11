@@ -25,9 +25,9 @@ class RegistrationForm(FlaskForm):
     club_name = StringField('団体名',validators=[DataRequired('団体名を入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int, default=0)
-    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
+    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字を含む8文字以上のパスワードを設定してください')])
     pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
-    recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField('不正利用防止のためのチェックをお願いします')
     submit = Submit = SubmitField('利用規約に同意して登録')
 
 
@@ -40,7 +40,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('このKOMANEKOIDは既に使われています')
 
     def validate_password(self, password):
-        if len(password.data) < 8:
+        if len(password.data) < 7:
             raise ValidationError('8文字以上のパスワードを設定してください')
 
 
@@ -54,9 +54,9 @@ class SignupForm(FlaskForm):
     club_name = StringField('ユーザー名',validators=[DataRequired('ユーザー名を入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'アカウントの種類',choices=[(1, '個人')],coerce=int, default=0)
-    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。')])
+    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字を含む8文字以上のパスワードを設定してください')])
     pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
-    recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField('不正利用防止のためチェックをお願いします')
     submit = Submit = SubmitField('利用規約に同意して登録')
 
 
@@ -69,7 +69,7 @@ class SignupForm(FlaskForm):
             raise ValidationError('このユーザー名は既に使われています')
 
     def validate_password(self, password):
-        if len(password.data) < 8:
+        if len(password.data) < 7:
             raise ValidationError('8文字以上のパスワードを設定してください')
 
 
@@ -83,7 +83,8 @@ class UpdateUserForm(FlaskForm):
     info = TextAreaField('詳細')
     event = TextAreaField('年間行事')
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
-    type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
+    type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
+
     url = StringField('団体HP URL')
     club_number = StringField('活動人数')
     club_place = StringField('活動場所')
