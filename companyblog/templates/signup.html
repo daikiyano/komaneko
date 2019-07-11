@@ -63,7 +63,7 @@
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
-    <p><a href="{{url_for('core.term')}}">KOMANEKO利用規約</a></p>
+    <p><a href="{{url_for('core.term')}}" target=”_blank”>KOMANEKO利用規約</a></p>
     {{form.submit(class="btn btn-outline-primary")}}<br>
     <p><b>すでにアカウントをお持ちですか？</b><a href="{{url_for('users.login')}}">ログイン</a><br>
     <b>団体アカウントを登録の方はこちら</b><a href="{{url_for('users.register')}}">アカウント登録(団体)</a></p>
@@ -77,9 +77,10 @@
   </div>
   <div class="site_intro_box">
   <div class="site_intro_box_inside">
-    <h2 class="intro_p" style="color:white;"><b>KOMANEKOは駒澤大学生向けのイベント共有サイトです。<br>
-    ワンキャンパスの強みを持つ駒澤大学には学年学部を超えた交流の場があり、ダイバシティな環境で様々な価値観や考えに触れることができます。
-    KomaNekoでは部活、サークル、ゼミまたは個人が開催するイベントを簡単に共有することができます。</b></h2>
+    <h2 class="intro_p" style="color:white;"><b>KOMANEKOは団体情報とイベントを共有できる駒澤大学生向けのメディアサイトです。<br>
+    KOMANEKOでは新入生に向けたサークルなどの団体情報を簡単に管理できるだけでなく、
+    部活、サークル、ゼミナールまたは個人が開催するイベントを簡単に共有し、Twitterなどでシェアすることができます。<br>
+    グーグルマップやQRコード、ブックマーク機能を活用して、団体とユーザーを繋ぐ役割を果たします。</b></h2>
   </div>
   </div>
 </div>

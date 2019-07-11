@@ -579,15 +579,15 @@ header{
 }
 
 .all_box{
-  width:80%;
+  width:90%;
   margin:50px auto;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .all_details{
-  padding: 10px 10px;
-  width:100%;
+  padding: 10px 30px;
+  width:33%;
 }
 
 .all_name{
