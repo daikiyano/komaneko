@@ -202,6 +202,9 @@ def account():
         current_user.info = form.info.data
         current_user.university = form.university.data
         current_user.url = form.url.data
+        current_user.club_number = form.club_number.data
+        current_user.club_place = form.club_place.data
+        current_user.club_active = form.club_active.data
         current_user.twitter = form.twitter.data
         current_user.facebook = form.facebook.data
         current_user.instagram = form.instagram.data
@@ -218,6 +221,9 @@ def account():
         form.email.data = current_user.email
         form.info.data = current_user.info
         form.url.data = current_user.url
+        form.club_number.data = current_user.club_number
+        form.club_place.data = current_user.club_place
+        form.club_active.data = current_user.club_active
         form.type.data = current_user.type
         form.twitter.data = current_user.twitter
         form.facebook.data = current_user.facebook

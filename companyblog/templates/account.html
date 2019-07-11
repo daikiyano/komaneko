@@ -144,6 +144,27 @@
         {% endfor %}
         </div>
         <div class="form-group">
+        <h5><i class="fas fa-calendar-day"></i>{{form.club_number.label(class='form-group')}}</h5>
+        {{form.club_number(placeholder="例)42人（男：22人 女：20人）",class='form_input form-control')}}
+        {% for error in form.club_number.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-calendar-day"></i>{{form.club_place.label(class='form-group')}}</h5>
+        {{form.club_place(placeholder="例)駒澤大学8-232",class='form_input form-control')}}
+        {% for error in form.club_place.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-calendar-day"></i>{{form.club_active.label(class='form-group')}}</h5>
+        {{form.club_active(placeholder="例)火曜日18〜20、土曜日16〜18",class='form_input form-control')}}
+        {% for error in form.club_active.errors %}
+          <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+        </div>
+        <div class="form-group">
           <h5><i class="fab fa-twitter" style="color:#00acee; "></i>{{form.twitter.label(class='form-group')}}</h5>
         <span>https://twitter.com</span>{{form.twitter(placeholder="/username/",class='form_input form-control')}}
         {% for error in form.twitter.errors %}

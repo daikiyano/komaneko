@@ -59,7 +59,7 @@
       </script>
 
     </div>
-    <h1 class="info_title"><i class="far fa-address-card"></i><b>団体情報</b><br></h1>
+    <h1 class="info_title"><i class="far fa-address-card"></i><b>概要・活動実績</b><br></h1>
     {% autoescape false %}
     {% if user.info %}
       <p class="user_info">{{user.info.replace('\n', '<br>')}}</p>
@@ -75,7 +75,50 @@
       <h2 class="no_user_info"><i class="far fa-flag"></i>投稿はありません</h2>
     {% endif %}
     {% endautoescape %}
-<h1 class="info_title"><i class="fas fa-map-pin"></i><b>団体HP:</b>{{user.url}}</h1>
+<h1 class="info_title"><i class="fas fa-map-pin"></i><b>団体情報</b></h1>
+<table class="table table-hover">
+  <!-- <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead> -->
+  <tbody>
+    <tr>
+      <th scope="row">公式ホームページ</th>
+      {% if user.url %}
+        <td>{{user.url}}</td>
+      {% else %}
+        <td>情報はありません</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope="row">活動人数</th>
+      {% if user.club_number %}
+        <td>{{user.club_number}}</td>
+      {% else %}
+        <td>情報はありません</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope="row">活動場所</th>
+      {% if user.club_place %}
+        <td colspan="2">{{user.club_place}}</td>
+      {% else %}
+        <td>情報はありません</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope="row">活動頻度</th>
+      {% if user.club_active %}
+        <td colspan="2">{{user.club_active}}</td>
+      {% else %}
+        <td>情報はありません</td>
+      {% endif %}
+    </tr>
+  </tbody>
+</table>
 
   <h1 class="info_title"><i class="far fa-address-book"></i><b>過去の投稿</b></h1>
   </div>
