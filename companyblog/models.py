@@ -51,6 +51,7 @@ class User(db.Model,UserMixin):
     club_number = db.Column(db.String(140),nullable=True)
     club_place = db.Column(db.String(140),nullable=True)
     club_active = db.Column(db.String(140),nullable=True)
+    money = db.Column(db.String(140),nullable=True)
     url = db.Column(db.String(140),nullable=True)
     university = db.Column(db.Integer,nullable=False)
     type = db.Column(db.Integer,nullable=False)

@@ -117,6 +117,14 @@
         <td>情報はありません</td>
       {% endif %}
     </tr>
+    <tr>
+      <th scope="row">会費</th>
+      {% if user.money %}
+        <td colspan="2">{{user.money}}</td>
+      {% else %}
+        <td>情報はありません</td>
+      {% endif %}
+    </tr>
   </tbody>
 </table>
 

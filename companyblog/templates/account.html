@@ -3,10 +3,61 @@
 
     <div class="container" style="color:#45494b;">
       <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
-      {% if current_user.type < 1 %}
+      {% if current_user.type > 1 %}
         <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.user_posts',username=current_user.username)}}">プロフィールを確認する</a>
       {% endif %}
     </h4>
+    {% for error in form.type.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.username.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.email.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.university.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.club_name.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.name.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.info.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.event.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.url.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.club_number.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.club_place.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.club_active.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.money.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.twitter.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.facebook.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.instagram.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
+    {% for error in form.picture.errors %}
+      <span style="color: red;">{{ error }}</span><br>
+    {% endfor %}
 
 <div class="tab_box tab_box_user">
   <ul class="tab" style="display: inline-block;">
@@ -30,32 +81,19 @@
           <p>団体カテゴリについては下記サイトをご参照ください。<br>
             <a target=”_blank” href="https://www.komazawa-u.ac.jp/campuslife/contact-information/student-part/extracurricular-activities-circle/introduction.html">駒澤大学サークル紹介</a>
           </p>
-          {% for error in form.type.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-          {% endfor %}
         </div>
-      
       <div class="form-group">
         <h5><i class="fas fa-users"></i>{{form.username.label(class='form-group')}}</h5>
         {{form.username(class='form_input form-control')}}
-        {% for error in form.username.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         <p>*半角英数字のみ有効です</p>
       </div>
       <div class="form-group">
        <h5><i class="far fa-envelope"></i>{{form.email.label(class='form-group')}}</h5>
       {{form.email(placeholder="komazawa@gmail.com",class='form_input form-control')}}
-      {% for error in form.email.errors %}
-        <span style="color: red;">{{ error }}</span><br>
-      {% endfor %}
       </div>
       <div class="form-group">
         <h5><i class="fas fa-university"></i>{{form.university.label(class='form-group')}}</h5>
         {{form.university(placeholder="所属大学",class='form_input form-control')}}
-        {% for error in form.university.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
       </div>
       <div class="form-group">
         {% if current_user.type == 1%}
@@ -64,84 +102,57 @@
           <h5><i class="fas fa-users"></i>{{form.club_name.label(class='form-group')}}</h5>
         {% endif %}
         {{form.club_name(placeholder="サークルやゼミの団体名を入力してください",class='form_input form-control')}}
-        {% for error in form.club_name.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
       </div>
       {% if not current_user.type == 1%}
         <div class="form-group">
           <h5><i class="fas fa-users"></i>{{form.name.label(class='form-group')}}</h5>
           {{form.name(placeholder="団体の代表者を入力してください",class='form_input form-control')}}
-          {% for error in form.name.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-          {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-info"></i>{{form.info.label(class='form-group')}}</h5>
         {{form.info(placeholder="団体の概要、活動内容、人数、活動頻度、活動場所、会費などを入力してください",rows="15",class='form-control')}}
-        {% for error in form.info.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-info"></i>{{form.event.label(class='form-group')}}</h5>
         {{form.event(placeholder="例)4月新歓活動,5月BBQ,6月大会出場など、月ごとに縦書きで記入すると見やすいですよ　",rows="15",class='form-control')}}
-        {% for error in form.event.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.url.label(class='form-group')}}</h5>
         {{form.url(placeholder="公式HPなどがあればURLを記入してください",class='form_input form-control')}}
-        {% for error in form.url.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.club_number.label(class='form-group')}}</h5>
         {{form.club_number(placeholder="例)42人（男：22人 女：20人）",class='form_input form-control')}}
-        {% for error in form.club_number.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.club_place.label(class='form-group')}}</h5>
         {{form.club_place(placeholder="例)駒澤大学8-232",class='form_input form-control')}}
-        {% for error in form.club_place.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.club_active.label(class='form-group')}}</h5>
         {{form.club_active(placeholder="例)火曜日18〜20、土曜日16〜18",class='form_input form-control')}}
-        {% for error in form.club_active.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
+
+        </div>
+        <div class="form-group">
+        <h5><i class="fas fa-calendar-day"></i>{{form.money.label(class='form-group')}}</h5>
+        {{form.money(placeholder="例)入会費1000円　会費月)1500円",class='form_input form-control')}}
         </div>
         <div class="form-group">
           <h5><i class="fab fa-twitter" style="color:#00acee; "></i>{{form.twitter.label(class='form-group')}}</h5>
         <span>https://twitter.com</span>{{form.twitter(placeholder="/username/",class='form_input form-control')}}
-        {% for error in form.twitter.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         <p>*@以降のユーザー名のみを入力してください。例)Komanek43918143</p>
 
         </div>
         <div class="form-group">
         <h5><i class="fab fa-facebook-square" style="color:#3B5998;"></i>{{form.facebook.label(class='form-group')}}</h5>
         <span>https://www.facebook.com</span>{{form.facebook(placeholder="/username/",class='form_input form-control')}}
-        {% for error in form.facebook.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
         <p>*https://www.facebook.com/以降に記載されているURLのみを入力してください。例)Komanek43918143</p>
 
         </div>
         <div class="form-group">
         <h5><i class="fab fa-instagram"></i>{{form.instagram.label(class='form-group')}}<br></h5>
         <span>https://www.instagram.com</span>{{form.instagram(placeholder="/username/",class='form_input form-control')}}
-        {% for error in form.instagram.errors %}
-          <span style="color: red;">{{ error }}</span><br>
-        {% endfor %}
+
         <p>*ユーザー名のみを入力してください。例)Komanek43918143</p>
         </div>
       {% endif %}
@@ -151,9 +162,6 @@
 </h5>{{form.picture.label(class='form-group')}}
       ※jpg、png,jpeg,gifのみアップロードできます。<br>
       {{form.picture(class='form_input form-control')}}<br>
-      {% for error in form.picture.errors %}
-        <span style="color: red;">{{ error }}</span><br>
-      {% endfor %}
       </div>
       <div class="preview"></div>
       <div class="form-group">

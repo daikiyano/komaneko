@@ -211,6 +211,7 @@ def account():
         current_user.club_number = form.club_number.data
         current_user.club_place = form.club_place.data
         current_user.club_active = form.club_active.data
+        current_user.money = form.money.data
         current_user.twitter = form.twitter.data
         current_user.facebook = form.facebook.data
         current_user.instagram = form.instagram.data
@@ -230,6 +231,7 @@ def account():
         form.club_number.data = current_user.club_number
         form.club_place.data = current_user.club_place
         form.club_active.data = current_user.club_active
+        form.money.data = current_user.money
         form.type.data = current_user.type
         form.twitter.data = current_user.twitter
         form.facebook.data = current_user.facebook
