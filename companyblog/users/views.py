@@ -180,6 +180,12 @@ def account():
     form = UpdateUserForm()
     if form.validate_on_submit():
 
+        if current_user.type == 1 and form.type.data != 1:
+            flash('個人から団体アカウントに変更はできません')
+            return redirect(url_for('users.account'))
+        elif current_user.type > 1 and form.type.data == 1:
+            flash('団体から個人に変更はできません')
+            return redirect(url_for('users.account'))
         if form.picture.data:
 
             image = add_profile_pic(form.picture.data)

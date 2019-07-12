@@ -3,6 +3,7 @@ from wtforms import StringField,PasswordField,SubmitField,TextAreaField,SelectFi
 from wtforms.validators import DataRequired,Email,EqualTo,Length,Regexp
 from wtforms import ValidationError
 from flask_wtf.file import FileField,FileAllowed
+from companyblog import db,login_manager,app
 from flask_login import current_user
 from companyblog.models import User
 
@@ -79,11 +80,12 @@ class UpdateUserForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired(),Email()])
     username = StringField('KOMANEKO ID(20文字以内)',validators=[DataRequired(),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
     name = StringField('代表者(10文字以内)',validators=[Length(max=10, message='10文字以内で入力してください')])
-    club_name = StringField('団体名(20文字以内)',validators=[Length(max=20, message='20文字以内で入力してください')])
+    type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
+    club_name = StringField('団体名(30文字以内)',validators=[Length(max=30, message='30文字以内で入力してください')])
     info = TextAreaField('詳細')
     event = TextAreaField('年間行事')
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
-    type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
+    # type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
 
     url = StringField('団体HP URL')
     club_number = StringField('活動人数(50文字以内)',validators=[Length(max=50, message='50文字以内で入力してください')])

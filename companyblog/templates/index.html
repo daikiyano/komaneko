@@ -12,101 +12,101 @@
 </head>
 {% extends 'base.html'%}
 {% block content %}
-<p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+  <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+  {% if not current_user.is_authenticated %}
+    <div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
+      <div class="site_title_box">
+        <img class="title_image" src="static/19462.jpg" alt="Komaneco_logo">
+      </div>
+      <div class="site_intro_box">
+      <div class="site_intro_box_inside">
+        <h2 class="intro_p" style="color:white;"><b>KOMANEKOは駒澤大学生向けの学内団体情報やイベントを共有できるサイトです。<br>
+        KOMANEKOでは新入生に向けたサークルなどの団体情報を簡単に管理できるだけでなく、
+        部活、サークル、ゼミナールまたは個人が開催するイベントを簡単に共有し、Twitterなどでシェアすることができます。<br>
+        グーグルマップやQRコード、ブックマーク機能を活用して、団体とユーザーを繋ぐ役割を果たします。</b></h2>
+        <a href="{{url_for('users.signup')}}" class="btn btn-outline-light">ユーザー登録(個人)</a>
+        <a href="{{url_for('users.register')}}" class="btn btn-outline-light">団体アカウントを登録</a>
+      </div>
+      </div>
+    </div>
+  {% endif %}
 
-{% if not current_user.is_authenticated %}
-<div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
-  <div class="site_title_box">
-    <img class="title_image" src="static/19462.jpg" alt="Komaneco_logo">
+  <!-- slide -->
+  <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>登録団体</b></h1>
+  <div class="width:100%; z-index:30;">
+    <div class="bxslider-wrap">
+      <ul class="bxslider">
+        {% for all in alls %}
+          <li><a href="{{url_for('users.user_posts',username=all.username)}}">
+            <img src="{{all.profile_image}}" title="{{all.club_name}}" class="slide_img">
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-  <div class="site_intro_box">
-  <div class="site_intro_box_inside">
-    <h2 class="intro_p" style="color:white;"><b>KOMANEKOは駒澤大学生向けの学内団体情報やイベントを共有できるサイトです。<br>
-    KOMANEKOでは新入生に向けたサークルなどの団体情報を簡単に管理できるだけでなく、
-    部活、サークル、ゼミナールまたは個人が開催するイベントを簡単に共有し、Twitterなどでシェアすることができます。<br>
-    グーグルマップやQRコード、ブックマーク機能を活用して、団体とユーザーを繋ぐ役割を果たします。</b></h2>
-    <a href="{{url_for('users.signup')}}" class="btn btn-outline-light">ユーザー登録(個人)</a>
-    <a href="{{url_for('users.register')}}" class="btn btn-outline-light">団体アカウントを登録</a>
-
-  </div>
-  </div>
-</div>
-{% endif %}
 
 
-<h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>登録団体</b></h1>
-<div class="width:100%; z-index:30;">
-  <div class="bxslider-wrap">
-    <ul class="bxslider">
-      {% for all in alls %}
-      <li><a href="{{url_for('users.user_posts',username=all.username)}}">
-        <img src="{{all.profile_image}}" title="{{all.club_name}}" class="slide_img">
-        </a>
-      </li>
-      {% endfor %}
+  <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-university"></i>イベント一覧</b></h1>
+
+  <!-- tab list -->
+  <div class="tab_box">
+    <ul class="tab" style="display: inline-block;">
+      <li class="tab_list active"><b>新着</b></li>
+      <li class="tab_list"><b>直近開催</b></li>
+      <li class="tab_list"><b>過去</b></li>
     </ul>
   </div>
-</div>
-
-
-<h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-university"></i>イベント一覧</b></h1>
-<div class="tab_box">
-  <ul class="tab" style="display: inline-block;">
-    <li class="tab_list active"><b>新着</b></li>
-    <li class="tab_list"><b>直近開催</b></li>
-    <li class="tab_list"><b>過去</b></li>
-  </ul>
-</div>
 
 
 <!-- 新着順 -->
-<div class="area">
-  <div class="test show">
-    <div class="index_box">
-    {% for post in all_posts.items %}
-      <div class="post_box_index" style="color:#45494b;">
-        <div class="post_top">
-          <h1 class="index_title"><b>{{post.title}}</b></h1>
-        </div>
-        <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
-        <img class="index_image_index" align='center' src="{{post.event_image}}"></a>
-        <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.club_name}}</a> -->
-        <div class="card_bottom_box">
-            <div class="like_box">
-              <div>
-              {% if current_user.is_authenticated %}
-              {% if current_user.has_liked_post(post) %}
-                <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
-              {% else %}
-                <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
-              {% endif %}
-            {% else %}
-                <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
-            {% endif %}
-            <span style="font-size:13px;" class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+  <div class="area">
+    <div class="test show">
+      <div class="index_box">
+        {% for post in all_posts.items %}
+          <div class="post_box_index" style="color:#45494b;">
+            <div class="post_top">
+              <h1 class="index_title"><b>{{post.title}}</b></h1>
             </div>
-            <div class="post_box_place_index">
-              <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
-                <b><i class="far fa-clock"></i>開始時間{{post.event_time.strftime('%H:%M')}}〜</b></p>
+            <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
+            <img class="index_image_index" align='center' src="{{post.event_image}}"></a>
+            <div class="card_bottom_box">
+              <div class="like_box">
+                <div>
+                  {% if current_user.is_authenticated %}
+                    {% if current_user.has_liked_post(post) %}
+                      <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
+                    {% else %}
+                      <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
+                    {% endif %}
+                  {% else %}
+                    <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
+                  {% endif %}
+                  <span style="font-size:13px;" class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+                </div>
+                <div class="post_box_place_index">
+                  <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
+                  <b><i class="far fa-clock"></i>開始時間{{post.event_time.strftime('%H:%M')}}〜</b></p>
+                </div>
+              </div>
+              <div class="event_date_box_index">
+                <p class="event_date_index">開催日<br>
+                <span style="font-size:10px;">{{post.event_date.strftime('%Y年')}}</span><br>
+                {{post.event_date.strftime('%m月%d日')}}</p>
+              </div>
+            </div>
+            <div class="post_user_box">
+              <img align='center' class="user_image" src="{{post.author.profile_image}}">
+              <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
+                投稿日{{post.date.strftime('%Y年%m月%d日')}}
+              </h6>
             </div>
           </div>
-          <div class="event_date_box_index">
-            <p class="event_date_index">開催日<br>
-            <span style="font-size:10px;">{{post.event_date.strftime('%Y年')}}</span><br>
-            {{post.event_date.strftime('%m月%d日')}}</p>
+        {% else %}
+          <div class="no_post_index" style="color:#45494b;">
+            <h3 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h3>
           </div>
-        </div>
-        <div class="post_user_box">
-          <img align='center' class="user_image" src="{{post.author.profile_image}}">
-          <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
-            投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
-        </div>
-      </div>
-      {% else %}
-      <div class="no_post_index" style="color:#45494b;">
-        <h3 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h3>
-      </div>
-      {% endfor %}
+        {% endfor %}
     </div>
   </div>
 

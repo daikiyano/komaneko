@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html style="height:100%;" lang="en" dir="ltr">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143739660-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-143739660-1');
+    </script>
     <meta charset="utf-8">
     <title>KOMANEKO</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -32,30 +40,25 @@
       <div class="header_sp">
         <ul class="header_left">
           {% if not current_user.is_authenticated %}
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.login')}}"><b>ログイン</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>アカウント登録(団体)</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
-
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.login')}}"><b>ログイン</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>アカウント登録(団体)</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
           {% endif %}
         </ul>
         <ul class="header_right">
           {% if current_user.is_authenticated %}
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.logout')}}"><b>ログアウト</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.logout')}}"><b>ログアウト</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.account')}}"><b>プロフィール</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
           {% endif %}
           {% if current_user.is_authenticated %}
-          <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベント作成</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
-
+            <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベント作成</b></a></li>
+            <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
           {% else %}
-          <li class="header_list header_event"><a style="text-decoration:none;"  class="menu" data-toggle="modal" data-target="#myModal"><b>イベント作成</b>
-
-          </a></li>
+            <li class="header_list header_event"><a style="text-decoration:none;"  class="menu" data-toggle="modal" data-target="#myModal"><b>イベント作成</b></a></li>
           {% endif %}
-
         </ul>
       </div>
       <div class="menu_btn">
@@ -66,56 +69,50 @@
     </header>
     <div class="header-padding"></div>
 
+    <!-- flash -->
+    {% for mess in get_flashed_messages() %}
+      <div class="alert alert-success alert-dismissible fade show flash_color" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;" role='alert'>
+        <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 style="color:white;" class="flash_font" id="copy_msg">{{ mess }}</h3>
+      </div>
+    {% endfor %}
 
-{% for mess in get_flashed_messages() %}
-<div class="alert alert-success alert-dismissible fade show flash_color" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;" role='alert'>
-  <button type="button" data-dismiss='alert' aria-label='close' class='fade close'>
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <h3 style="color:white;" class="flash_font" id="copy_msg">{{ mess }}</h3>
-</div>
-{% endfor %}
+    <div style="min-height: 100%;">
+     <!-- モーダルの設定 -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><b><i class="fas fa-cat"></i>ようこそKOMANEKOへ</b><br>イベントを作成するにはログインが必要です</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p><b>アカウントを既にお持ちの方</b><br>
+              <a href="{{url_for('users.login')}}" class="btn btn-outline-primary">ログイン</a></p>
+              <p><b>まだアカウント登録されていない方</b><br>
+                <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a>
+                <a href="{{url_for('users.register')}}" class="btn btn-outline-success">アカウント登録(団体)</a>
+             </p>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+      {% block content %}
+      {% endblock %}
+    </div>
 
-
-
-
- <div style="min-height: 100%;">
-   <!-- モーダルの設定 -->
-   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLabel"><b><i class="fas fa-cat"></i>ようこそKOMANEKOへ</b><br>イベントを作成するにはログインが必要です</h5>
-           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <div class="modal-body">
-           <p><b>アカウントを既にお持ちの方</b><br>
-           <a href="{{url_for('users.login')}}" class="btn btn-outline-primary">ログイン</a></p>
-           <p><b>まだアカウント登録されていない方</b><br>
-           <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a>
-           <a href="{{url_for('users.register')}}" class="btn btn-outline-success">団体アカウントを登録</a>
-           </p>
-         </div>
-         <!-- <div class="modal-footer">
-           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
-         </div>/.modal-footer -->
-       </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-   </div><!-- /.modal -->
-    {% block content %}
-    {% endblock %}
- </div>
-
-<footer>
-<p class="menu"><b>© 2019 KomaNeko</b></p>
-<ul class="footer_right">
-  <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.term')}}"><b>利用規約</b></a></li>
-  <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.privacy')}}"><b>プライバシーポリシー</b></a></li>
-  <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.member')}}"><b>運営メンバー</b></a></li>
-</ul>
-</footer>
-
+    <!-- footer -->
+    <footer>
+    <p class="menu"><b>© 2019 KomaNeko</b></p>
+    <ul class="footer_right">
+      <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.term')}}"><b>利用規約</b></a></li>
+      <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.privacy')}}"><b>プライバシーポリシー</b></a></li>
+      <li class="footer_list"><a style="text-decoration:none;" class="footer_menu" href="{{url_for('core.member')}}"><b>運営メンバー</b></a></li>
+    </ul>
+    </footer>
   </body>
 </html>
