@@ -36,7 +36,7 @@
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li>
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>アカウント登録(団体)</b></a></li>
           <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
 
           {% endif %}
         </ul>
@@ -48,7 +48,7 @@
           {% endif %}
           {% if current_user.is_authenticated %}
           <li class="header_list header_event"><a style="text-decoration:none;" class="menu" href="{{url_for('blog_posts.create_post')}}"><b>イベント作成</b></a></li>
-          <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
+          <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
 
           {% else %}
           <li class="header_list header_event"><a style="text-decoration:none;"  class="menu" data-toggle="modal" data-target="#myModal"><b>イベント作成</b>

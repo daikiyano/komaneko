@@ -30,6 +30,10 @@ header{
 
 }
 
+.site_top_btn{
+  display:none;
+}
+
 
 .header_left{
   display: inline;
@@ -276,7 +280,7 @@ header{
 }
 
 .intro_p{
-  font-size:23px;
+  font-size:19px;
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;

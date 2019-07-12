@@ -319,7 +319,7 @@ header{
 }
 
 .intro_p{
-  font-size:20px;
+  font-size:17px;
   margin: auto 0;
   padding: auto 0;
   padding-top:30px;
@@ -427,6 +427,7 @@ header{
 .post_user_box{
     display: flex;
     margin:20px auto;
+    justify-content: space-between;
     width:95%;
 }
 

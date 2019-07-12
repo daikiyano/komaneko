@@ -20,9 +20,9 @@ class LoginForm(FlaskForm):
             raise ValidationError('メールアドレスまたはパスワードが不正です')
 class RegistrationForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
-    username = StringField('KOMANEKO ID',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
-    name = StringField('代表者',validators=[DataRequired('代表者を入力してください')])
-    club_name = StringField('団体名',validators=[DataRequired('団体名を入力してください')])
+    username = StringField('KOMANEKO ID(15文字以内)',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です'),Length(max=15, message='15文字以内で入力してください')])
+    name = StringField('代表者(10文字以内)',validators=[DataRequired('代表者を入力してください'),Length(max=10, message='10文字以内で入力してください')])
+    club_name = StringField('団体名(20文字以内)',validators=[DataRequired('団体名を入力してください'),Length(max=20, message='20文字以内で入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字を含む8文字以上のパスワードを設定してください')])
@@ -49,9 +49,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('団体カテゴリを選択してください')
 
 class SignupForm(FlaskForm):
-    email = StringField('Eメールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
-    username = StringField('KOMANEKO ID',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
-    club_name = StringField('ユーザー名',validators=[DataRequired('ユーザー名を入力してください')])
+    email = StringField('メールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
+    username = StringField('KOMANEKO ID(15文字以内)',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です'),Length(max=15, message='15文字以内で入力してください')])
+    club_name = StringField('ユーザー名(20文字以内)',validators=[DataRequired('ユーザー名を入力してください'),Length(max=15, message='20文字以内で入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'アカウントの種類',choices=[(1, '個人')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字を含む8文字以上のパスワードを設定してください')])
@@ -76,22 +76,22 @@ class SignupForm(FlaskForm):
 
 
 class UpdateUserForm(FlaskForm):
-    email = StringField('Eメール',validators=[DataRequired(),Email()])
-    username = StringField('KOMANEKO ID',validators=[DataRequired(),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
-    name = StringField('代表者')
-    club_name = StringField('団体名')
+    email = StringField('メールアドレス',validators=[DataRequired(),Email()])
+    username = StringField('KOMANEKO ID(20文字以内)',validators=[DataRequired(),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です')])
+    name = StringField('代表者(10文字以内)',validators=[Length(max=10, message='10文字以内で入力してください')])
+    club_name = StringField('団体名(20文字以内)',validators=[Length(max=20, message='20文字以内で入力してください')])
     info = TextAreaField('詳細')
     event = TextAreaField('年間行事')
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)
 
     url = StringField('団体HP URL')
-    club_number = StringField('活動人数')
-    club_place = StringField('活動場所')
-    club_active = StringField('活動頻度')
-    twitter = StringField('twitterアカウント')
-    facebook = StringField('Facebookアカウント')
-    instagram = StringField('instagramアカウント')
+    club_number = StringField('活動人数(50文字以内)',validators=[Length(max=50, message='50文字以内で入力してください')])
+    club_place = StringField('活動場所(50文字以内)',validators=[Length(max=50, message='50文字以内で入力してください')])
+    club_active = StringField('活動頻度(50文字以内)',validators=[Length(max=50, message='50文字以内で入力してください')])
+    twitter = StringField('twitterアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
+    facebook = StringField('Facebookアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
+    instagram = StringField('instagramアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
     picture = FileField('団体イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif'])])
     submit = SubmitField('プロフィールを更新')
 

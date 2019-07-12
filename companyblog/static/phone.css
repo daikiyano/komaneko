@@ -320,7 +320,7 @@ header{
 }
 
 .intro_p{
-  font-size:20px;
+  font-size:17px;
   padding: 10px 10px;
   width:100%;
   line-height:35px;
@@ -448,7 +448,7 @@ header{
 
 .post_user_box{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin:5px auto;
     width:100%;
 }
@@ -542,7 +542,7 @@ header{
 
 .all_container{
   text-align:center;
-  width:95%;
+  width:100%;
   margin: 0 auto;
 }
 
@@ -555,13 +555,12 @@ header{
 }
 
 .all_details{
-  padding: 5px 5px;
+  padding: 5px 20px;
   width:50%;
-  padding: 0 20px;
 }
 
 .all_name{
-  font-size:15px;
+  font-size:13px;
 }
 
 .all_details img{
