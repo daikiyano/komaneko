@@ -25,7 +25,7 @@
 </div> -->
   <div class="post_details">
     <h1><i class="far fa-edit" style="text-align:center;"></i><b>{{post.title}}</b></h1>
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=駒澤大学,KOMANEKO,{{post.author.club_name}}" class="twitter-share-button" data-text="{{post.title}},{{post.text}}イベント日時:{{post.date.strftime('%Y年%m月%d日')}}開始時間:{{post.event_time.strftime('%H:%M')}}" data-hashtags="駒澤大学" data-hashtags="KOMANEKO" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=駒澤大学,KOMANEKO,{{post.author.club_name}}" class="twitter-share-button" data-text="{{post.title}},イベント日時:{{post.date.strftime('%Y年%m月%d日')}}{{post.event_time.strftime('%H:%M')}}" data-hashtags="駒澤大学" data-hashtags="KOMANEKO" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <h3 style="text-align:right;">投稿日:{{post.date.strftime('%Y年%m月%d日')}}</h3>
     <!-- <img align='center' class="user_image" src="{{post.author.profile_image}}"> -->
 
