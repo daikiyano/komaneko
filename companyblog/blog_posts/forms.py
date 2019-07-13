@@ -6,7 +6,7 @@ from wtforms_components import TimeField
 from flask_wtf.file import FileField,FileAllowed
 
 class BlogPostForm(FlaskForm):
-    title = StringField('イベント名(20文字以内)',validators=[DataRequired("イベント名を入力してください"),Length(max=20, message='20文字以内で入力してください')])
+    title = StringField('イベント名(30文字以内)',validators=[DataRequired("イベント名を入力してください"),Length(max=30, message='30文字以内で入力してください')])
     text = TextAreaField('イベント詳細',validators=[DataRequired("イベント詳細を入力してください")])
     event_date = DateField(u'イベント日時',validators=[DataRequired("イベント日時を登録してください")], format='%Y-%m-%d')
     event_time = TimeField('イベント開始時間', validators=[DataRequired("イベント開始時間を入力してください")], format='%H:%M')
