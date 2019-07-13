@@ -73,11 +73,22 @@ class SignupForm(FlaskForm):
         if len(password.data) < 7:
             raise ValidationError('8文字以上のパスワードを設定してください')
 
+class EmailForm(FlaskForm):
+    email = StringField('新しいメールアドレス', validators=[DataRequired(), Email(), Length(min=6, max=40)])
+    # password = PasswordField('確認のためのパスワード',validators=[DataRequired("パスワードを入力してください")])
+    submit = SubmitField('メールアドレスを変更')
+    def check_email(self,field):
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('このメールアドレスは既に登録されています')
+
+        # user = User.query.filter_by(email=current_user.email).first()
+        # if not user.check_password(self.password.data):
+        #     raise ValidationError('パスワードが正しくありません')
 
 
 
 class UpdateUserForm(FlaskForm):
-    email = StringField('メールアドレス',validators=[DataRequired(),Email()])
+    email = StringField('メールアドレス')
     username = StringField('KOMANEKO ID(20文字以内)',validators=[DataRequired(),Regexp(regex='^[a-zA-Z0-9]+$', message='KOMANEKO IDは半角英数字のみ有効です')])
     name = StringField('代表者(10文字以内)',validators=[Length(max=10, message='10文字以内で入力してください')])
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '(団体)体育会部'),(3, '(団体)文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/その他の団体')],coerce=int)

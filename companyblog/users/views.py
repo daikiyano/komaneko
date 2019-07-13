@@ -5,7 +5,7 @@ from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user,current_user,logout_user,login_required
 from companyblog import db,app
 from companyblog.models import User,BlogPost,PostLike
-from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,SignupForm
+from companyblog.users.forms import RegistrationForm,LoginForm,UpdateUserForm,SignupForm,EmailForm
 from companyblog.users.picture_handler import add_profile_pic
 from itsdangerous import URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError
@@ -52,6 +52,22 @@ def send_confirmation_email(user_email,username):
         confirm_url=confirm_url,username=username)
 
     send_email('KomaNeco仮登録完了メール', [user_email], html)
+
+
+def change_confirmation_email(user_email,username):
+    confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+    confirm_url = url_for(
+        'users.confirm_email',
+        token=confirm_serializer.dumps(user_email, salt='email-confirmation-salt'),
+        _external=True)
+
+    html = render_template(
+        'change_email_confirmation.html',
+        confirm_url=confirm_url,username=username)
+
+    send_email('KOMANEKOメールアドレス変更完了のお願い', [user_email], html)
+
 
 @users.before_request
 def before_request():
@@ -203,7 +219,7 @@ def account():
         current_user.name = form.name.data
         current_user.event = form.event.data
         current_user.club_name = form.club_name.data
-        current_user.email = form.email.data
+        current_user.email = current_user.email
         current_user.type = form.type.data
         current_user.info = form.info.data
         current_user.university = form.university.data
@@ -322,15 +338,39 @@ def confirm_email(token):
     user = User.query.filter_by(email=email).first()
 
     if user.email_confirmed:
-        flash('このアカウントは既に本登録完了していますので、ログインしてください。', 'info')
-        return redirect(url_for('users.login'))
+        flash('本登録をしていただきありがとうございます。')
+        return redirect(url_for('core.index'))
     else:
         user.email_confirmed = True
         user.email_confirmed_on = datetime.now()
         db.session.add(user)
         db.session.commit()
-        flash('ようこそ！KOMANEKO！メール認証ありがとうございます。')
+        login_user(user)
+        flash('ようこそ！KOMANEKOへ！メール認証ありがとうございます。')
 
     return redirect(url_for('core.index'))
 
-    # return render_template('user_blog_posts.html',username=username)
+@users.route('/email_change', methods=["GET", "POST"])
+@login_required
+def user_email_change():
+    form = EmailForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            try:
+                user_check = User.query.filter_by(email=form.email.data).first()
+                if user_check is None:
+                    user = current_user
+                    user.email = form.email.data
+                    user.email_confirmed = True
+                    user.email_confirmed_on = None
+                    user.email_confirmation_sent_on = datetime.now()
+                    db.session.add(user)
+                    db.session.commit()
+                    change_confirmation_email(user.email,user.username)
+                    flash('{}宛に確認メールをお送りいたしましたので、メールアドレスの変更を完了させてください'.format(user.email))
+                    return redirect(url_for('users.account'))
+                else:
+                    flash('')
+            except IntegrityError:
+                flash('このメールアドレスは既に登録されています')
+    return render_template('email_change.html', form=form)

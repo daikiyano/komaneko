@@ -89,7 +89,7 @@
       </div>
       <div class="form-group">
        <h5><i class="far fa-envelope"></i>{{form.email.label(class='form-group')}}</h5>
-      {{form.email(placeholder="komazawa@gmail.com",class='form_input form-control')}}
+       <p>{{current_user.email}}</p><a class='btn btn-outline-primary btn-sm' href="{{url_for('users.user_email_change')}}">メールアドレス変更</a>
       </div>
       <div class="form-group">
         <h5><i class="fas fa-university"></i>{{form.university.label(class='form-group')}}</h5>
