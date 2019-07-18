@@ -13,6 +13,10 @@
 {% extends 'base.html'%}
 {% block content %}
   <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
+  <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>サイトニュース</b></h1>
+  <p style="text-align:center; color:#45494b;">・07/13「KOMANEKO」ベータ版リリース！
+    <br>・07/14「KOMANEKO」Twitterアカウント開設<a href="https://twitter.com/Komanek43918143"><i class="fab fa-twitter" style="font-size:22px;color:#00acee; "></i></a><br>
+  </p>
   {% if not current_user.is_authenticated %}
     <div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
       <div class="site_title_box">
