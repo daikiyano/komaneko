@@ -9,7 +9,7 @@ class BlogPostForm(FlaskForm):
     title = StringField('イベント名(30文字以内)',validators=[DataRequired("イベント名を入力してください"),Length(max=30, message='30文字以内で入力してください')])
     text = TextAreaField('イベント詳細',validators=[DataRequired("イベント詳細を入力してください")])
     event_date = DateField(u'イベント日時',validators=[DataRequired("イベント日時を登録してください")], format='%Y-%m-%d')
-    event_time = TimeField('イベント開始時間', validators=[DataRequired("イベント開始時間を入力してください")], format='%H:%M')
+    event_time = TimeField('イベント開始時間', validators=[DataRequired("イベント開始時間を入力してください")])
     organizer = StringField('主催者(20文字以内)',validators=[DataRequired("主催者を入力してください"),Length(max=20, message='20文字以内で入力してください')])
     place = StringField('場所(20文字以内)',validators=[DataRequired("場所を入力してください"),Length(max=20, message='20文字以内で入力してください')])
     entry = TextAreaField('参加条件',validators=[DataRequired("参加条件を入力してください")])
