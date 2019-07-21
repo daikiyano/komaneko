@@ -1,4 +1,6 @@
 
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -43,6 +45,7 @@
        });
        //}
     }
+
 </script>
 
 {% extends "base.html" %}
@@ -78,11 +81,17 @@
     </div>
     <div class="form-group" style="width:50%;">
       <h5><i class="far fa-calendar-alt"></i>{{form.event_time.label(class="form-control-label")}}</h5>
-      {{form.event_time(placeholder="09:00",class="form_input form-control form-contorl-lg")}}
+      {{form.event_time(placeholder="09:00",class="form_input form-control form-contorl-lg timepicker")}}
       {% for error in form.event_time.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
+    <!-- timepicker -->
+    <script type="text/javascript">
+      $(function(){
+          $('.timepicker').wickedpicker({now: "09:00",twentyFour: true, timeSeparator: ':'});
+      });
+    </script>
     <div class="form-group">
       <h5><i class="far fa-user"></i>{{form.organizer.label(class="form-control-label")}}</h5>
       {{form.organizer(placeholder="サークルやゼミなどは団体名。個人の場合は氏名を入力してください。",class="form_input form-control form-contorl-lg")}}
@@ -92,11 +101,12 @@
     </div>
     <div class="form-group">
       <h5><i class="fas fa-thumbtack"></i>{{form.place.label(class="form-control-label")}}</h5>
-        {{form.place(placeholder="大学の教場、施設名や住所等を入力してください。",class="form_input form-control form-contorl-lg",id="place")}}
+        {{form.place(placeholder="大学の教場、施設名や住所等を入力してください。",class="form_input form-control form-contorl-lg",id="place",value="駒澤大学")}}
         {% for error in form.place.errors %}
           <span style="color: red;">{{ error }}</span><br>
         {% endfor %}
         <button type="button" class="btn btn-outline-primary" onclick="search()">検索</button>
+        <p>検索ボタンを押すとマップに結果が反映されます</p>
     </div>
     <div id="map_canvas" style="margin: 30px 0;width:100%; height:50%"></div>
     <div class="form-group">
@@ -142,6 +152,7 @@
       <img src="{{post_image}}" class="preview id="remove_image">
     {% endif %}
     </div>
+
 
     <div class="form-group" style="width:100%;">
       {{form.submit(class="btn btn-outline-primary btn",style="margin-bottom:30px;")}}
