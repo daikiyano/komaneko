@@ -27,7 +27,7 @@ def index():
     #直近開催イベント
     blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.asc()).paginate(page=page,per_page=5)
 
-    past_posts = BlogPost.query.filter(BlogPost.event_date <= datetime.utcnow()).order_by(BlogPost.event_date.asc())
+    past_posts = BlogPost.query.filter(BlogPost.event_date <= datetime.utcnow()).order_by(BlogPost.event_date.desc())
 
     alls = User.query.filter(User.type > 1)
     return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url,alls=alls,past_posts=past_posts)
