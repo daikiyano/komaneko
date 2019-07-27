@@ -100,7 +100,9 @@
               </div>
             </div>
             <div class="post_user_box">
-              <img align='center' class="user_image" src="{{post.author.profile_image}}">
+              <a href="{{url_for('users.user_posts',username=post.author.username)}}">
+                <img align='center' class="user_image" src="{{post.author.profile_image}}">
+              </a>
               <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
                 投稿日{{post.date.strftime('%Y年%m月%d日')}}
               </h6>
@@ -118,49 +120,51 @@
   <!-- 　直近開催順 -->
   <div class="test">
     <div class="index_box">
-    {% for post in blog_posts.items %}
-    <div class="post_box_index" style="color:#45494b;">
-      <div class="post_top">
-        <h1 class="index_title"><b>{{post.title}}</b></h1>
-      </div>
-      <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
-      <img class="index_image_index" align='center' src="{{post.event_image}}"></a>
-      <!-- <a href="{{url_for('users.user_posts',username=post.author.username)}}">投稿者(団体名): {{post.author.club_name}}</a> -->
-      <div class="card_bottom_box">
-          <div class="like_box">
-            <div>
-            {% if current_user.is_authenticated %}
-            {% if current_user.has_liked_post(post) %}
-              <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
-            {% else %}
-              <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
-            {% endif %}
-          {% else %}
-              <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
-          {% endif %}
-          <span class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+      {% for post in all_posts.items %}
+        <div class="post_box_index" style="color:#45494b;">
+          <div class="post_top">
+            <h1 class="index_title"><b>{{post.title}}</b></h1>
           </div>
-          <div class="post_box_place_index">
-            <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
-              <b><i class="far fa-clock"></i>開始時間:{{post.event_time.strftime('%H:%M')}}〜</b></p>
+          <a class='card_title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">
+          <img class="index_image_index" align='center' src="{{post.event_image}}"></a>
+          <div class="card_bottom_box">
+            <div class="like_box">
+              <div>
+                {% if current_user.is_authenticated %}
+                  {% if current_user.has_liked_post(post) %}
+                    <div class="button condition{{post.id}} fas fa-paw cat_like_index"  condition="unlike" post_id="{{post.id}}"></div>
+                  {% else %}
+                    <div  class="button condition{{post.id}} fas fa-paw cat_unlike_index" condition="like" post_id="{{post.id}}"></div>
+                  {% endif %}
+                {% else %}
+                  <a class="fas fa-paw cat_login_index" href="{{url_for('users.register')}}"></a>
+                {% endif %}
+                <span style="font-size:13px;" class="count{{post.id}} like_count">{{ post.likes.count()}}</span>
+              </div>
+              <div class="post_box_place_index">
+                <p><i class="fas fa-thumbtack"></i>場所:<b>{{post.place}}</b><br>
+                <b><i class="far fa-clock"></i>開始時間{{post.event_time.strftime('%H:%M')}}〜</b></p>
+              </div>
+            </div>
+            <div class="event_date_box_index">
+              <p class="event_date_index">開催日<br>
+              <span style="font-size:10px;">{{post.event_date.strftime('%Y年')}}</span><br>
+              {{post.event_date.strftime('%m月%d日')}}</p>
+            </div>
+          </div>
+          <div class="post_user_box">
+            <a href="{{url_for('users.user_posts',username=post.author.username)}}">
+              <img align='center' class="user_image" src="{{post.author.profile_image}}">
+            </a>
+            <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
+              投稿日{{post.date.strftime('%Y年%m月%d日')}}
+            </h6>
           </div>
         </div>
-        <div class="event_date_box_index">
-          <p class="event_date_index">開催日<br>
-          <span style="font-size:10px;">{{post.event_date.strftime('%Y年')}}</span><br>
-          {{post.event_date.strftime('%m月%d日')}}</p>
-        </div>
-      </div>
-      <div class="post_user_box">
-        <img align='center' class="user_image" src="{{post.author.profile_image}}">
-        <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
-          投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
-      </div>
-    </div>
       {% else %}
-      <div class="no_post_index" style="color:#45494b;">
-        <h3 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h3>
-      </div>
+        <div class="no_post_index" style="color:#45494b;">
+          <h3 class="no_post"><i class="far fa-flag"></i>新着の投稿はありません</h3>
+        </div>
       {% endfor %}
   </div>
   </div>
@@ -200,7 +204,9 @@
           </div>
         </div>
         <div class="post_user_box">
-          <img align='center' class="user_image" src="{{post.author.profile_image}}">
+          <a href="{{url_for('users.user_posts',username=post.author.username)}}">
+            <img align='center' class="user_image" src="{{post.author.profile_image}}">
+          </a>
           <h6 style="text-align:right;">投稿者:{{post.author.club_name}}<br>
             投稿日{{post.date.strftime('%Y年%m月%d日')}}</h6>
         </div>
