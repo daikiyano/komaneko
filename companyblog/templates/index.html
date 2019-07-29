@@ -14,6 +14,9 @@
 {% block content %}
   <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
   <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>サイトニュース</b></h1>
+  {% if current_user.is_authenticated and current_user.username == "daikiyano" %}
+      <a href="{{url}}admin" class="btn btn-outline-primary">admin page</a>
+  {% endif %}
   <p style="text-align:center; color:#45494b;">・07/13「KOMANEKO」ベータ版リリース！
     <br>・07/14「KOMANEKO」Twitterアカウント開設<a href="https://twitter.com/Komanek43918143"><i class="fab fa-twitter" style="font-size:22px;color:#00acee;"></i></a><br>
   </p>
