@@ -47,25 +47,38 @@ def create_post():
 
     if form.validate_on_submit():
 
-
-        image = add_image_pic(form.image.data)
-        s3_resource = boto3.resource('s3')
-        my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
-        my_bucket.Object(image).put(Body=form.image.data)
-        test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
-        images = test.format(image)
-        blog_post = BlogPost(title=form.title.data,
-                            event_date=form.event_date.data,
-                            event_time=form.event_time.data,
-                            text=form.text.data,
-                            organizer=form.organizer.data,
-                            place=form.place.data,
-                            entry=form.entry.data,
-                            way=form.way.data,
-                            cost=form.cost.data,
-                            contact=form.contact.data,
-                            user_id=current_user.id,
-                            event_image=images)
+        if form.image.data:
+            image = add_image_pic(form.image.data)
+            s3_resource = boto3.resource('s3')
+            my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+            my_bucket.Object(image).put(Body=form.image.data)
+            test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
+            images = test.format(image)
+            blog_post = BlogPost(title=form.title.data,
+                                event_date=form.event_date.data,
+                                event_time=form.event_time.data,
+                                text=form.text.data,
+                                organizer=form.organizer.data,
+                                place=form.place.data,
+                                entry=form.entry.data,
+                                way=form.way.data,
+                                cost=form.cost.data,
+                                contact=form.contact.data,
+                                user_id=current_user.id,
+                                event_image=images)
+        else:
+            blog_post = BlogPost(title=form.title.data,
+                                event_date=form.event_date.data,
+                                event_time=form.event_time.data,
+                                text=form.text.data,
+                                organizer=form.organizer.data,
+                                place=form.place.data,
+                                entry=form.entry.data,
+                                way=form.way.data,
+                                cost=form.cost.data,
+                                contact=form.contact.data,
+                                user_id=current_user.id,
+                                event_image='https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png')
 
 
 
@@ -174,8 +187,9 @@ def update(blog_post_id):
         form.way.data = blog_post.way
         form.cost.data = blog_post.cost
         form.contact.data = blog_post.contact
+       
 
-    post_image = blog_post.event_image
+        post_image = blog_post.event_image
 
 
     return render_template('create_post.html',title="Updating",form=form,post_image=post_image)

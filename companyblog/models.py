@@ -33,7 +33,9 @@ followers = db.Table(
     )
 
 
-
+###################################################
+#######User Model################################
+###################################################
 class User(db.Model,UserMixin):
 
     __tablename__ = 'users'
@@ -131,7 +133,9 @@ class User(db.Model,UserMixin):
         PostLike.user_id == self.id,
         PostLike.post_id == blog_post.id).count() > 0
 
-
+###################################################
+#######BlogPost Model################################
+###################################################
 
 class BlogPost(db.Model):
     users = db.relationship(User)
@@ -172,6 +176,12 @@ class BlogPost(db.Model):
         def __repr__(self):
             return f"Post ID: {self.id} --Date:{self.date} --- {self.title}"
 
+
+
+###################################################
+#######Like Model################################
+###################################################
+
 class PostLike(db.Model):
     __tablename__ = 'post_like'
     id = db.Column(db.Integer,primary_key=True)
@@ -204,6 +214,12 @@ def init():
     db.create_all()
 
 from companyblog.models import User,BlogPost
+
+
+
+##################################################
+#######ADMIN PAGE################################
+###################################################
 
 class MyModelView(ModelView):
     def is_accessible(self):

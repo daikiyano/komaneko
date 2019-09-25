@@ -8,6 +8,13 @@ from flask_login import current_user
 from companyblog.models import User
 
 
+####################################
+##########Form for User ############
+####################################
+
+####################################
+##########Login Form################
+####################################
 class LoginForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired("メールアドレスを入力してください"),Email('このメールアドレスは無効です')])
     password = PasswordField('パスワード',validators=[DataRequired("パスワードを入力してください")])
@@ -19,11 +26,16 @@ class LoginForm(FlaskForm):
             raise ValidationError('メールアドレスまたはパスワードが不正です')
         if not user.check_password(self.password.data):
             raise ValidationError('メールアドレスまたはパスワードが不正です')
+
+
+########################################################
+##########Registration Form For Group user#########
+######################################################
 class RegistrationForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
     username = StringField('KOMANEKO ID(15文字以内)',validators=[DataRequired('KOMANEKO IDを入力してください'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字のみ有効です'),Length(max=15, message='15文字以内で入力してください')])
-    name = StringField('代表者(10文字以内)',validators=[DataRequired('代表者を入力してください'),Length(max=10, message='10文字以内で入力してください')])
-    club_name = StringField('団体名(20文字以内)',validators=[DataRequired('団体名を入力してください'),Length(max=20, message='20文字以内で入力してください')])
+    name = StringField('代表者',validators=[DataRequired('代表者を入力してください')])
+    club_name = StringField('団体名(30文字以内)',validators=[DataRequired('団体名を入力してください'),Length(max=30, message='30文字以内で入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください'),(2, '体育会部'),(3, '文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/研究室'),(6, 'その他の団体')],coerce=int, default=0)
     password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字で8文字以上のパスワードを設定してください')])
@@ -32,13 +44,17 @@ class RegistrationForm(FlaskForm):
     submit = Submit = SubmitField('利用規約に同意して登録')
 
 
+    #########Validation for Email#################
     def validate_email(self,email):
         if User.query.filter_by(email=email.data).first():
             raise ValidationError('このメールアドレスアドレスは既に登録されています')
 
+    #########Validation for Username#################
     def validate_username(self,username):
         if User.query.filter_by(username=username.data).first():
             raise ValidationError('このKOMANEKOIDは既に使われています')
+
+    #########Validation for Password#################
 
     def validate_password(self, password):
         if len(password.data) < 7:
@@ -48,6 +64,12 @@ class RegistrationForm(FlaskForm):
     def validate_type(self,type):
         if type.data == 0:
             raise ValidationError('団体カテゴリを選択してください')
+
+
+
+########################################################
+##########Registration Form For individual user#########
+######################################################
 
 class SignupForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired('メールアドレスを入力してください'),Email('このメールアドレスは無効です')])
@@ -87,10 +109,15 @@ class EmailForm(FlaskForm):
 
 
 
+
+
+##############################################
+##########Form For Update Information#########
+##############################################
 class UpdateUserForm(FlaskForm):
     email = StringField('メールアドレス')
     username = StringField('KOMANEKO ID(20文字以内)',validators=[DataRequired(),Regexp(regex='^[a-zA-Z0-9]+$', message='KOMANEKO IDは半角英数字のみ有効です')])
-    name = StringField('代表者(10文字以内)',validators=[Length(max=10, message='10文字以内で入力してください')])
+    name = StringField('代表者')
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください。'),(1, '個人'),(2, '体育会部'),(3, '文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/研究室'),(6, 'その他の団体')],coerce=int)
     club_name = StringField('団体名(30文字以内)',validators=[Length(max=30, message='30文字以内で入力してください')])
     info = TextAreaField('詳細')

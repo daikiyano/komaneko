@@ -370,7 +370,7 @@ def user_email_change():
                     flash('{}宛に確認メールをお送りいたしましたので、メールアドレスの変更を完了させてください'.format(user.email))
                     return redirect(url_for('users.account'))
                 else:
-                    flash('')
+                    flash('このメールアドレスは既に登録されています')
             except IntegrityError:
                 flash('このメールアドレスは既に登録されています')
     return render_template('email_change.html', form=form)

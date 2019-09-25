@@ -4,6 +4,12 @@ from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir,'.env'))
 
+
+
+###############################################
+#############Configuration for all Stage#######
+###############################################
+
 class Config(object):
     DEBUG=False
     SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -23,17 +29,23 @@ class Config(object):
     RECAPTCHA_USE_SSL = False
 
 
-
+#############Configuration for Development##################
 class DevelopmentConfig(Config):
     DEVELOPMENT = False
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
     AWS_BUCKET = os.environ.get("AWS_BUCKET")
 
+
+#############Configuration for Staging##################
+
 class StagingConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     AWS_BUCKET = os.environ.get("AWS_BUCKET")
+
+
+#############Configuration for Production##################
 
 class ProductionConfig(Config):
     DEBUG = False

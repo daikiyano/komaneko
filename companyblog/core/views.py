@@ -8,10 +8,15 @@ from companyblog import db
 
 core = Blueprint('core',__name__)
 
+
+###################################################
+#######Top Page ################################
+###################################################
 @core.route('/',methods=['GET','POST'])
 
 def index():
-
+    
+#############ajax test########################
     if request.method == "POST":
         firstname = request.form['firstname']
         lastname = request.form['lastname']
@@ -31,6 +36,15 @@ def index():
 
     alls = User.query.filter(User.type > 1)
     return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url,alls=alls,past_posts=past_posts)
+
+
+###################################################
+
+
+
+###################################################
+#######API with AJAX For Like Button ##############
+###################################################
 
 @core.route('/condition',methods=['GET','POST'])
 @login_required
@@ -52,9 +66,6 @@ def like_action():
 
 
 
-
-
-
 # @core.route('/like/<int:blog_post_id>/<action>')
 # @login_required
 #
@@ -68,6 +79,12 @@ def like_action():
 #         current_user.unlike_post(blog_post)
 #         db.session.commit()
 #     return redirect(request.referrer)
+
+
+
+###################################################
+#######Static Page ################################
+###################################################
 
 
 @core.route('/term')
