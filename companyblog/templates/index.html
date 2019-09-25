@@ -38,12 +38,28 @@
     </div>
   {% endif %}
 
+  
+  
   <!-- slide -->
   <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>登録団体</b>
      <a href="{{url_for('users.all')}}" class="btn btn-outline-primary">登録団体一覧</a>
-</h1>
-  <div class="width:100%; z-index:30;">
-    <div class="bxslider-wrap">
+  </h1>
+  
+  <div class="slide">
+      <div class="slider">
+        {% for all in alls %}
+          <div class="slide_box">
+            <a href="{{url_for('users.user_posts',username=all.username)}}">
+              <img src="{{all.profile_image}}" alt="image01">
+            </a>
+            <div class="slide_info">
+                <h1>{{all.club_name}}</h1>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    <!-- <div class="bxslider-wrap">
       <ul class="bxslider">
         {% for all in alls %}
           <li><a href="{{url_for('users.user_posts',username=all.username)}}">
@@ -52,7 +68,7 @@
           </li>
         {% endfor %}
       </ul>
-    </div>
+    </div> -->
   </div>
 
 

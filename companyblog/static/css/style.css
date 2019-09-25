@@ -1,5 +1,11 @@
 
 
+.slider { margin: 0 0 50px;}
+.slider img { width: 100%; height: auto;}
+.slider .slick-next { right: 20px; z-index: 99;}
+.slider .slick-prev { left: 15px; z-index: 100;}
+
+
 body{
   height:100%;
   background: #FAFAFA;

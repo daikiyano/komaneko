@@ -163,28 +163,43 @@ header{
 }
 
 
-/* スライドショー */
 
-.bxslider-wrap{
 
-  width:50%;
-  margin: 0
-  auto;
+
+/* slide */
+.slide{
+  width:100%; 
+  height:570px;
 }
 
-.slide_img{
+.slider{
+  margin: 0 auto; 
+  height:500px; 
+  width:75%; 
   box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
   border: 1px solid #EBEBEB;
-  width:100%;
+}
+
+.slide_box{
+  border: 4px solid #EBEBEB;
+}
+
+.slide_box img{
   height:450px;
 }
 
-/* .slide_img:hover{
-  background-color:red;
-} */
+.slide_info{
+  position:absolute; 
+  top:460px; 
+  width:100%;     
 
+}
 
-
+.slide_info h1{
+  color:#45494b;
+  width:100%;
+  font-size:21px;
+}
 /* index.page */
 
 
