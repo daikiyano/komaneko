@@ -19,18 +19,18 @@
 //zz
 //   });
 // });
-
-
 $(document).ready(function(){
-$('.bxslider').bxSlider({
-  auto: true,
-  captions:true,
-   touchEnabled:false,
-   speed: 500
-
+$('.slider').slick({
+  infinite: true, //スライドのループ有効化
+        dots:true, //ドットのナビゲーションを表示
+        centerMode: true, //要素を中央寄せ
+        centerPadding:'16%', //両サイドの見えている部分のサイズ
+        autoplay:true, //自動再生
+        autoplaySpeed:1400,
 });
 
 });
+
 
 $(function(){
   //ローディングエリアを取得
