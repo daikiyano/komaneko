@@ -27,7 +27,7 @@ header{
   position: fixed;
   top:0;
   z-index: 24;
-
+  box-shadow: 4px 4px 10px;
 }
 
 .site_top_btn{
