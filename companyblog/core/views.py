@@ -2,7 +2,11 @@ from flask import Flask, render_template,url_for,flash,redirect,request,Blueprin
 from datetime import datetime
 from companyblog.models import BlogPost,PostLike,User
 from flask_login import current_user,login_required
-from companyblog import db
+from companyblog import db,app
+
+import json
+import googlemaps
+import pprint # list型やdict型を見やすくprintするライブラリ
 
 
 
@@ -15,6 +19,41 @@ core = Blueprint('core',__name__)
 @core.route('/',methods=['GET','POST'])
 
 def index():
+
+    key = 'AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94' # 上記で作成したAPIキーを入れる
+    client = googlemaps.Client(key) #インスタンス生成
+
+    geocode_result = client.geocode('駒澤大学') # 位置情報を検索
+    loc = geocode_result[0]['geometry']['location'] # 軽度・緯度の情報のみ取り出す
+    place_result = client.places_nearby(location=loc, radius=1000, type='cafe') #半径200m以内のレストランの情報を取得
+    # pprint.pprint(place_result)
+    results = []
+    photos = []
+
+    for i,place in enumerate(place_result['results']):
+        my_place_id =place['place_id']
+        my_fields = ['name','type','url','photo','vicinity','website','international_phone_number','rating']
+       
+        place_details = client.place(place_id = my_place_id,fields = my_fields,language='ja')
+        
+        # pprint.pprint(place_details)
+        results.append(place_details)
+        # pprint.pprint(place_details['result']['name'])
+        # pprint.pprint(place_details['result']['url'])
+        result = place_details['result']
+        pprint.pprint(result)
+
+        if not 'photos' in result.keys():
+            photo = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png'
+            photos.append(photo)
+        else:
+            p_value = result['photos'][0]
+            photos_photo_reference = p_value['photo_reference']
+            pprint.pprint(photos_photo_reference)
+            photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key=AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94'.format(photos_photo_reference)
+            photos.append(photo)
+        if i == 7:
+            break;
     
 #############ajax test########################
     if request.method == "POST":
@@ -35,10 +74,11 @@ def index():
     past_posts = BlogPost.query.filter(BlogPost.event_date <= datetime.utcnow()).order_by(BlogPost.event_date.desc())
 
     alls = User.query.filter(User.type > 1)
-    return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url,alls=alls,past_posts=past_posts)
+    return render_template('index.html',blog_posts=blog_posts,all_posts=all_posts,url=request.base_url,alls=alls,past_posts=past_posts,photos=photos,results=results)
 
 
 ###################################################
+
 
 
 
@@ -100,3 +140,44 @@ def privacy():
 @core.route('/komaneko-member')
 def member():
     return render_template('member.html')
+
+
+@core.route('/komafood')
+def komafood():
+    key = 'AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94' # 上記で作成したAPIキーを入れる
+    client = googlemaps.Client(key) #インスタンス生成
+
+    geocode_result = client.geocode('駒澤大学') # 位置情報を検索
+    loc = geocode_result[0]['geometry']['location'] # 軽度・緯度の情報のみ取り出す
+    place_result = client.places_nearby(location=loc, radius=1000, type='cafe') #半径200m以内のレストランの情報を取得
+    # pprint.pprint(place_result)
+    results = []
+    photos = []
+    for place in place_result['results']:
+        my_place_id =place['place_id']
+        my_fields = ['name','type','url','photo','vicinity','website','international_phone_number','rating']
+       
+        place_details = client.place(place_id = my_place_id,fields = my_fields,language='ja')
+        
+        # pprint.pprint(place_details)
+        results.append(place_details)
+        # pprint.pprint(place_details['result']['name'])
+        # pprint.pprint(place_details['result']['url'])
+        result = place_details['result']
+        pprint.pprint(result)
+
+        if not 'photos' in result.keys():
+            photo = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png'
+            photos.append(photo)
+        else:
+            p_value = result['photos'][0]
+            photos_photo_reference = p_value['photo_reference']
+            pprint.pprint(photos_photo_reference)
+            photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key=AIzaSyAu7SJ8PPOE7joPkc3Fdo9N_ilqgJLZb94'.format(photos_photo_reference)
+            photos.append(photo)
+    # pprint.pprint(results)
+    return render_template('comacafe.html',results=results,photos=photos)
+
+
+
+
