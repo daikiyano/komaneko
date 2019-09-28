@@ -46,7 +46,7 @@
 </p>
  
  <div class="slide" style="margin:10px 0;">
-     <div class="slider">
+     <div class="slider slider_food">
         {% for result in results %}{% set A_list_loop = loop %}
        {% for photo in photos %}
        {% if loop.index==A_list_loop.index %}
@@ -87,7 +87,7 @@
 
   
   <div class="slide">
-      <div class="slider">
+      <div class="slider slider_club">
         {% for all in alls %}
           <div class="slide_box">
             <a href="{{url_for('users.user_posts',username=all.username)}}">

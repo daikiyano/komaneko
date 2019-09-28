@@ -20,7 +20,7 @@
 //   });
 // });
 $(document).ready(function(){
-  $('.slider').slick({
+  $('.slider_club').slick({
     infinite: true, //スライドのループ有効化
           dots:true, //ドットのナビゲーションを表示
           centerMode: true, //要素を中央寄せ
@@ -30,6 +30,17 @@ $(document).ready(function(){
   });
   
   });
+
+  $(document).ready(function(){
+    $('.slider_food').slick({
+      infinite: true, //スライドのループ有効化 //ドットのナビゲーションを表示
+            centerMode: true, //要素を中央寄せ
+            centerPadding:'18%', //両サイドの見えている部分のサイズ
+            autoplay:true, //自動再生
+            autoplaySpeed:1600,
+    });
+    
+    });
 
 
 

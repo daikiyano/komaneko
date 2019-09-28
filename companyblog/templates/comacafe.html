@@ -1,3 +1,18 @@
+
+<head>
+        <meta name="twitter:creator" content="@Komanek43918143">
+        <meta property="og:title" content="駒澤大学生向け学内団体情報とイベント共有サイト「KOMANEKO」">
+        <meta property="og:description" content="KOMAFOODを通じて駒澤大学周辺で新しい食と空間の出会いを提供できるようなサイトを目指します。">
+        <meta property="og:url" content="{{url}}">
+        <meta name="twitter:site" content="@Komanek43918143">
+        <meta property="og:image" content="{{url}}static/komaneko-logo-sns.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@Komanek43918143">
+        <meta name="twitter:title" content="駒澤大学生向け学内団体情報とイベント共有サイト「KOMANEKO」">
+        <meta name="twitter:description" content="KOMAFOODを通じて大学生活に新しい食と空間の出会いを提供できるようなサイトを目指します。">
+    </head>
+
+
 {% extends 'base.html'%}
 {% block content %}
 
@@ -9,11 +24,11 @@
        
        
           <h2 class="intro_p" style="color:white;"><b>9/27(土)KOMAFOODをリリースしました。駒澤大学周辺にはおしゃれなカフェや駒澤大学生にはあまり知られていないお店がたくさんあります。
-                KOMAFOODを通して新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなど様々な機能追加してまいります。</b></h2>
+                KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなどの機能追加をしてまいります。</b></h2>
        
        
       </div>
-<p style="color:#45494b; text-align: center;">*駒澤大学から半径1km以内のカフェをランダムで表示しています</p>
+<p style="color:#45494b; text-align: center;">*駒澤大学から半径1km以内のカフェ情報をGoogle M表示しています</p>
 <div class="index_box">
    
     {% for result in results %}{% set A_list_loop = loop %}
@@ -22,7 +37,7 @@
                 <a class='card_title' style="text-decoration: none; color : #000000;" href="{{result['result']['url']}}" target=”_blank”>
                 <div class="post_box_index" style="color:#45494b;">
                     <div class="post_top">
-                        <h1　class="index_title">{{result['result']['name']}}</h1>
+                        <h1　class="index_title"><b>{{result['result']['name']}}</b></h1>
                     </div>
                     <img class="index_image_index" align='center' src="{{photo}}" alt="">
                     <p>住所:{{result['result']['vicinity']}}<br>
