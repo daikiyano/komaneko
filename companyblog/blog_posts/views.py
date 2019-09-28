@@ -87,7 +87,7 @@ def create_post():
         flash("投稿を作成しました！")
         return redirect(url_for('core.index'))
 
-    return render_template('create_post.html',form=form)
+    return render_template('create_post.html',form=form,api=str(app.config['GOOGLE_MAP_API']))
 
 
 # @blog_posts.route('/like/<int:blog_post_id>/<action>')
@@ -129,7 +129,7 @@ def blog_post(blog_post_id):
 
 
     return render_template('blog_post.html',title=blog_post.title,
-                                date=blog_post.date,post=blog_post,form=form,comments=comments,url=request.base_url)
+                                date=blog_post.date,post=blog_post,form=form,comments=comments,url=request.base_url,api=str(app.config['GOOGLE_MAP_API']))
 
 
 
