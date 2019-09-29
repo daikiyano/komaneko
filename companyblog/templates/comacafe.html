@@ -15,22 +15,18 @@
 
 {% extends 'base.html'%}
 {% block content %}
+<p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
 
 <h1 class="event_top" style="color:#45494b;"><i class="fas fa-utensils"></i>
-
     <b>KOMAFOOD</b>
 </h1>
 <div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
-       
-       
-          <h2 class="intro_p" style="color:white;"><b>9/27(土)KOMAFOODをリリースしました。駒澤大学周辺にはおしゃれなカフェや駒澤大学生にはあまり知られていないお店がたくさんあります。
-                KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなどの機能追加をしてまいります。</b></h2>
-       
-       
-      </div>
-<p style="color:#45494b; text-align: center;">*駒澤大学から半径1km以内のカフェ情報をGoogle M表示しています</p>
+    <h2 class="intro_p" style="color:white;"><b>9/27(土)KOMAFOODをリリースしました。駒澤大学周辺にはおしゃれなカフェや駒澤大学生にはあまり知られていないお店がたくさんあります。
+         KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなどの機能追加をしてまいります。</b>
+    </h2>
+</div>
+<p style="color:#45494b; text-align: center;">*Google Mapと連携し、駒澤大学から半径1km以内のカフェ情報を表示しています</p>
 <div class="index_box">
-   
     {% for result in results %}{% set A_list_loop = loop %}
         {% for photo in photos %}
             {% if loop.index==A_list_loop.index %}
@@ -41,16 +37,17 @@
                     </div>
                     <img class="index_image_index" align='center' src="{{photo}}" alt="">
                     <p>住所:{{result['result']['vicinity']}}<br>
-                    電話番号:{{result['result']['international_phone_number']}}</p>
+                    電話番号:<a href="tel:{{result['result']['formatted_phone_number']}}">{{result['result']['formatted_phone_number']}}</a><br>
+                    評価:{{result['result']['rating']}}
+                <a href="{{result['result']['url']}}" class="btn btn-outline-success">店舗情報詳細へ</a>
 
+                </p>
                 </a>
                 <p style='font-size:12px;'>WEBサイト<br><a href="{{result['result']['website']}}">{{result['result']['website']}}</a></p>
                 </div>
             {% endif %}
         {% endfor %} 
     {% endfor %} 
-
-
 </div>
 
 <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">KOMANEKO TOPへ</a>
