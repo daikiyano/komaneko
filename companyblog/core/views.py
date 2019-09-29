@@ -25,7 +25,7 @@ def index():
 
     geocode_result = client.geocode('駒澤大学') # 位置情報を検索
     loc = geocode_result[0]['geometry']['location'] # 軽度・緯度の情報のみ取り出す
-    place_result = client.places_nearby(location=loc, radius=1000, type='cafe') #半径200m以内のレストランの情報を取得
+    place_result = client.places_nearby(location=loc, radius=1000, keyword='カフェ') #半径200m以内のレストランの情報を取得
     # pprint.pprint(place_result)
     results = []
     photos = []
@@ -149,8 +149,8 @@ def komafood():
 
     geocode_result = client.geocode('駒澤大学') # 位置情報を検索
     loc = geocode_result[0]['geometry']['location'] # 軽度・緯度を取り出す
-    place_result = client.places_nearby(location=loc, radius=1000, type='cafe') #半径1000m以内のカフェ情報を取得
-    # pprint.pprint(place_result)
+    place_result = client.places_nearby(location=loc, radius=1000, keyword='カフェ') #半径1000m以内のカフェ情報を取得
+    pprint.pprint(place_result)
     
     # リスト作成
     results = []
@@ -158,13 +158,13 @@ def komafood():
     for place in place_result['results']:
         my_place_id =place['place_id']
         # 検索結果の取得したい情報を選択
-        my_fields = ['name','type','url','photo','vicinity','website','international_phone_number','rating']
+        my_fields = ['name','type','url','photo','vicinity','website','formatted_phone_number','rating']
        
         place_details = client.place(place_id = my_place_id,fields = my_fields,language='ja')
       #デバッグ
         results.append(place_details)
         result = place_details['result']
-        pprint.pprint(result)
+        # pprint.pprint(result)
 
         # 配列にphotosが存在しないとき、NO IMAGE画像を表示。
         if not 'photos' in result.keys():
