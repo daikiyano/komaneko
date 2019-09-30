@@ -144,41 +144,44 @@ def member():
 
 @core.route('/komafood')
 def komafood():
-    # key = app.config['GOOGLE_MAP_API'] # 上記で作成したAPIキーを入れる
-    # client = googlemaps.Client(key) #インスタンス生成
+    key = app.config['GOOGLE_MAP_API'] # 上記で作成したAPIキーを入れる
+    client = googlemaps.Client(key) #インスタンス生成
 
     # geocode_result = client.geocode('駒澤大学') # 位置情報を検索
-    # loc = geocode_result[0]['geometry']['location'] # 軽度・緯度を取り出す
-    # place_result = client.places_nearby(location=loc, radius=1000, keyword='カフェ') #半径1000m以内のカフェ情報を取得
-    # pprint.pprint(place_result)
+    loc = {'lat': 35.6288505, 'lng': 139.65863579999996} # 軽度・緯度を取り出す
+    place_results = client.places_nearby(location=loc, radius=1000, keyword='カフェ',language='ja') #半径1000m以内のカフェ情報を取得
+    pprint.pprint(place_results)
     
-    # # リスト作成
-    # results = []
-    # photos = []
-    # for place in place_result['results']:
-    #     my_place_id =place['place_id']
-    #     # 検索結果の取得したい情報を選択
-    #     my_fields = ['name','type','url','photo','vicinity','website','formatted_phone_number','rating']
+    # リスト作成
+    results = []
+    photos = []
+    for place_result in place_results['results']:
+        # my_place_id =place['place_id']
+        # 検索結果の取得したい情報を選択
+        # my_fields = ['name','type','url','photo','vicinity','website','formatted_phone_number','rating']
        
-    #     place_details = client.place(place_id = my_place_id,fields = my_fields,language='ja')
-    #   #デバッグ
-    #     results.append(place_details)
-    #     result = place_details['result']
-    #     # pprint.pprint(result)
+        # place_details = client.place(place_id = my_place_id,fields = my_fields,language='ja')
+      #デバッグ
+        results.append(place_result)
+        # result = place_details['result']
+        # pprint.pprint(result)
 
-    #     # 配列にphotosが存在しないとき、NO IMAGE画像を表示。
-    #     if not 'photos' in result.keys():
-    #         photo = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png'
-    #         photos.append(photo)
-    #     # 配列にphotosが存在するとき、画像情報を取得。
-    #     else:
-    #         p_value = result['photos'][0]
-    #         photos_photo_reference = p_value['photo_reference']
-    #         pprint.pprint(photos_photo_reference)
-    #         photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key={}'.format(photos_photo_reference,str(app.config['GOOGLE_MAP_API']))
-    #         photos.append(photo)
-    # # pprint.pprint(results)
-    return render_template('comacafe.html')
+        # 配列にphotosが存在しないとき、NO IMAGE画像を表示。
+        if not 'photos' in place_result.keys():
+            photo = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/default_profile.png'
+            photos.append(photo)
+        # 配列にphotosが存在するとき、画像情報を取得。
+        else:
+            p_value = place_result['photos'][0]['photo_reference']
+            # pprint.pprint(p_value)
+
+            # photos_photo_reference = p_value
+            
+            # pprint.pprint(photos_photo_reference)
+            photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key={}'.format(p_value,str(app.config['GOOGLE_MAP_API']))
+            photos.append(photo)
+    pprint.pprint(photos)
+    return render_template('comacafe.html',results=results,photos=photos)
 
 
 

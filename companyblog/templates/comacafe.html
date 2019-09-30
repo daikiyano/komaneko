@@ -25,30 +25,31 @@
          KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなどの機能追加をしてまいります。</b>
     </h2>
 </div>
-<p style="color:#45494b; text-align: center;">*現在KOMAFOODはメンテナンス中です。</p>
-<!-- <div class="index_box">
+<p style="color:#45494b; text-align: center;">*Google Mapと連携し、駒澤大学から半径1km以内のカフェ情報を表示しています</p>
+<div class="index_box">
     {% for result in results %}{% set A_list_loop = loop %}
         {% for photo in photos %}
             {% if loop.index==A_list_loop.index %}
-                <a class='card_title' style="text-decoration: none; color : #000000;" href="{{result['result']['url']}}" target=”_blank”>
+            <a class='card_title' style="text-decoration: none; color : #000000;" href="https://www.google.com/maps/search/?api=1&query=駒澤大学+{{result['name']}}" target=”_blank”>
+
                 <div class="post_box_index" style="color:#45494b;">
                     <div class="post_top">
-                        <h1　class="index_title"><b>{{result['result']['name']}}</b></h1>
+                        <h1　class="index_title"><b>{{result['name']}}</b></h1>
                     </div>
                     <img class="index_image_index" align='center' src="{{photo}}" alt="">
-                    <p>住所:{{result['result']['vicinity']}}<br>
-                    電話番号:<a href="tel:{{result['result']['formatted_phone_number']}}">{{result['result']['formatted_phone_number']}}</a><br>
-                    評価:{{result['result']['rating']}}
-                <a href="{{result['result']['url']}}" class="btn btn-outline-success">店舗情報詳細へ</a>
+                    <p>住所:{{result['vicinity']}}<br>
+                    評価:{{result['rating']}}
+                <a href="https://www.google.com/maps/search/?api=1&query=駒澤大学+{{result['name']}}" class="btn btn-outline-success">店舗情報詳細へ</a>
 
                 </p>
-                </a>
-                <p style='font-size:12px;'>WEBサイト<br><a href="{{result['result']['website']}}">{{result['result']['website']}}</a></p>
+            </a>
+
+                <!-- <p style='font-size:12px;'>WEBサイト<br><a href="{{result['website']}}">{{result['website']}}</a></p> -->
                 </div>
             {% endif %}
         {% endfor %} 
     {% endfor %} 
-</div> -->
+</div>
 
 <a class="btn btn-outline-primary btn-sm" style="width:200px; auto;margin: 50px auto; display: block;" href="{{url_for('core.index')}}">KOMANEKO TOPへ</a>
 
