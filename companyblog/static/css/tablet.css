@@ -284,6 +284,17 @@ header{
 
 }
 
+.category_list {
+  display: inline;
+  padding: 0 40px;
+  font-size:28px;
+  color: black;
+  opacity: 0.9;
+  cursor:pointer;
+  transition: .3s;
+}
+
+
 .tab_box li.active {
   color: black;
   opacity: 0.9;

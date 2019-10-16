@@ -139,6 +139,18 @@
 
 }
 
+.category_list {
+  display: inline;
+  font-size:19px;
+  cursor:pointer;
+  padding: 0 2px;
+  transition: .3s;
+  border-radius: 5px;
+}
+
+
+
+
 .tab_box li.active {
   color: black;
   opacity: 0.9;

@@ -22,10 +22,33 @@
 </h1>
 <div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
     <h2 class="intro_p" style="color:white;"><b>9/27(土)KOMAFOODをリリースしました。駒澤大学周辺にはおしゃれなカフェや駒澤大学生にはあまり知られていないお店がたくさんあります。
-         KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、カフェ以外のジャンルやレビュー順に表示できるなどの機能追加をしてまいります。</b>
+         KOMAFOODを通じて新しい食と空間の出会いを提供できるようなサイトを目指します。今後、Food Categoryの追加、レビュー順に表示できるなどの機能実装をしてまいります。</b>
     </h2>
 </div>
 <p style="color:#45494b; text-align: center;">*駒澤大学から半径1km以内のカフェ情報を表示しています</p>
+
+    
+      <!-- <li class="tab_list active"><b>新着</b></li>
+      <li class="tab_list"><b>直近開催</b></li>
+      <li class="tab_list"><b>過去</b></li>
+    </ul>
+  </div> -->
+  <h1 class="event_top" style="color:#45494b;"><i class="fab fa-elementor"></i>
+    <b>Food Category</b>
+</h1>
+<div class="tab_box">
+    <form action="/komafood" method='GET'>
+    <ul class="tab" style="display: inline-block;">
+    <li class="category_list"><b><button class='btn btn-outline-success' type="submit" name='category' value='cafe'>カフェ</button></b></li>
+    <li class="category_list"><b><button class='btn btn-outline-success' type="submit" name='category' value='noodle'>ラーメン</button></b></li>
+    </ul>
+</form>
+</div>
+  
+
+
+    
+
 <div class="index_box">
     {% for result in results %}{% set A_list_loop = loop %}
         {% for photo in photos %}

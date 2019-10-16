@@ -230,6 +230,17 @@ header{
 
 }
 
+.category_list {
+  /* background-color: #c1a7db; */
+  display: inline-block;
+  font-size:22px;
+  padding: 0 20px;
+  /* border: 2px solid black; */
+  cursor:pointer;
+  transition: .3s;
+  border-radius: 5px;
+}
+
 .tab_box li.active {
   color:#45494b;
 
