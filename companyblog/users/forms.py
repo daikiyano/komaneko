@@ -17,15 +17,15 @@ from companyblog.models import User
 ####################################
 class LoginForm(FlaskForm):
     email = StringField('メールアドレス',validators=[DataRequired("メールアドレスを入力してください"),Email('このメールアドレスは無効です')])
-    password = PasswordField('パスワード',validators=[DataRequired("パスワードを入力してください")])
+    password = HiddenField('パスワード')
     submit = SubmitField('ログイン')
 
     def validate_email(self,email):
         user = User.query.filter_by(email=email.data).first()
         if not user:
-            raise ValidationError('メールアドレスまたはパスワードが不正です')
-        if not user.check_password(self.password.data):
-            raise ValidationError('メールアドレスまたはパスワードが不正です')
+            raise ValidationError('入力したメールアドレスは登録されていません')
+        # if not user.check_password(self.password.data):
+        #     raise ValidationError('メールアドレスまたはパスワードが不正です')
 
 
 ########################################################
@@ -38,8 +38,10 @@ class RegistrationForm(FlaskForm):
     club_name = StringField('団体名(30文字以内)',validators=[DataRequired('団体名を入力してください'),Length(max=30, message='30文字以内で入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'団体カテゴリ',choices=[(0, '所属を選択してください'),(2, '体育会部'),(3, '文化部'),(4, '任意団体/サークル'),(5, 'ゼミナール/研究室'),(6, 'その他の団体')],coerce=int, default=0)
-    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字で8文字以上のパスワードを設定してください')])
-    pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
+    password = HiddenField('パスワード')
+
+    # password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません。'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字で8文字以上のパスワードを設定してください')])
+    # pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
     recaptcha = RecaptchaField('不正利用防止のためのチェックをお願いします')
     submit = Submit = SubmitField('利用規約に同意して登録')
 
@@ -56,9 +58,9 @@ class RegistrationForm(FlaskForm):
 
     #########Validation for Password#################
 
-    def validate_password(self, password):
-        if len(password.data) < 7:
-            raise ValidationError('8文字以上のパスワードを設定してください')
+    # def validate_password(self, password):
+    #     if len(password.data) < 7:
+    #         raise ValidationError('8文字以上のパスワードを設定してください')
 
 
     def validate_type(self,type):
@@ -77,8 +79,7 @@ class SignupForm(FlaskForm):
     club_name = StringField('ユーザー名(20文字以内)',validators=[DataRequired('ユーザー名を入力してください'),Length(max=15, message='20文字以内で入力してください')])
     university = SelectField(u'所属大学',choices=[(1, '駒澤大学')],coerce=int, default=0)
     type = SelectField(u'アカウントの種類',choices=[(1, '個人')],coerce=int, default=0)
-    password = PasswordField('パスワード',validators=[DataRequired('パスワードを入力してください'),EqualTo('pass_confirm',message='パスワードが一致しません'),Regexp(regex='^[a-zA-Z0-9]+$', message='半角英数字で8文字以上のパスワードを設定してください')])
-    pass_confirm = PasswordField('パスワード確認',validators=[DataRequired('再確認用のパスワードを入力してください')])
+    password = HiddenField('パスワード')
     recaptcha = RecaptchaField('不正利用防止のためチェックをお願いします')
     submit = Submit = SubmitField('利用規約に同意して登録')
 
@@ -91,9 +92,9 @@ class SignupForm(FlaskForm):
         if User.query.filter_by(username=username.data).first():
             raise ValidationError('このユーザー名は既に使われています')
 
-    def validate_password(self, password):
-        if len(password.data) < 7:
-            raise ValidationError('8文字以上のパスワードを設定してください')
+    # def validate_password(self, password):
+    #     if len(password.data) < 7:
+    #         raise ValidationError('8文字以上のパスワードを設定してください')
 
 class EmailForm(FlaskForm):
     email = StringField('新しいメールアドレス', validators=[DataRequired(), Email(), Length(min=6, max=40)])

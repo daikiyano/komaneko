@@ -5,7 +5,7 @@
 
 <div class="form_box" style="color:#45494b;">
   <h1>ログイン</h1>
-  <p>*確認メールから本登録を完了していないとログインできません</p>
+  <p>*メールアドレスの認証確認後、ログイン可能になります</p>
   <form  method="POST">
       {{form.hidden_tag()}}
     <div class="form-group">
@@ -16,8 +16,7 @@
       {% endfor %}
     </div>
     <div class="form-group">
-      {{form.password.label(class="form-control-label")}}
-      {{form.password(class="form_input form-control form-contorl-lg")}}<br>
+      {{form.password(class="form_input form-control form-contorl-lg",value='12345678')}}<br>
       {% for error in form.password.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
