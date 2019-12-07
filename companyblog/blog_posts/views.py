@@ -14,6 +14,7 @@ s3 = boto3.client(
     aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
     )
 
+#
 
 # @blog_posts.route('/files')
 # def files():
