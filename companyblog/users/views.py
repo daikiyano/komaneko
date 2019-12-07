@@ -24,8 +24,6 @@ s3 = boto3.client(
     aws_secret_access_key=app.config['AWS_SECRET_ACCESS_KEY']
     )
 
-
-
 users = Blueprint('users',__name__)
 
 def send_async_email(msg):
@@ -52,6 +50,19 @@ def send_confirmation_email(user_email,username):
         confirm_url=confirm_url,username=username)
 
     send_email('KomaNeco仮登録完了メール', [user_email], html)
+
+def send_login_email(user_email,username):
+    confirm_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    confirm_url = url_for(
+        'users.confirm_email',
+        token=confirm_serializer.dumps(user_email, salt='email-confirmation-salt'),
+        _external=True)
+
+    html = render_template(
+        'magic_mail.html',
+        confirm_url=confirm_url,username=username)
+
+    send_email('KOMANEKO メール認証によるログインを受け付けました', [user_email], html)
 
 
 def change_confirmation_email(user_email,username):
@@ -127,7 +138,7 @@ def signup():
             db.session.add(user)
             db.session.commit()
             send_confirmation_email(user.email,user.username)
-            flash('この度はご登録ありがとうございます。{}宛に確認メールをお送りいたしましたので、本登録の完了を宜しくお願いいたします'.format(user.email), 'success')
+            flash('。{}宛に確認メールをお送りいたしましたので、本登録を完了させてください。'.format(user.email), 'success')
         # send_email('Registration',
         #                    ['1mg5326d@komazawa-u.ac.jp'],
         #                    'Thanks for registering with Kennedy Family Recipes!',
@@ -154,18 +165,21 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
 
         if user.email_confirmed == True:
-            if user.check_password(form.password.data) and user is not None:
-                user.authenticated = True
-                db.session.add(user)
-                db.session.commit()
-                login_user(user)
-                flash('{}さん　KOMANEKOへようこそ！'.format(user.username))
-                return redirect(url_for('core.index'))
-                next = request.args.get('next')
-            if next == None or not next[0]=='/':
-                next = url_for('core.index')
-                flash('ログインしてください')
-                return redirect(next)
+            # if user.check_password(form.password.data) and user is not None:
+            #     user.authenticated = True
+            #     db.session.add(user)
+            #     db.session.commit()
+            #     login_user(user)
+            send_login_email(user.email,user.username)
+            flash('{}宛に確認メールをお送りしましたので、ご確認ください。'.format(user.email))
+            return redirect(url_for('core.index'))
+               
+                # return redirect(url_for('core.index'))
+            # next = request.args.get('next')
+            # if next == None or not next[0]=='/':
+            #     next = url_for('core.index')
+            #     flash('ログインしてください')
+            #     return redirect(next)
         else:
             flash('アカウント情報が不正です。本登録を完了させてください。', 'error')
             return redirect(url_for('users.login'))
@@ -337,11 +351,17 @@ def confirm_email(token):
 
     user = User.query.filter_by(email=email).first()
 
-    if user.email_confirmed:
-        flash('本登録をしていただきありがとうございます。')
+# if user doesn't exist
+    if not user.email_confirmed:
+        user.email_confirmed = True
+        user.email_confirmed_on = datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        flash('ようこそ！KOMANEKOへ！本登録していただきありがとうございます。')
         return redirect(url_for('core.index'))
     else:
-        user.email_confirmed = True
+#if user exist
         user.email_confirmed_on = datetime.now()
         db.session.add(user)
         db.session.commit()
