@@ -187,3 +187,18 @@ $(function(){
     },500);
   });
 });
+
+// timepicker
+$(document).ready(function(){
+  $('.timepicker').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 10,
+    minTime: '10',
+    maxTime: '22:00',
+    defaultTime: '11',
+    startTime: '10:00',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true
+  });
+});
