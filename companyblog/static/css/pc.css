@@ -168,8 +168,9 @@ header{
 
 /* slide */
 .slide{
-  width:100%; 
-  height:570px;
+  margin: 0 auto; 
+  width:83%; 
+  height:580px;
 }
 
 .slider{

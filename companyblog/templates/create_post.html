@@ -86,12 +86,7 @@
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
-    <!-- timepicker -->
-    <script type="text/javascript">
-      $(function(){
-          $('.timepicker').wickedpicker({now: "09:00",twentyFour: true, timeSeparator: ':'});
-      });
-    </script>
+   
     <div class="form-group">
       <h5><i class="far fa-user"></i>{{form.organizer.label(class="form-control-label")}}</h5>
       {{form.organizer(placeholder="サークルやゼミなどは団体名。個人の場合は氏名を入力してください。",class="form_input form-control form-contorl-lg")}}
