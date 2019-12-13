@@ -1,6 +1,9 @@
 
 /* base.html */
 
+.event_movie{
+  height:400px; width:600px;
+}
 
 .flash_font{
   text-align:center; color:white;

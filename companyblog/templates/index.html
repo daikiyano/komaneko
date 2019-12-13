@@ -14,13 +14,6 @@
 {% extends 'base.html'%}
 {% block content %}
   <p class="page-top"><a class="fas fa-angle-up" href="#wrap"></a></p>
-  <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>サイトニュース</b></h1>
-  {% if current_user.is_authenticated and current_user.username == "daikiyano" %}
-      <a href="{{url}}admin" class="btn btn-outline-primary">admin page</a>
-  {% endif %}
-  <p style="text-align:center; color:#45494b;">・09/27「KOMAFOOD」リリース！
-    <br>・07/14「KOMANEKO」Twitterアカウント開設<a href="https://twitter.com/Komanek43918143"><i class="fab fa-twitter" style="font-size:22px;color:#00acee;"></i></a><br>
-  </p>
   {% if not current_user.is_authenticated %}
     <div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
       <div class="site_title_box">
@@ -38,6 +31,21 @@
       </div>
     </div>
   {% endif %}
+  <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-users"></i>サイトニュース</b></h1>
+  {% if current_user.is_authenticated and current_user.username == "daikiyano" %}
+      <a href="{{url}}admin" class="btn btn-outline-primary">admin page</a>
+  {% endif %}
+  <p style="text-align:center; color:#45494b;">・07/14「KOMANEKO」Twitterアカウント開設<a href="https://twitter.com/Komanek43918143"><i class="fab fa-twitter" style="font-size:22px;color:#00acee;"></i></a><br>
+  </p>
+  <div style="width:100%; margin:20px 0;">
+    <p style="text-align:center; color:#45494b;"><b>1/10(金)駒大情報センターのPAOPALとのコラボ企画!「1日限定!0からはじめるPython入門編」開催！</b><br>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCmdg0IwgNROl-4mQrvnFzRTZpwMvn1zm6rlLIF-l5_fmudw/viewform" class="btn-sm btn btn-outline-primary">Pythonイベント　登録フォーム</a>
+    </p>
+    <div style="text-align:center;">
+    <video src="static/event_movie.mp4" controls autoplay muted playsinline loop class="event_movie" style="box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid #EBEBEB;"></video>
+    </div>
+  </div>
 
   <h1 class="event_top" style="color:#45494b;"><b><i class="fas fa-utensils"></i>KOMAFOOD</b><br>
  </h1>

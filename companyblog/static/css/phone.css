@@ -2,6 +2,10 @@
 /* フォーム */
 /* base.html */
 
+.event_movie{
+  width:100%;
+}
+
 /* .test{
   display:none;
 }
