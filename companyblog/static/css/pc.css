@@ -356,7 +356,7 @@ header{
 }
 
 .index_image{
-  height:450px; width:100%;
+  height:430px; width:75%;
   box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.15);
   border: 1px solid #EBEBEB;
 }
@@ -683,7 +683,7 @@ border: 1px solid #EBEBEB;
 
 .user_logo{
   height:400px;
-  width:75%;
+  width:66%;
   border-radius:10px;
   position:relative;
 }

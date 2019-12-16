@@ -1,7 +1,7 @@
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{api}}" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_kA28YaVat4C4AG91yo7tD8ivN7z9dI" type="text/javascript"></script>
 
 <script type="text/javascript">
   var map;
@@ -103,6 +103,7 @@
         <button type="button" class="btn btn-outline-primary" onclick="search()">検索</button>
         <p>検索ボタンを押すとマップに結果が反映されます</p>
     </div>
+    
     <div id="map_canvas" style="margin: 30px 0;width:100%; height:50%"></div>
     <div class="form-group">
       <h5><i class="far fa-check-circle"></i>{{form.entry.label(class="form-control-label")}}</h5>
@@ -136,7 +137,7 @@
       <h5><i class="far fa-images"></i>{{form.image.label(class="form-control-label")}}</h5>
       <p> *画像形式はjpg,png,jpeg,gifのみ対応しています。<br>
         *SNSで拡散する際にタイトルと画像が表示されます。イベントをイメージできる素敵な画像を選択しましょう。</p>
-      {{form.image(class="form_input form-control form-contorl-lg")}}<br>
+      {{form.image(class="form_input form-control form-contorl-lg triming")}}<br>
     <br>
       {% for error in form.image.errors %}
         <span style="color: red;">{{ error }}</span><br>
@@ -144,7 +145,7 @@
     </div>
     <div class="preview">
     {% if post_image %}
-      <img src="{{post_image}}" class="preview id="remove_image">
+      <img src="{{post_image}}" class="preview" id="remove_image">
     {% endif %}
     </div>
 
@@ -158,5 +159,41 @@
 <div id="out"></div>
 
 </div>
+<button class="js-crop">Crop!</button>
+
+<!-- <div class="js-cropped-image"></div>
+
+<div class="js-croppie"></div>
+<script>
+  $(function() {
+  var $preview = $('#test3');
+
+  var $croppie = $preview.croppie({
+    // url: 'http://placekitten.com/500/800',
+    enableExif: true,
+    enableOrientation: true,    
+    viewport: {
+      width: 200,
+      height: 200
+    },
+    boundary: {
+      width: 300,
+      height: 300
+    }
+  }); -->
+
+  <!-- // buttonを押したらクロップ
+  // $('.js-crop').on('click', function() {
+  //   // 結果を出力
+  //   $croppie.croppie('result', 'base64').then(function(base64) {
+  //     $croppedImage = $('.js-cropped-image');
+  //     $croppedImage.html('');
+  //     $('<img>').attr('src', base64).appendTo($croppedImage);
+  //   });
+  // })
+ }) -->
+
+<!-- </script> -->
+
 
 {% endblock %}

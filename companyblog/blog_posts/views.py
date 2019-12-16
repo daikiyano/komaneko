@@ -147,8 +147,9 @@ def update(blog_post_id):
         abort(403)
 
     form = BlogPostForm()
-
     if form.validate_on_submit():
+
+       
 
         if form.image.data:
             image = add_image_pic(form.image.data)
@@ -158,8 +159,6 @@ def update(blog_post_id):
             test = 'https://{}.s3-ap-northeast-1.amazonaws.com/{}'
             images = test.format(app.config['AWS_BUCKET'],image)
             blog_post.event_image = images
-
-
 
         blog_post.title  = form.title.data
         blog_post.text  = form.text.data
@@ -171,6 +170,8 @@ def update(blog_post_id):
         blog_post.way  = form.way.data
         blog_post.cost  = form.cost.data
         blog_post.contact  = form.contact.data
+
+        
 
 
         db.session.commit()

@@ -405,6 +405,11 @@ header{
   color:black;
 }
 
+.index_image{
+  height:400px;
+  width:72%;
+}
+
 .index_image_index{
   height:400px;
   width:100%;
