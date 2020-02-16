@@ -586,6 +586,7 @@ header{
 }
 
 .details_title{
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
   border-bottom: 2px solid rgba(121,74,168,0.9);
   padding-top:20px;
   text-align: left;
@@ -593,8 +594,8 @@ header{
 }
 
 .post_details p{
-
-  font-size:15px;
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+  font-size:19px;
   text-align: left;
   padding:3px 10px;
 
@@ -689,7 +690,8 @@ border: 1px solid #EBEBEB;
 }
 
 .user_info{
-  font-size:15px;
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+  font-size:17px;
   text-align: left;
   padding:3px 30px;
 }
@@ -698,7 +700,7 @@ border: 1px solid #EBEBEB;
   border-bottom: 4px solid rgba(121,74,168,0.9);
   margin:40px auto;
   text-align: left;
-  font-size:20px;
+  font-size:23px;
 }
 
 .no_user_info{

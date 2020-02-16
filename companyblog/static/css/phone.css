@@ -526,11 +526,13 @@ header{
   cursor:pointer;
 }
 
+
 .post_copy:hover{
   color:gray;
 }
 
 .post_details{
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
   text-align:center;
   width:95%;
   margin: 0 auto;
@@ -660,6 +662,7 @@ header{
 }
 
 .user_info{
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
   font-size:17px;
   text-align:left;
 }
