@@ -11,7 +11,9 @@
         <a href="{{url_for('users.user_posts',username=all.username)}}">
         <img src="{{all.profile_image}}">
         </a>
-        <h1 class="all_name"><b>{{all.club_name}}</b></h1>
+        <h1 class="all_name">
+          <b>{{all.club_name}}</b>
+        </h1>
       </div>
     {% else %}
       <h2>登録している団体はありません</h2>

@@ -17,7 +17,15 @@
 <div class="user_post_container" style="color:#45494b;">
   <div class="user_post_box">
     <a style="margin-top:10px;" href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=駒澤大学,KOMANEKO,{{user.club_name}}" class="twitter-share-button" data-text="{{user.club_name}}" data-hashtags="駒澤大学" data-hashtags="KOMANEKO" data-size="large"　data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <h1 class="info_title"><i class="fas fa-user-friends"></i><b>{{user.club_name}}
+    <h1 class="info_title"><i class="fas fa-user-friends"></i> 
+      {% if user.type == 4 %}
+      <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">公認</span>
+      {% elif user.type == 5 %}
+      <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">準公認</span>
+      {% elif user.type == 6 %}
+      <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">非公認</span>
+      {% endif %}
+      <b>{{user.club_name}}
       {% if user.username == current_user.username %}
         <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.account')}}"><b>プロフィールを修正する</b></a>
       {% endif %}
