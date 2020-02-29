@@ -34,9 +34,9 @@ def index():
 
     page = request.args.get('page',1,type=int)
     #新着順
-    all_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
+    all_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.date.desc()).paginate(page=page,per_page=10)
     #直近開催イベント
-    blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.asc()).paginate(page=page,per_page=5)
+    blog_posts = BlogPost.query.filter(BlogPost.event_date >= datetime.utcnow()).order_by(BlogPost.event_date.asc()).paginate(page=page,per_page=10)
 
     past_posts = BlogPost.query.filter(BlogPost.event_date <= datetime.utcnow()).order_by(BlogPost.event_date.desc())
 

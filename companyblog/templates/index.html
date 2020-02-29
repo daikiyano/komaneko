@@ -120,7 +120,15 @@
               <img src="{{all.profile_image}}" alt="image01">
             </a>
             <div class="slide_info">
-                <h1>{{all.club_name}}</h1>
+              <h1>
+              {% if all.type == 4 %}
+                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">公認</span>
+              {% elif all.type == 5 %}
+                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">準公認</span>
+              {% elif all.type == 6 %}
+                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">非公認</span>
+              {% endif %}
+                {{all.club_name}}</h1>
             </div>
           </div>
         {% endfor %}
