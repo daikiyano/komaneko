@@ -121,13 +121,17 @@
             </a>
             <div class="slide_info">
               <h1>
-              {% if all.type == 4 %}
-                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">公認</span>
-              {% elif all.type == 5 %}
-                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">準公認</span>
-              {% elif all.type == 6 %}
-                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">非公認</span>
-              {% endif %}
+                {% if all.type == 2 or all.type == 3 %}
+                <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">部活動</span>
+                {% elif all.type == 4 %}
+                  <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">公認</span>
+                {% elif all.type == 5 %}
+                  <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">準公認</span>
+                {% elif all.type == 6 %}
+                  <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">未公認</span>
+                {% elif all.type == 8 %}
+                  <span style="color: white;background-color: rgba(121,74,168,0.9)" class="badge badge-pill">その他</span>
+                {% endif %}
                 {{all.club_name}}</h1>
             </div>
           </div>
