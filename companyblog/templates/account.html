@@ -161,8 +161,17 @@
 
 </h5>{{form.picture.label(class='form-group')}}
       ※jpg、png,jpeg,gifのみアップロードできます。<br>
-      {{form.picture(class='form_input form-control')}}<br>
+      {{form.picture(class='form_input form-control',id="picture")}}<br>
       </div>
+      <script type="text/javascript">
+      $(function() {
+        $('#picture').picEdit({
+  formSubmitted: function(response){
+     alert('Form submitted!' + response);
+  }
+});
+	});
+      </script>
       <div class="preview"></div>
       <div class="form-group">
       {{form.submit(class='btn btn-outline-primary')}}
