@@ -58,7 +58,7 @@ $(function(){
 
 
 $(function(){
-  //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
+  // 画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
   $('form').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
@@ -85,16 +85,29 @@ $(function(){
 
 
 
-//
-// function clipboadCopy(copyid){
-//     var copytext = document.getElementById(copyid);
-//     //この部分を追加
-//     var range = document.createRange();
-//     range.selectNode(copytext);
-//     window.getSelection().addRange(range);
-//     document.execCommand("copy");
-// }
-
+// $('.crop_image').click(function(e){
+//     var file = e.target.files[0],
+//         reader = new FileReader(),
+//         $preview = $(".preview");
+//         t = this;
+//     if(file.type.indexOf("image") < 0){
+//       return false;
+//     }
+//     reader.onload = (function(file) {
+//       return function(e) {
+//         $preview.empty();
+//         $preview.append($('<img>').attr({
+//                   'src': e.target.result,
+//                   'class': 'preview',
+//                   'display':'block',
+//                   title: file.name
+//               }));
+//         $('#remove_image').remove();
+//       };
+//     })(file);
+//     reader.readAsDataURL(file);
+//   });
+// });
 
 
 // コピーリンク

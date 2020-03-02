@@ -1,7 +1,7 @@
 
 
 from datetime import datetime
-from flask import render_template,url_for,flash,redirect,request,Blueprint
+from flask import render_template,url_for,flash,redirect,request,Blueprint,jsonify
 from flask_login import login_user,current_user,logout_user,login_required
 from companyblog import db,app
 from companyblog.models import User,BlogPost,PostLike
@@ -16,6 +16,8 @@ from companyblog import mail
 from PIL import Image
 import random
 import boto3
+import base64
+from io import BytesIO
 
 
 s3 = boto3.client(
@@ -203,10 +205,29 @@ def logout():
 @users.route('/account',methods=['GET','POST'])
 @login_required
 def account():
-
-
+    # if request.method == "GET":
+    if request.method == 'POST': 
+        # print(request.form['image'])
+        enc_data = request.form['image']
+        # enc_data = add_profile_pic(request.form['image'])
+        dec_data = base64.b64decode(enc_data.split(',')[1]) # 環境依存の様(","で区切って本体をdecode)
+        dec_img  = Image.open(BytesIO(dec_data))
+        print(BytesIO(dec_data))
+        print(dec_img)
+        image = add_profile_pic(dec_img)
+        image = "{}png".format(image)
+        s3_resource = boto3.resource('s3')
+        my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+        my_bucket.Object(image).put(Body=BytesIO(dec_data))
+        test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
+        images = test.format(image)
+        print(images)
+        current_user.profile_image = images
+        db.session.commit()
+        flash('画像を変更しました。')
+        return jsonify({'image': images})
     likes = PostLike.query.filter(PostLike.user_id==current_user.id)
-
+    
     form = UpdateUserForm()
     if form.validate_on_submit():
 
@@ -217,7 +238,7 @@ def account():
             flash('団体から個人に変更はできません')
             return redirect(url_for('users.account'))
         if form.picture.data:
-
+            print(form.picture.data)
             image = add_profile_pic(form.picture.data)
             s3_resource = boto3.resource('s3')
             my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])

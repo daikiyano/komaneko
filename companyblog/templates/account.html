@@ -69,8 +69,113 @@
 <div class="area">
   <div class="test show">
     <div style="padding-top:50px;" align='center'>
-      <img class="account_image" src="{{current_user.profile_image}}" >
+      <img class="account_image" id="ajax_account_image" src="{{current_user.profile_image}}" >
     </div>
+
+    <div class="container">
+    
+      <div class="panel panel-default">
+        <!-- <div class="panel-heading">Select Profile Image</div> -->
+        <div class="panel-body" align="center">
+          <div class="btn btn-cyan btn-lg float-left">
+            <span>Choose files</span>
+            <!-- <input type="file" multiple> -->
+          <!-- </div> -->
+         <input type="file" name="upload_image" id="upload_image" accept="image/*" />
+        </div>
+         <br />
+         <div id="uploaded_image"></div>
+        </div>
+       </div>
+      </div>
+          <div class="modal fade" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title">Upload & Crop Image</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="image_demo" style="width:350px; margin-top:30px"></div>
+                  <div class="col-md-4" style="padding-top:30px;">
+                    <br />
+                    <br />
+                    <br/>
+                    <button class="btn btn-success crop_image">Crop & Upload Image</button>
+                 </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <!-- ######################################################### -->
+      
+      <script>
+      $(document).ready(function(){
+      
+      $image_crop = $('#image_demo').croppie({
+         enableExif: true,
+        //  enableResize: true,
+         viewport: {
+           width:600,
+           height:350,
+           type:'square' //circle
+         },
+         boundary:{
+           width:700,
+           height:350
+         }
+       });
+      
+       $('#upload_image').on('change', function(){
+         var reader = new FileReader();
+         reader.onload = function (event) {
+           $image_crop.croppie('bind', {
+             url: event.target.result
+           }).then(function(){
+             console.log('jQuery bind complete');
+           });
+         }
+         reader.readAsDataURL(this.files[0]);
+        //  $('#uploadimageModal').modal('show');
+        $('#uploadimageModal').addClass('show');
+        $('#uploadimageModal').css('display','block');
+      
+       });
+      
+       $('.crop_image').click(function(event){
+         $image_crop.croppie('result', {
+           type: 'canvas',
+           size: 'viewport'
+         }).then(function(response){
+           console.log(response)
+           $.ajax({
+             url:"/account",
+             type: "POST",
+             data:{"image": response},
+             success:function(data)
+             {
+              $('#uploadimageModal').removeClass('show');
+              $('#uploadimageModal').css('display','none');
+              $('input[type=file]').val('');
+              console.log(data);
+              console.log(data.image);
+              $('#ajax_account_image').attr('src',data.image);
+              // ajax_account_image
+             }
+           });
+         })
+       });
+      
+      });  
+      </script>
     <form method="POST" action="" enctype="multipart/form-data">
       {{form.hidden_tag()}}
 
@@ -131,7 +236,6 @@
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.club_active.label(class='form-group')}}</h5>
         {{form.club_active(placeholder="例)火曜日18〜20、土曜日16〜18",class='form_input form-control')}}
-
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.money.label(class='form-group')}}</h5>
@@ -168,6 +272,8 @@
       {{form.submit(class='btn btn-outline-primary')}}
       </div>
     </form>
+   <!-- ######################################################### -->
+
 </div>
 
 <div class="test">
