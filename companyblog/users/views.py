@@ -199,12 +199,9 @@ def logout():
 
 
 
-
-# account (update userform)
-
-@users.route('/account',methods=['GET','POST'])
+@users.route('/image',methods=['POST'])
 @login_required
-def account():
+def image():
     # if request.method == "GET":
     if request.method == 'POST': 
         # print(request.form['image'])
@@ -224,8 +221,12 @@ def account():
         print(images)
         current_user.profile_image = images
         db.session.commit()
-        flash('画像を変更しました。')
         return jsonify({'image': images})
+
+
+@users.route('/account',methods=['GET','POST'])
+@login_required
+def account():
     likes = PostLike.query.filter(PostLike.user_id==current_user.id)
     
     form = UpdateUserForm()
@@ -237,18 +238,16 @@ def account():
         elif current_user.type > 1 and form.type.data == 1:
             flash('団体から個人に変更はできません')
             return redirect(url_for('users.account'))
-        if form.picture.data:
-            print(form.picture.data)
-            image = add_profile_pic(form.picture.data)
-            s3_resource = boto3.resource('s3')
-            my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
-            my_bucket.Object(image).put(Body=form.picture.data)
-            test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
-            images = test.format(image)
+        # if form.picture.data:
+        #     print(form.picture.data)
+        #     image = add_profile_pic(form.picture.data)
+        #     s3_resource = boto3.resource('s3')
+        #     my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+        #     my_bucket.Object(image).put(Body=form.picture.data)
+        #     test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
+        #     images = test.format(image)
 
-            # username = current_user.username
-            # pic = add_profile_pic(form.picture.data,username)
-            current_user.profile_image = images
+            
 
         current_user.username = form.username.data
         current_user.name = form.name.data
