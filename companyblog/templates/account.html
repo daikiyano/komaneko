@@ -133,7 +133,6 @@
      
 
 <!-- #########Modal################################### -->
-<div style="min-height: 100%;">
       <div style="z-index: 3;" class="modal fade" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" style="padding-top:60px;" role="document">
           <div class="modal-content">
@@ -145,15 +144,12 @@
                 <!-- <div class="col-md-4" style="padding-top:10px;"> -->
                   <button class="btn btn-outline-success crop_image">画像をトリミング&アップロード</button>
                   <button type="button" class="btn btn-outline-secondary" id="croppie_close" data-dismiss="modal">閉じる</button>
-
                 <!-- </div> -->
               </div>
-              <div class="modal-footer">
-              </div>
+             
             </div>
           </div>
         </div>
-      </div>     
 <!-- ######################################################### -->
     <form method="POST" action="" enctype="multipart/form-data">
       {{form.hidden_tag()}}
