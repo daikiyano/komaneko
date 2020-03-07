@@ -134,7 +134,6 @@ class UpdateUserForm(FlaskForm):
     twitter = StringField('twitterアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
     facebook = StringField('Facebookアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
     instagram = StringField('instagramアカウント',validators=[Length(max=50, message='50文字以内で入力してください')])
-    picture = FileField('団体イメージ画像',validators=[FileAllowed(['jpg','png','jpeg','gif'])])
     submit = SubmitField('プロフィールを更新')
 
     def check_email(self,field):

@@ -1,76 +1,159 @@
+<style>
+#button{
+    display:block;
+    margin:20px auto;
+    padding:10px 30px;
+    background-color:#eee;
+    border:solid #ccc 1px;
+  cursor: pointer;
+}
+#overlay{   
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height:100%;
+    display: none;
+    background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px #ddd solid;
+    border-top: 4px #2e93e6 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+.is-hide{
+    display:none;
+}
+  </style>
+
 {% extends 'base.html'%}
 {% block content %}
-
-    <div class="container" style="color:#45494b;">
-      <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
-      {% if current_user.type > 1 %}
-        <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.user_posts',username=current_user.username)}}">プロフィールを確認する</a>
-      {% endif %}
-    </h4>
-    {% for error in form.type.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.username.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.email.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.university.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.club_name.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.name.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.info.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.event.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.url.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.club_number.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.club_place.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.club_active.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.money.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.twitter.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.facebook.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.instagram.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-    {% for error in form.picture.errors %}
-      <span style="color: red;">{{ error }}</span><br>
-    {% endfor %}
-
-<div class="tab_box tab_box_user">
-  <ul class="tab" style="display: inline-block;">
-    <li class="tab_list active"><b>アカウント情報</b></li>
-    <li class="tab_list"><b>ブックマーク</b></li>
-  </ul>
+<div id="overlay" style="z-index: 30;">
+  <div class="cv-spinner">
+      <span class="spinner"></span>
+  </div>
 </div>
 
-<div class="area">
-  <div class="test show">
-    <div style="padding-top:50px;" align='center'>
-      <img class="account_image" src="{{current_user.profile_image}}" >
-    </div>
+<div class="container" style="color:#45494b; z-index: 0;">
+  <h4><b>{{ current_user.club_name}}さんのアカウントページ</b>
+    {% if current_user.type > 1 %}
+      <a class="btn btn-outline-primary btn-sm" href="{{url_for('users.user_posts',username=current_user.username)}}">プロフィールを確認する</a>
+    {% endif %}
+  </h4>
+  {% for error in form.type.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.username.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.email.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.university.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.club_name.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.name.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.info.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.event.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.url.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.club_number.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.club_place.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.club_active.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.money.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.twitter.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.facebook.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  {% for error in form.instagram.errors %}
+    <span style="color: red;">{{ error }}</span><br>
+  {% endfor %}
+  
+  <div class="tab_box tab_box_user">
+    <ul class="tab" style="display: inline-block;">
+      <li class="tab_list active"><b>アカウント情報</b></li>
+      <li class="tab_list"><b>ブックマーク</b></li>
+    </ul>
+  </div>
+
+  <div class="area">
+    <div class="test show">
+      <div style="padding-top:50px;" align='center'>
+        <img class="account_image" id="ajax_account_image" src="{{current_user.profile_image}}" >
+      </div>
+      
+<!-- #########croppie################################### -->
+
+    
+        <div class="panel panel-default">
+          <div class="panel-body" align="left">
+            <h5><i class="far fa-images"></i>サークル画像アップロード</h5>
+            <div class="custom-file">
+            <input type="file" name="upload_image" id="upload_image" class="custom-file-input" accept="image/*" />
+            <label class="custom-file-label" for="customFile">Choose file</label>
+
+          </div>
+            <div id="uploaded_image"></div>
+          </div>
+        </div>
+     
+
+<!-- #########Modal################################### -->
+
+      <div style="z-index: 3;" class="modal fade" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">メディアを編集</h5>
+            </div>
+            <div class="modal-body">
+              <div id="image_demo" style="width:350px; margin-top:10px"></div>
+                <div class="col-md-4" style="padding-top:10px;">
+                  <button class="btn btn-outline-success crop_image">画像をトリミング&アップロード</button>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" id="croppie_close" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+<!-- ######################################################### -->
     <form method="POST" action="" enctype="multipart/form-data">
       {{form.hidden_tag()}}
 
@@ -131,7 +214,6 @@
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.club_active.label(class='form-group')}}</h5>
         {{form.club_active(placeholder="例)火曜日18〜20、土曜日16〜18",class='form_input form-control')}}
-
         </div>
         <div class="form-group">
         <h5><i class="fas fa-calendar-day"></i>{{form.money.label(class='form-group')}}</h5>
@@ -157,17 +239,11 @@
         </div>
       {% endif %}
       <div class="form-group">
-      <h5><i class="far fa-images"></i>
-
-</h5>{{form.picture.label(class='form-group')}}
-      ※jpg、png,jpeg,gifのみアップロードできます。<br>
-      {{form.picture(class='form_input form-control')}}<br>
-      </div>
-      <div class="preview"></div>
-      <div class="form-group">
       {{form.submit(class='btn btn-outline-primary')}}
       </div>
     </form>
+   <!-- ######################################################### -->
+
 </div>
 
 <div class="test">
@@ -219,5 +295,8 @@
     </div>
   </div>
   </div>
-
+  <!-- <div class="ajax_alert alert-success" role="alert">
+    This is a success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+  </div> -->
+<div id="#msgs"></div>
   {% endblock %}

@@ -34,10 +34,10 @@ $(document).ready(function(){
   $(document).ready(function(){
     $('.slider_food').slick({
       infinite: true, //スライドのループ有効化 //ドットのナビゲーションを表示
-            centerMode: true, //要素を中央寄せ
-            centerPadding:'16%', //両サイドの見えている部分のサイズ
-            autoplay:true, //自動再生
-            autoplaySpeed:1600,
+      centerMode: true, //要素を中央寄せ
+      centerPadding:'16%', //両サイドの見えている部分のサイズ
+      autoplay:true, //自動再生
+      autoplaySpeed:1600,
     });
     
     });
@@ -56,9 +56,8 @@ $(function(){
 });
 
 
-
 $(function(){
-  //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
+  // 画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
   $('form').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
@@ -82,18 +81,6 @@ $(function(){
     reader.readAsDataURL(file);
   });
 });
-
-
-
-//
-// function clipboadCopy(copyid){
-//     var copytext = document.getElementById(copyid);
-//     //この部分を追加
-//     var range = document.createRange();
-//     range.selectNode(copytext);
-//     window.getSelection().addRange(range);
-//     document.execCommand("copy");
-// }
 
 
 
@@ -202,3 +189,92 @@ $(document).ready(function(){
     scrollbar: true
   });
 });
+
+
+
+// ############################################
+// ##################croppie for club##################
+
+$(document).ready(function(){
+  $('#croppie_close').click(function() {
+    $('#uploadimageModal').removeClass('show');
+    $('#uploadimageModal').css('display','none');
+    $('input[type=file]').val('');
+  });
+});
+$(document).ready(function(){
+if (window.matchMedia( '(min-width: 320px) and (max-width: 639px)' ).matches) {
+  viewportWidth = 270
+  viewportHeight = 170
+  boundaryWidth = 290
+  boundaryHeight = 180
+} else if (window.matchMedia( '(min-width: 640px) and (max-width: 1023px)' ).matches) {
+  viewportWidth = 460
+  viewportHeight = 290
+  boundaryWidth = 480
+  boundaryHeight = 290
+} else {
+  viewportWidth = 650
+  viewportHeight = 400
+  boundaryWidth = 700
+  boundaryHeight = 400
+ }
+$image_crop = $('#image_demo').croppie({
+ enableExif: true,
+  viewport: {
+   width: viewportWidth,
+   height:viewportHeight,
+   type:'square' //circle
+  },
+  boundary: {
+   width: boundaryWidth,
+   height: boundaryHeight
+  }
+});
+
+$('#upload_image').on('change', function(){
+  var reader = new FileReader();
+  reader.onload = function (event) {
+    $image_crop.croppie('bind', {
+    url: event.target.result
+   }).then(function(){
+    // console.log('jQuery bind complete');
+   });
+ }
+ reader.readAsDataURL(this.files[0]);
+  $('#uploadimageModal').addClass('show');
+  $('#uploadimageModal').css('display','block');
+});
+
+$('.crop_image').click(function(event){
+$(document).ajaxSend(function() {
+$("#overlay").fadeIn(300);　
+});
+ $image_crop.croppie('result', {
+   type: 'canvas',
+   size: 'viewport'
+ }).then(function(response){
+  //  console.log(response)
+   $.ajax({
+     url:"/image",
+     type: "POST",
+     data:{"image": response},
+     success:function(data) {  
+      $('#uploadimageModal').removeClass('show');
+      $('#uploadimageModal').css('display','none');
+      $('input[type=file]').val('');
+      $('.ajax_alert').alert()
+      $('#msgs').html("<div class='alert alert-secondary' role='alert'>This is a secondary alert—check it out!</div>");
+      // console.log(data);
+      // console.log(data.image);
+      $('#ajax_account_image').attr('src',data.image);
+      setTimeout(function(){
+        $("#overlay").fadeOut(300);
+      },500);
+     }
+   });
+  })
+ });
+});  
+
+// ####################################
