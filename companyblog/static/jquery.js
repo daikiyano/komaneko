@@ -238,7 +238,7 @@ $('#upload_image').on('change', function(){
     $image_crop.croppie('bind', {
     url: event.target.result
    }).then(function(){
-    console.log('jQuery bind complete');
+    // console.log('jQuery bind complete');
    });
  }
  reader.readAsDataURL(this.files[0]);
@@ -254,7 +254,7 @@ $("#overlay").fadeIn(300);　
    type: 'canvas',
    size: 'viewport'
  }).then(function(response){
-   console.log(response)
+  //  console.log(response)
    $.ajax({
      url:"/image",
      type: "POST",
@@ -265,8 +265,8 @@ $("#overlay").fadeIn(300);　
       $('input[type=file]').val('');
       $('.ajax_alert').alert()
       $('#msgs').html("<div class='alert alert-secondary' role='alert'>This is a secondary alert—check it out!</div>");
-      console.log(data);
-      console.log(data.image);
+      // console.log(data);
+      // console.log(data.image);
       $('#ajax_account_image').attr('src',data.image);
       setTimeout(function(){
         $("#overlay").fadeOut(300);
