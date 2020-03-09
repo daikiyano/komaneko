@@ -700,6 +700,7 @@ header{
 }
 
 
-.modal-body-account{
+#uploadimageModal {
     height: 100vh;
+    max-height: calc(100vh - 100px);
 }
