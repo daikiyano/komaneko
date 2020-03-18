@@ -133,27 +133,31 @@
      
 
 <!-- #########Modal################################### -->
+<div style="min-height: 100%;">
       <div style="z-index: 3;" class="modal fade" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" style="padding-top:60px;" role="document">
+        <div class="modal-dialog" style="padding-top:60px;" role="document">
+          <!-- modal-lg -->
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">メディアを編集</h5><br>
              
             </div>
             <div class="modal-body modal-body-account">
-              <div id="image_demo" style="width:350px; margin-top:10px"></div>
+              <div id="image_demo" style="width:350px; margin-top:5px"></div>
+              <button class="btn btn-outline-success crop_image">画像をトリミング&アップロード</button>
+              <button type="button" class="btn btn-outline-secondary" id="croppie_close" data-dismiss="modal">閉じる</button>
                 <!-- <div class="col-md-4" style="padding-top:10px;"> -->
                   
                 <!-- </div> -->
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-outline-success crop_image">画像をトリミング&アップロード</button>
-              <button type="button" class="btn btn-outline-secondary" id="croppie_close" data-dismiss="modal">閉じる</button>
-            </div>
+            <!-- <div class="modal-footer">
+              
+            </div> -->
              
             </div>
           </div>
         </div>
+      </div>
 <!-- ######################################################### -->
     <form method="POST" action="" enctype="multipart/form-data">
       {{form.hidden_tag()}}

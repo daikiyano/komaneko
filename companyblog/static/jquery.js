@@ -254,7 +254,7 @@ $("#overlay").fadeIn(300);　
    type: 'canvas',
    size: 'viewport'
  }).then(function(response){
-  //  console.log(response)
+   console.log(response)
    $.ajax({
      url:"/image",
      type: "POST",
