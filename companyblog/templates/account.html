@@ -134,18 +134,19 @@
 
 <!-- #########Modal################################### -->
 <div style="min-height: 100%;">
-      <div style="z-index: 3;" class="modal fade" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div style="z-index: 3;" class="modal fade modal-lg" id="uploadimageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="padding-top:60px;" role="document">
           <!-- modal-lg -->
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">メディアを編集</h5><br>
+              <h5 class="modal-title" id="exampleModalLabel">メディアを編集
+                <button class="btn btn-outline-success btn-sm crop_image">画像をトリミング</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="croppie_close" data-dismiss="modal">閉じる</button>
+              </h5>
              
             </div>
             <div class="modal-body modal-body-account">
               <div id="image_demo" style="width:350px; margin-top:5px"></div>
-              <button class="btn btn-outline-success crop_image">画像をトリミング&アップロード</button>
-              <button type="button" class="btn btn-outline-secondary" id="croppie_close" data-dismiss="modal">閉じる</button>
                 <!-- <div class="col-md-4" style="padding-top:10px;"> -->
                   
                 <!-- </div> -->
