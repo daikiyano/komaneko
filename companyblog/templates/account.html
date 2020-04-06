@@ -227,6 +227,9 @@
             var pictureInput = document.getElementById("upload_file");
             fd.append("file", pictureInput.files[0]);
             console.log(pictureInput.files[0])
+            $(document).ajaxSend(function() {
+              $("#overlay").fadeIn(300);　
+            });
             $.ajax({
               type: 'POST',
               url: '/club_image',
@@ -248,6 +251,9 @@
               sentence = before + word + after;
               textarea.value = sentence;
               $('#upload_file').val('');
+              setTimeout(function(){
+                $("#overlay").fadeOut(300);
+              },500);
               }
             });
           });
