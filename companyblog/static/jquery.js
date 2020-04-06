@@ -277,4 +277,33 @@ $("#overlay").fadeIn(300);　
  });
 });  
 
+// var files;
+
+//   $('#hey').on('click', function(e) {
+//     files = this.files;
+//   console.log("hye");
+//   var formData = new FormData($('#my_form').get(0));
+//   if (this.files.length > 0) {
+//     file = this.files[0];
+//     console.log(file)
+//   }
+//   });
+
+// $('#form').submit(function(){
+//   var params = new FormData( $(this)[0] );
+//   console.log("hey");
+//   console.log(params);
+
+//   $.ajax({
+//       type: "POST",
+//       url: "/ajax/upload",
+//       contentType: false,
+//       processData: false,
+//       data: params,
+//       dataType: "json",
+//       success: function( json ) {
+//           // 完了処理
+//       }
+//   });
+// });
 // ####################################

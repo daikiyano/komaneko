@@ -198,6 +198,25 @@ def logout():
     return redirect(url_for("core.index"))
 
 
+@users.route('/club_image',methods=['POST'])
+@login_required
+def club_image():
+    # if request.method == "GET":
+    if request.method == 'POST': 
+        # print(request.form['image'])
+        enc_img = request.files['file']
+        image = add_profile_pic(enc_img)
+        image = "{}".format(image)
+        s3_resource = boto3.resource('s3')
+        my_bucket = s3_resource.Bucket(app.config['AWS_BUCKET'])
+        my_bucket.Object(image).put(Body=enc_img)
+        test = 'https://'+str(app.config['AWS_BUCKET'])+'.s3-ap-northeast-1.amazonaws.com/{}'
+        images = test.format(image)
+        print(images)
+        # current_user.profile_image = images
+        # db.session.commit()
+        return jsonify({'image': images})
+
 
 @users.route('/image',methods=['POST'])
 @login_required
