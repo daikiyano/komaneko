@@ -220,45 +220,47 @@
         <input type="file" name="file" id="upload_file" style="display:none"　/> 
       </label>
         <h5>※画像挿入したい位置にカーソルを合わせてください。</h5>
-        <script>
-          $('#upload_file').change(function(e){
-            var file = this.files;
-            var fd = new FormData();
-            var pictureInput = document.getElementById("upload_file");
-            fd.append("file", pictureInput.files[0]);
-            console.log(pictureInput.files[0])
-            $(document).ajaxSend(function() {
-              $("#overlay").fadeIn(300);　
-            });
-            $.ajax({
-              type: 'POST',
-              url: '/club_image',
-              contentType: false,
-              processData: false,
-              data: fd,
-              dataType: 'json', 
-            success: function(data) {
-              console.log(data.image);
-              var textarea = document.querySelector('.club_textarea');  
-              console.log(textarea);
-              var sentence = textarea.value;
-              console.log(sentence);
-              var len = sentence.length;
-              var pos = textarea.selectionStart;
-              var before = sentence.substr(0, pos);
-              var word = "<img src='" + data.image + "' style='max-width:100%; height: auto;'>";
-              var after = sentence.substr(pos, len);
-              sentence = before + word + after;
-              textarea.value = sentence;
-              $('#upload_file').val('');
-              setTimeout(function(){
-                $("#overlay").fadeOut(300);
-              },500);
-              }
-            });
-          });
-        </script>
 
+        <script>
+          // 記事内アップロード
+$('#upload_file').change(function(e){
+  var file = this.files;
+  var fd = new FormData();
+  var pictureInput = document.getElementById("upload_file");
+  fd.append("file", pictureInput.files[0]);
+  console.log(pictureInput.files[0])
+  $(document).ajaxSend(function() {
+    $("#overlay").fadeIn(300);　
+  });
+  $.ajax({
+    type: 'POST',
+    url: '/club_image',
+    contentType: false,
+    processData: false,
+    data: fd,
+    dataType: 'json', 
+  success: function(data) {
+    console.log(data.image);
+    var textarea = document.querySelector('.club_textarea');  
+    console.log(textarea);
+    var sentence = textarea.value;
+    console.log(sentence);
+    var len = sentence.length;
+    var pos = textarea.selectionStart;
+    var before = sentence.substr(0, pos);
+    var word = "<img src='" + data.image + "' style='max-width:100%; height: auto;'>";
+    var after = sentence.substr(pos, len);
+    sentence = before + word + after;
+    textarea.value = sentence;
+    $('#upload_file').val('');
+    setTimeout(function(){
+      $("#overlay").fadeOut(300);
+    },500);
+    }
+  });
+});
+
+        </script>
         <div class="form-group">
         <h5><i class="fas fa-info"></i>{{form.event.label(class='form-group')}}</h5>
         {{form.event(placeholder="例)4月新歓活動,5月BBQ,6月大会出場など、月ごとに縦書きで記入すると見やすいですよ　",rows="15",class='form-control')}}

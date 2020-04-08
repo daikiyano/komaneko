@@ -344,7 +344,7 @@ header{
 }
 
 .title_image{
-  height:500px;
+  height:400px;
   width:100%;
   margin-top:10px;
   padding-left:30px;
@@ -357,6 +357,7 @@ header{
 }
 
 .site_intro_box_inside{
+  top: 100px;
   height: 440px;
   position: relative;
 

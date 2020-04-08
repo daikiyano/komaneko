@@ -48,6 +48,21 @@
 
 </script>
 
+<style>
+.upload-img-btn {
+    margin: 22px auto;
+    padding: 15px;
+    border-radius: 4px;
+    max-width: 300px;
+    text-align: center;
+    /* display: block; */
+    background-color: #f1f1f1;
+    color: #73a9ff;
+    box-shadow:  0 2px 6px rgba(146, 146, 146, 0.8);
+    cursor: pointer;
+}
+ </style> 
+
 {% extends "base.html" %}
 {% block content %}
 <span id="ido" style="display:none;">35.6585805</span><br />
@@ -67,11 +82,57 @@
 
     <div class="form-group">
       <h5><i class="far fa-calendar-alt"></i>{{form.text.label(class="form-control-label")}}</h5>
-      {{form.text(placeholder="イベントの概要や目的、詳細情報を具体的に記入してください。",style="height:300px;",class="form_input form-control",rows='50',cols='100')}}
+      {{form.text(placeholder="イベントの概要や目的、詳細情報を具体的に記入してください。",style="height:300px;",class="form_input form-control",rows='50',cols='100',class="post_textarea")}}
       {% for error in form.text.errors %}
         <span style="color: red;">{{ error }}</span><br>
       {% endfor %}
     </div>
+    <label class="upload-img-btn">
+      イベント詳細内に画像を挿入する
+    <input type="file" name="file" id="post_file" style="display:none"　/> 
+  </label>
+    <h5>※画像挿入したい位置にカーソルを合わせてください。</h5>
+
+    <script>
+      // 記事内アップロード
+$('#post_file').change(function(e){
+var file = this.files;
+var fd = new FormData();
+var pictureInput = document.getElementById("post_file");
+fd.append("file", pictureInput.files[0]);
+console.log(pictureInput.files[0])
+$(document).ajaxSend(function() {
+$("#overlay").fadeIn(300);　
+});
+$.ajax({
+type: 'POST',
+url: '/club_image',
+contentType: false,
+processData: false,
+data: fd,
+dataType: 'json', 
+success: function(data) {
+console.log(data.image);
+var textarea = document.querySelector('.post_textarea');  
+console.log(textarea);
+var sentence = textarea.value;
+console.log(sentence);
+var len = sentence.length;
+var pos = textarea.selectionStart;
+var before = sentence.substr(0, pos);
+var word = "<img src='" + data.image + "' style='max-width:100%; height: auto;'>";
+var after = sentence.substr(pos, len);
+sentence = before + word + after;
+textarea.value = sentence;
+$('#post_file').val('');
+setTimeout(function(){
+  $("#overlay").fadeOut(300);
+},500);
+}
+});
+});
+
+    </script>
     <div class="form-group" style="width:50%;">
       <h5><i class="far fa-calendar-alt"></i>{{form.event_date.label(class="form-control-label")}}</h5>
       {{form.event_date(placeholder="yyyy/mm/dd",class="form_input form-control form-contorl-lg")}}

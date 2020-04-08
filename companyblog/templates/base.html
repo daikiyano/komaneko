@@ -64,7 +64,7 @@
         <ul class="header_left">
           {% if not current_user.is_authenticated %}
             <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.login')}}"><b>ログイン</b></a></li>
-            <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li>
+            <!-- <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.signup')}}"><b>ユーザー登録(個人)</b></a></li> -->
             <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.register')}}"><b>アカウント登録(団体)</b></a></li>
             <li class="header_list"><a style="text-decoration:none;" class="menu" href="{{url_for('users.all')}}"><b>登録団体一覧</b></a></li>
             <li class="header_list"><a style="text-decoration:none;" class="menu site_top_btn" href="{{url_for('core.index')}}"><b>サイトトップへ</b></a></li>
@@ -117,7 +117,7 @@
               <p><b>アカウントを既にお持ちの方</b><br>
               <a href="{{url_for('users.login')}}" class="btn btn-outline-primary">ログイン</a></p>
               <p><b>まだアカウント登録されていない方</b><br>
-                <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a>
+                <!-- <a href="{{url_for('users.signup')}}" class="btn btn-outline-primary">ユーザー登録(個人)</a> -->
                 <a href="{{url_for('users.register')}}" class="btn btn-outline-success">アカウント登録(団体)</a>
              </p>
             </div>
