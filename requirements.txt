@@ -71,7 +71,7 @@ pytz==2019.1
 PyYAML==3.13
 requests==2.22.0
 requests-oauthlib==0.8.0
-rsa==3.4.2
+rsa==4.1
 s3transfer==0.2.1
 six==1.11.0
 SQLAlchemy==1.2.6
