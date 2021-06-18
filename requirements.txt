@@ -78,7 +78,7 @@ SQLAlchemy==1.2.6
 SQLAlchemy-Utils==0.33.2
 sqlparse==0.3.0
 url-for-s3==0.1.2
-urllib3==1.22
+urllib3==1.26.5
 URLObject==2.4.3
 validators==0.13.0
 Werkzeug==0.15.4
